@@ -2,25 +2,23 @@
 layout: about
 title: about
 permalink: /
-subtitle: <a href='#'>Affiliations</a>. Address. Contacts. Moto. Etc.
+subtitle: <a href="https://www.bu.edu/cs/ivc/people/">IVC-ML </a>, Boston University Boston, MA. 
 
 profile:
   align: right
-  image: prof_pic.jpg
+  image: nazia_dp.jpg
   image_circular: false # crops the image to make it circular
   more_info: >
-    <p>555 your office number</p>
-    <p>123 your address street</p>
-    <p>Your City, State 12345</p>
+
 
 news: true  # includes a list of news items
-latest_posts: true  # includes a list of the newest posts
+latest_posts: false  # includes a list of the newest posts
 selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
 
-Write your biography here. Tell the world about yourself. Link to your favorite [subreddit](http://reddit.com). You can put a picture in, too. The code is already in, just name your picture `prof_pic.jpg` and put it in the `img/` folder.
+Hello there!! I am a PhD student at Boston University, advised by Prof. [Bryan Plummer](https://bryanplummer.com/) on topics related to **multimodal learning** and **vision-language problems**. My research interest lies at the crosssection of **Natural Language Processing** and **Computer Vision**, with a special emphasis on **responsible applications** and **under-resourced domains**.
 
-Put your address / P.O. box / other info right below your picture. You can also disable any of these elements by editing `profile` property of the YAML header of your `_pages/about.md`. Edit `_bibliography/papers.bib` and Jekyll will render your [publications page](/al-folio/publications/) automatically.
+Prior to joining BU, I was fortunate to be advised by [Dr. Isaac Johnson](https://isaacjoh.com/) and [Dr. Martin Gerlach](https://martingerlach.github.io/about/) at the Wikimedia Research Team, where I built resources and pipelines for NLP research across the Wikimedia projects. I also have a year of industry experience as a Machine Learning Engineer at [Giga Tech Ltd.](https://gigatechltd.com/), where I worked on developing the `National Syntactic TreeBank for Bangla`. 
 
-Link to your social media connections, too. This theme is set up to use [Font Awesome icons](https://fontawesome.com/) and [Academicons](https://jpswalsh.github.io/academicons/), like the ones below. Add your Facebook, Twitter, LinkedIn, Google Scholar, or just disable all of them.
+Outside research and courseworks, I am interested in plants, pottery and pop-culture.
