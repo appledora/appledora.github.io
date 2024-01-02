@@ -1,7 +1,7 @@
 ---
 layout: page
 title: mwparserfromhtml
-description: a project that redirects to another website
+description: A python library for parsing and mining metadata from the Enterprise HTML Dumps.
 img: assets/img/7.jpg
 redirect: https://unsplash.com
 importance: 3
