@@ -2,7 +2,7 @@
 layout: page
 title: VISTA for Automated Retail Check-out
 description: Official implementation of the VISTA algorithm for automated retail check-out.
-img: assets/img/3.jpg
+# img: assets/img/3.jpg
 importance: 2
 category: research
 giscus_comments: false

@@ -2,8 +2,8 @@
 layout: page
 title: mwparserfromhtml
 description: A python library for parsing and mining metadata from the Enterprise HTML Dumps.
-img: assets/img/7.jpg
-redirect: https://unsplash.com
+# img: assets/img/7.jpg
+# redirect: https://unsplash.com
 importance: 3
 category: development
 github: https://pypi.org/project/mwparserfromhtml/

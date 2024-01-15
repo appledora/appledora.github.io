@@ -2,7 +2,7 @@
 layout: page
 title: mwTokenizer
 description: Python library for multilingual tokenization
-img: assets/img/12.jpg
+# img: assets/img/12.jpg
 importance: 1
 category: research
 github: https://gitlab.wikimedia.org/repos/research/wiki-nlp-tools
