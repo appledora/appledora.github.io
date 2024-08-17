@@ -52,15 +52,16 @@
 #         - Champion in BRACATHON 3.0 - Healthcare
 #         - Champion in SUST Tech Fest - Hackathon
 
-- title: Academic Interests
+- title: Research Interests
   type: list
   contents:
-    - Multimodal Learning
-    - Bias Mitigation and domain adaptation
-    - AI For Social Good
-    - Knowledge-guided Learning
-    - Low-resource Learning
-    - Continual Learning
+    - Parameter-efficient Learning => Doing more with less
+    - Multimodal Learning => This just makes sense as a human
+    - Bias Mitigation and domain adaptation => Fair and Flexible AI
+    - AI For Social Good => Why not make the world a better place, while we are at it?
+    - Knowledge-guided Learning => What if decisions were made based on reasoning?
+    - Low-resource Learning => This is where the real challenge lies
+    - Continual Learning => Learning to learn
 
 # - title: Other Interests
 #   type: list
@@ -72,12 +73,7 @@
   contents:
     - title: Programming Languages
       items:
-        - Python
-        - C++
-        - Java
-        - JavaScript
-        - SQL
-        - SPARQL
+        - Python, C++, Java, JavaScript, SQL, SPARQL
 
     - title: Machine Learning Frameworks
       items:
@@ -87,32 +83,24 @@
         - pySpark
     - title: Frameworks
       items:
-        - Flask
-        - Django
-        - Android
+        - Flask, Django, Android
     - title: Tools and Misc.
       items:
-        - Git
-        - Docker
-        - Linux
-        - Bash
-        - LaTeX
-        - Markdown
-        - HTML
-        - CSS
-        - Firebase
+        - Git, Docker, Linux, Bash, LaTeX, Markdown, HTML, CSS, Firebase
 
 - title: Non-academic Interests
   type: nested_list
   contents:
     - title:
       items:
-        - Malai Cha
-        - Gothic Horror 🦉
+        - Malai Chaa ☕
+        - Gothic Horror 🦇
         - Cosmic Horror 🌌
+        - Ritual Horror 🕯️
+        - Ambient Horror 🌫️
         - Magical Realism ✨
         - Fall of my enemies ☠️
-        - Gintama 👘
-        - Anime productions by Mappa
-        - Seas with warm water
-        - Literally anything by Neil Gaiman and Alan Moore
+        - Comics 🦸‍♂️
+        - Anime productions by Mappa 🎌
+        - Seas with warm water 🌊
+        - Literally anything by Neil Gaiman and Alan Moore 📚

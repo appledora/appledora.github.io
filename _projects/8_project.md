@@ -3,7 +3,7 @@ layout: page
 title: Product Recommendation System Benchmarking
 description: An end to end benchmarking of different recommendation techniques
 img:
-importance: 4
+importance: 9
 category: research
 github: https://github.com/appledora/mlpr-amazon_product_recommendation
 ---

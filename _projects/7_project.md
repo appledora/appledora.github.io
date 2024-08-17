@@ -3,7 +3,7 @@ layout: page
 title: P2P Chat
 description: Fully functioning peer-to-peer chat application
 img:
-importance: 4
+importance: 12
 category: development
 github: https://github.com/appledora/P2P-chat-socket-implementation-on-android
 ---

@@ -3,7 +3,7 @@ layout: page
 title: Pneumonia Detection from Chest X-Rays
 description: An end to end benchmarking of different computer vision architectures
 img:
-importance: 4
+importance: 7
 category: research
 github: https://github.com/appledora/mlpr-pneumonia-detect
 ---

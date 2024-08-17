@@ -3,7 +3,7 @@ layout: page
 title: Image Captioning Web App
 description: A web app that generates captions for images.
 img:
-importance: 4
+importance: 14
 category: development
 github: https://github.com/appledora/mlpr-image_caption
 ---

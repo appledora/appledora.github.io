@@ -2,7 +2,7 @@
 layout: page
 title: Vanishing point detection
 description: Different experiments on vanishing point detection
-importance: 4
+importance: 13
 category: research
 github: https://github.com/appledora/mlpr-vanishing-point
 ---

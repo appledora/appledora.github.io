@@ -2,57 +2,28 @@
 layout: page
 title: projects
 permalink: /projects/
-description: Projects built for research and fun.
+# description: Projects built for research and fun.
 nav: true
 nav_order: 3
 display_categories: [research, development]
 horizontal: false
 ---
 
-<!-- pages/projects.md -->
-<div class="projects">
-{%- if site.enable_project_categories and page.display_categories %}
-  <!-- Display categorized projects -->
-  {%- for category in page.display_categories %}
-  <h2 class="category">{{ category }}</h2>
-  {%- assign categorized_projects = site.projects | where: "category", category -%}
-  {%- assign sorted_projects = categorized_projects | sort: "importance" %}
-  <!-- Generate cards for each project -->
-  {% if page.horizontal -%}
-  <div class="container">
-    <div class="row row-cols-2">
-    {%- for project in sorted_projects -%}
-      {% include projects_horizontal.html %}
-    {%- endfor %}
-    </div>
-  </div>
-  {%- else -%}
-  <div class="grid">
-    {%- for project in sorted_projects -%}
-      {% include projects.html %}
-    {%- endfor %}
-  </div>
-  {%- endif -%}
-  {% endfor %}
 
-{%- else -%}
-<!-- Display projects without categories -->
-  {%- assign sorted_projects = site.projects | sort: "importance" -%}
-  <!-- Generate cards for each project -->
-  {% if page.horizontal -%}
-  <div class="container">
-    <div class="row row-cols-2">
-    {%- for project in sorted_projects -%}
-      {% include projects_horizontal.html %}
-    {%- endfor %}
-    </div>
-  </div>
-  {%- else -%}
-  <div class="grid">
-    {%- for project in sorted_projects -%}
+<div class="projects-container">
+  <div class="projects-grid">
+  {%- assign categorized_projects = site.projects %}
+    {%- assign sorted_projects = categorized_projects | sort: "importance" %}
+    {% for project in sorted_projects %}
+    
+      <div class="project-card">
       {% include projects.html %}
-    {%- endfor %}
+        <!-- <h3><a href="{{ project.url | relative_url }}">{{ project.title }}</a></h3>
+        <p>{{ project.description }}</p>
+        {% if project.language %}
+          <p class="language">{{ project.language }}</p>
+        {% endif %} -->
+      </div>
+    {% endfor %}
   </div>
-  {%- endif -%}
-{%- endif -%}
 </div>

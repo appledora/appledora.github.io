@@ -1,7 +1,7 @@
 ---
 layout: page
 title: mwTokenizer
-description: Python library for multilingual tokenization
+description: Python library for multilingual tokenization done for the Wikimedia Foundation.
 # img: assets/img/12.jpg
 importance: 1
 category: research

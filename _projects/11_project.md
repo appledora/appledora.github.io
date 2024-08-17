@@ -2,7 +2,7 @@
 layout: page
 title: Predict Energy Consumption of buildings from their attributes and weather data
 description: An end to end benchmarking of different prediction techniques
-importance: 4
+importance: 8
 category: research
 github: https://github.com/appledora/mlpr-weather_energy
 ---

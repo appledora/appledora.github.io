@@ -146,6 +146,11 @@ blockquote {
 }
 
 // Card
+.card-title {
+  color: $cyan-color;
+  font-size: revert;
+  font-weight: bolder;
+}
 
 .card {
   background-color: var(--global-card-bg-color);
@@ -154,9 +159,6 @@ blockquote {
     width: 100%;
   }
 
-  .card-title {
-    color: var(--global-text-color);
-  }
 
   .card-item {
     width: auto;
@@ -179,7 +181,12 @@ blockquote {
 // Profile
 
 .profile {
-  width: 100%;
+  width: min-content;
+
+  .img {
+    width: fit-content;
+    border-radius: 50%;
+  }
 
   .more-info {
     margin-bottom: 5px;
@@ -659,13 +666,14 @@ footer.sticky-bottom {
   h2 {
     margin-bottom: 1rem;
 
+
     span {
       font-size: 1.5rem;
     }
   }
 
   h2.bibliography {
-    color: var(--global-divider-color);
+    color: $cyan-color;
     border-top: 1px solid var(--global-divider-color);
     padding-top: 1rem;
     margin-top: 2rem;
@@ -683,8 +691,12 @@ footer.sticky-bottom {
 
       .preview {
         width: 100%;
-        min-width: 80px;
-        max-width: 200px;
+        min-width: 25%;
+        max-width: 600px;
+        max-height: 200px;
+        padding-right: 1rem;
+        object-fit: cover;
+        object-position: center;
       }
 
       .abbr {
@@ -858,6 +870,8 @@ html.transition *:after {
 
 // Extra Markdown style (post Customization)
 .post {
+  max-width: 100%;
+
   .post-meta {
     color: var(--global-text-color-light);
     font-size: 0.875rem;
@@ -1089,4 +1103,119 @@ nav[data-toggle="toc"] {
 
 #toc-sidebar {
   z-index: 1;
+}
+
+.abbr-badge {
+  margin-top: 2.5%;
+}
+
+.abbr-badge .badge {
+  font-size: 0.8em;
+  padding: 3px 6px;
+  background-color: $cyan-color;
+  color: white;
+  float: right;
+}
+
+.projects-container {
+  max-width: max-content;
+  margin: 0 auto;
+  // padding: 20px;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.project-card {
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  // padding: 20px;
+  max-width: 600px;
+}
+
+.project-card h3 {
+  margin-top: 0;
+}
+
+.project-card a {
+  color: #58a6ff;
+  text-decoration: none;
+}
+
+.project-card p {
+  margin-bottom: 10px;
+}
+
+.language {
+  font-size: 0.9em;
+  color: #8b949e;
+}
+
+@media (max-width: 768px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Responsive grid */
+@media (min-width: 640px) {
+  .projects-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .projects-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .projects-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1280px) {
+  .projects-container {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.card-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.project-category {
+  float: right;
+  background-color: #58a6ff;
+  color: white;
+  padding: 3px;
+  border-radius: 12px;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.project-title {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.project-title a {
+  color: #58a6ff;
+  text-decoration: none;
+}
+
+.github-icon {
+  margin-top: 10px;
+}
+
+.github-icon a {
+  text-decoration: none;
+  color: inherit;
 }

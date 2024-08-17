@@ -3,7 +3,7 @@ layout: page
 title: Shaako
 description: An android application to facilitate community health programs in rural areas.
 img:
-importance: 3
+importance: 10
 category: development
 github: https://github.com/WeDoinaThing
 ---
