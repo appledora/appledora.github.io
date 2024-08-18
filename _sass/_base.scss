@@ -148,7 +148,7 @@ blockquote {
 // Card
 .card-title {
   color: $cyan-color;
-  font-size: revert;
+  font-size: medium;
   font-weight: bolder;
 }
 
@@ -181,10 +181,10 @@ blockquote {
 // Profile
 
 .profile {
-  width: min-content;
 
   .img {
     width: fit-content;
+    height: fit-content;
     border-radius: 50%;
   }
 
@@ -192,6 +192,8 @@ blockquote {
     margin-bottom: 5px;
     margin-top: 5px;
     font-family: monospace;
+    width: fit-content;
+    height: fit-content;
 
     p {
       display: inline-block;
@@ -1189,6 +1191,7 @@ nav[data-toggle="toc"] {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  font-size: medium;
 }
 
 .project-category {

@@ -55,13 +55,13 @@
 - title: Research Interests
   type: list
   contents:
-    - Parameter-efficient Learning => Doing more with less
-    - Multimodal Learning => This just makes sense as a human
-    - Bias Mitigation and domain adaptation => Fair and Flexible AI
-    - AI For Social Good => Why not make the world a better place, while we are at it?
-    - Knowledge-guided Learning => What if decisions were made based on reasoning?
-    - Low-resource Learning => This is where the real challenge lies
-    - Continual Learning => Learning to learn
+    - Parameter-efficient Learning - Doing more with less
+    - Multimodal Learning - This just makes sense as a human
+    - Bias Mitigation and domain adaptation - Fair and Flexible AI
+    - AI For Social Good - Why not make the world a better place, while we are at it?
+    - Knowledge-guided Learning - What if decisions were made based on reasoning?
+    - Low-resource Learning - This is where the real challenge lies
+    - Continual Learning - Learning to learn
 
 # - title: Other Interests
 #   type: list
@@ -87,6 +87,19 @@
     - title: Tools and Misc.
       items:
         - Git, Docker, Linux, Bash, LaTeX, Markdown, HTML, CSS, Firebase
+
+- title: Leadership & Service
+  type: nested_list
+  contents:
+    - title: Leadership
+      items:
+        - Founding Member - SUST ACM Student Chapter
+        - Judge - SUST Tech Fest DL Enigma, BDOSN NLP Hackathon
+        - Organizing Committee - IEEE ICBSLP, 2019. SUST Tech Fest, 2020
+    - title: Service
+      items:
+        - Mentor - HSA , Intl. ML Olympiad
+        - Volunteer - Outreacy, BDOSN Ada Lovelace Celebration,
 
 - title: Non-academic Interests
   type: nested_list
