@@ -2,10 +2,10 @@
 layout: page
 title: SUSTCast
 description: Automate campus radio.
-# img: assets/img/1.jpg
+img: assets/img/sustcast.gif
 importance: 11
 category: development
-tools: Android, Django, Firebase, Icecast    
+tags: [Android, Django, Firebase, Icecast    ]
 github: https://github.com/sustcast/sustcast-android-app-v1
 ---
 

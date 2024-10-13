@@ -6,34 +6,65 @@ layout: default
 <div class="post">
 
   <header class="post-header">
-    <h1 class="post-title">{{ page.title }} {% if page.cv_pdf %}<a href="{{ page.cv_pdf | prepend: 'assets/pdf/' | relative_url}}" target="_blank" rel="noopener noreferrer" class="float-right"><i class="fa-solid fa-file-pdf"></i></a>{% endif %}</h1>
-      {% if page.description %}<p class="post-description">{{ page.description }}</p>{% endif %}
+    <h1 class="post-title">{{ page.title }} {% if page.cv_pdf %}<a
+        href="{{ page.cv_pdf | prepend: 'assets/pdf/' | relative_url}}" target="_blank" rel="noopener noreferrer"
+        class="float-right"><i class="fa-solid fa-file-pdf"></i></a>{% endif %}</h1>
+    {% if page.description %}<p class="post-description">{{ page.description }}</p>{% endif %}
   </header>
-
+  <h3> Research Motivation </h3>
+  <p> I'm fascinated by the potential of AI to transform our world, and I'm on a journey to contribute to this exciting
+    field. My research interests span a wide range of cutting-edge areas, each with its own set of challenges and
+    opportunities.
+  </p>
+  <p>
+    One area that particularly intrigues me is parameter-efficient fine-tuning. I'm eager to explore ways to make AI
+    models more adaptable and resource-efficient, like teaching a computer new tricks without needing a supercomputer.
+    It's a bit like trying to pack for a world tour in a carry-on bag – challenging, but potentially game-changing!
+  </p>
+  <p>
+    Adversarial defense is another field I'm keenly exploring. As AI systems become more prevalent, ensuring they can
+    stand up to potential attacks is crucial. I see this as a kind of digital martial arts training for AI – teaching it
+    to defend itself in the complex world of data.
+  </p>
+  <p>
+    One of my biggest aspirations is to work on making AI more inclusive, especially for low-resource languages and
+    domains. I dream of a world where AI can speak every language and understand every culture, bridging digital divides
+    and opening up new possibilities for underserved communities.
+    I'm also deeply curious about the concept of machine unlearning. While I haven't delved into this yet, the idea of
+    helping AI systems "forget" specific information securely and efficiently is both fascinating and crucial for
+    privacy and adaptability.
+  </p>
+  <p>
+    In essence, my research interests are about making AI not just powerful, but also efficient, fair, and globally
+    relevant. It's a tall order, and I'm humbled by the complexity of these challenges. But I am excited to see where
+    this leads me !!
+  </p>
   <article>
     <div class="cv">
       {% for entry in site.data.cv %}
-        <a class="anchor" id="{{ entry.title }}"></a>
-        <div class="card mt-3 p-3">
-          <h3 class="card-title font-weight-medium">{{ entry.title }}</h3>
-          <div>
+      <a class="anchor" id="{{ entry.title }}"></a>
+
+      <div class="card mt-3 p-3">
+        <h3 class="card-title font-weight-medium">{{ entry.title }}</h3>
+
+        <div>
           {% if entry.type == "list" %}
-            {% include cv/list.html %}
+          {% include cv/list.html %}
           {% elsif entry.type == "map" %}
-            {% include cv/map.html %}
+          {% include cv/map.html %}
           {% elsif entry.type == "nested_list" %}
-            {% include cv/nested_list.html %}
+          {% include cv/nested_list.html %}
           {% elsif entry.type == "time_table" %}
-            {% include cv/time_table.html %}
+          {% include cv/time_table.html %}
           {% elsif entry.type == "list_groups" %}
-            {% include cv/list_groups.html %}
+          {% include cv/list_groups.html %}
           {% else %}
-            {{ entry.contents }}
+          {{ entry.contents }}
           {% endif %}
-          </div>
         </div>
-      {% endfor %}
       </div>
+      {% endfor %}
+    </div>
   </article>
 
 </div>
@@ -41,57 +72,59 @@ layout: default
 <div class="post">
 
   <header class="post-header">
-    <h1 class="post-title">{{ page.title }} {% if page.cv_pdf %}<a href="{{ page.cv_pdf | prepend: 'assets/pdf/' | relative_url}}" target="_blank" rel="noopener noreferrer" class="float-right"><i class="fa-solid fa-file-pdf"></i></a>{% endif %}</h1>
+    <h1 class="post-title">{{ page.title }} {% if page.cv_pdf %}<a
+        href="{{ page.cv_pdf | prepend: 'assets/pdf/' | relative_url}}" target="_blank" rel="noopener noreferrer"
+        class="float-right"><i class="fa-solid fa-file-pdf"></i></a>{% endif %}</h1>
     {% if page.description %}<p class="post-description">{{ page.description }}</p>{% endif %}
   </header>
 
   <article>
     <div class="cv">
       {% for data in site.data.resume %}
-        {% if site.jsonresume and site.jsonresume.size > 0 %}
-          {% unless site.jsonresume contains data[0] %}
-            {% continue %}
-          {% endunless %}
-        {% endif %}
-        {% if data[0] == "meta" or data[1].size == 0 %}
-          {% continue %}
-        {% endif %}
-        <a class="anchor" id="{{ data[0] }}"></a>
-        <div class="card mt-3 p-3">
-          <h3 class="card-title font-weight-medium">{{ data[0] | capitalize }}</h3>
-          <div>
+      {% if site.jsonresume and site.jsonresume.size > 0 %}
+      {% unless site.jsonresume contains data[0] %}
+      {% continue %}
+      {% endunless %}
+      {% endif %}
+      {% if data[0] == "meta" or data[1].size == 0 %}
+      {% continue %}
+      {% endif %}
+      <a class="anchor" id="{{ data[0] }}"></a>
+      <div class="card mt-3 p-3">
+        <h3 class="card-title font-weight-medium">{{ data[0] | capitalize }}</h3>
+        <div>
           {% case data[0] %}
-            {% when "basics" %}
-              {% include resume/basics.html %}
-            {% when "education" %}
-              {% include resume/education.html %}
-            {% when "work" %}
-              {% include resume/work.html %}
-            {% when "volunteer" %}
-              {% include resume/volunteer.html %}
-            {% when "projects" %}
-              {% include resume/projects.html %}
-            {% when "awards" %}
-              {% include resume/awards.html %}
-            {% when "skills" %}
-              {% include resume/skills.html %}
-            {% when "publications" %}
-              {% include resume/publications.html %}
-            {% when "languages" %}
-              {% include resume/languages.html %}
-            {% when "interests" %}
-              {% include resume/interests.html %}
-            {% when "certificates" %}
-              {% include resume/certificates.html %}
-            {% when "references" %}
-              {% include resume/references.html %}
-            {% else %}
+          {% when "basics" %}
+          {% include resume/basics.html %}
+          {% when "education" %}
+          {% include resume/education.html %}
+          {% when "work" %}
+          {% include resume/work.html %}
+          {% when "volunteer" %}
+          {% include resume/volunteer.html %}
+          {% when "projects" %}
+          {% include resume/projects.html %}
+          {% when "awards" %}
+          {% include resume/awards.html %}
+          {% when "skills" %}
+          {% include resume/skills.html %}
+          {% when "publications" %}
+          {% include resume/publications.html %}
+          {% when "languages" %}
+          {% include resume/languages.html %}
+          {% when "interests" %}
+          {% include resume/interests.html %}
+          {% when "certificates" %}
+          {% include resume/certificates.html %}
+          {% when "references" %}
+          {% include resume/references.html %}
+          {% else %}
 
           {% endcase %}
-          </div>
         </div>
-      {% endfor %}
       </div>
+      {% endfor %}
+    </div>
   </article>
 
 </div>

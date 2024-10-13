@@ -8,9 +8,8 @@ middle_name:
 last_name: Tasnim
 email: nimzia@bu.edu
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
-footer_text: >
-
-keywords: graduate, NLP, CV, research, scientist, PhD, blogs, anime,  academic-website, portfolio-website # add your own keywords or leave empty
+footer_text: This website has been modified (rather terribly) from the OG al-folio theme. # text displayed in the footer
+keywords: graduate, intern, machine-learning, AI, PEFT, NLP, CV, research, scientist, PhD, blogs, anime,  academic-website, portfolio-website # add your own keywords or leave empty
 lang: en # the language of your site (for example: en, fr, cn, ru, etc.)
 icon: mask.webp # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
 

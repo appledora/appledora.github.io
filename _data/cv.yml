@@ -53,15 +53,15 @@
 #         - Champion in SUST Tech Fest - Hackathon
 
 - title: Research Interests
-  type: list
+  type: nested_list
   contents:
-    - Parameter-efficient Learning - Doing more with less
-    - Multimodal Learning - This just makes sense as a human
-    - Bias Mitigation and domain adaptation - Fair and Flexible AI
-    - AI For Social Good - Why not make the world a better place, while we are at it?
-    - Knowledge-guided Learning - What if decisions were made based on reasoning?
-    - Low-resource Learning - This is where the real challenge lies
-    - Continual Learning - Learning to learn
+    - title: Primary
+      items:
+        - Parameter-efficient Finetuning, Model Editing, Adversarial Attacks, Machine Unlearning
+    - title: Secondary
+      items:
+        - Bias Mitigation & Fair Representations, Robust Domain Adaptation,
+        - Knowledge Infusion, </br>AI For Social Good
 
 # - title: Other Interests
 #   type: list
@@ -93,9 +93,9 @@
   contents:
     - title: Leadership
       items:
-        - Founding Member - SUST ACM Student Chapter
-        - Judge - SUST Tech Fest DL Enigma, BDOSN NLP Hackathon
-        - Organizing Committee - IEEE ICBSLP, 2019. SUST Tech Fest, 2020
+        - Founding Member | SUST ACM Student Chapter
+        - Judge | SUST Tech Fest DL Enigma, BDOSN NLP Hackathon
+        - Organizing Committee | IEEE ICBSLP, 2019. SUST Tech Fest, 2020
     - title: Service
       items:
         - Mentor - HSA , Intl. ML Olympiad
