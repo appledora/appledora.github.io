@@ -1,0 +1,93 @@
+- date: 2025-05-22
+  inline: true
+  content: "Second PhD paper is online! Read it on : <a href='https://arxiv.org/abs/2505.21649' target='_blank' rel='noopener'>arXiv</a> 📄"
+  related_posts: true
+  related_post: "iclr-2026"
+  link: "https://arxiv.org/abs/2505.21649"
+- date: 2025-09-22
+  inline: true
+  content: "Joined as an Instructor for the NSF REU program at Boston University"
+  related_posts: false
+- date: 2025-06-22
+  inline: true
+  content: "Attended CVPR'25 as a WiCV mentee in Nashville, TN"
+  related_posts: false
+- date: 2025-04-24
+  inline: true
+  content: "Presented my paper at ICLR'25 in Singapore 🇸🇬"
+  related_posts: false
+- date: 2025-04-06
+  inline: true
+  content: "Attended the CRA-W Grad Cohort 2025 in Denver, CO"
+  related_posts: false
+
+- date: 2025-01-22
+  inline: true
+  content: "First PhD paper accepted at ICLR'25! 🎉"
+  related_posts: false
+- date: 2024-12-22
+  inline: true
+  content: "Completed Depth requirements for PhD"
+  related_posts: false
+- date: 2023-09-05
+  inline: true
+  content: "Officially started my PhD at Boston University ✨"
+  related_posts: false
+
+- date: 2023-04-01
+  inline: false
+  content: "Awarded Dean's Fellowship at Boston University"
+  related_posts: false
+
+- date: 2023-01-01
+  inline: false
+  content: "Started Internship at Wikimedia Foundation"
+  related_posts: true
+  related_post: "wikimedia-outreachy"
+  link: "https://techblog.wikimedia.org/2023/02/24/from-hell-to-html/"
+
+- date: 2022-09-01
+  inline: true
+  content: "Started Outreachy internship with Wikimedia Research team"
+  related_posts: false
+
+- date: 2022-06-15
+  inline: false
+  content: "Secured 3rd place in CVPR AI City Challenge Track-4"
+  related_posts: false
+  related_post: "aicity-challenge"
+
+- date: 2021-10-20
+  inline: true
+  content: "Attended Grace Hopper Celebration 2021 as a scholar"
+  related_posts: false
+
+- date: 2021-09-01
+  inline: true
+  content: "Awarded Grace Hopper Scholarship 🎉"
+  related_posts: false
+
+- date: 2021-08-10
+  inline: true
+  content: "3rd place in Microsoft Imagine Cup - SEANM regional finals"
+  related_posts: false
+
+- date: 2020-12-15
+  inline: true
+  content: "4th place in DhakaAI Traffic Detection Challenge (out of 250+ teams)"
+  related_posts: false
+
+- date: 2019-11-20
+  inline: true
+  content: "Champion in BRACATHON 3.0 - Healthcare track 🏆"
+  related_posts: false
+
+- date: 2019-10-05
+  inline: true
+  content: "Won hackathon at SUST Tech Fest with VR/AR autism support app"
+  related_posts: false
+
+- date: 2019-09-01
+  inline: true
+  content: "Started undergraduate studies in Computer Science"
+  related_posts: false

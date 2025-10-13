@@ -1,93 +1,150 @@
 /*******************************************************************************
- * Themes
+ * Themes - Retro 8-bit Edition
  ******************************************************************************/
 
 :root {
-  --global-bg-color: #{$white-color};
-  --global-code-bg-color: #{$code-bg-color-light};
-  --global-text-color: #{$black-color};
-  --global-text-color-light: #{$grey-color};
-  --global-theme-color: #{$purple-color};
-  --global-hover-color: #{$purple-color};
-  --global-hover-text-color: #{$white-color};
-  --global-footer-bg-color: #{$grey-color-dark};
-  --global-footer-text-color: #{$grey-color-light};
-  --global-footer-link-color: #{$white-color};
-  --global-distill-app-color: #{$grey-color};
-  --global-divider-color: rgba(0,0,0,.1);
-  --global-card-bg-color: #{$white-color};
+  /* Retro 8-bit Color Palette - Light Mode */
+  --global-bg-color: #f0f0f0;
+  --global-code-bg-color: #e8e8e8;
+  --global-text-color: #212529;
+  --global-text-color-light: #6c757d;
+  --global-theme-color: #00b4d8;
+  --global-hover-color: #0096c7;
+  --global-hover-text-color: #ffffff;
+  --global-footer-bg-color: #2d3e50;
+  --global-footer-text-color: #ecf0f1;
+  --global-footer-link-color: #ffffff;
+  --global-distill-app-color: #6c757d;
+  --global-divider-color: #333333;
+  --global-card-bg-color: #ffffff;
 
-  --global-tip-block: #42b983;
-  --global-tip-block-bg: #e2f5ec;
-  --global-tip-block-text: #215d42;
-  --global-tip-block-title: #359469;
-  --global-warning-block: #e7c000;
+  /* Retro accent colors */
+  --retro-primary: #00b4d8;
+  --retro-secondary: #ff006e;
+  --retro-accent: #8338ec;
+  --retro-success: #06ffa5;
+  --retro-warning: #ffbe0b;
+  --retro-danger: #fb5607;
+  --code-text : #d6336c;
+  /* Pixel borders */
+  --pixel-border: 3px solid #333333;
+  --pixel-border-light: 2px solid #666666;
+
+  /* Shadows - pixelated effect */
+  --pixel-shadow: 4px 4px 0px rgba(0, 0, 0, 0.25);
+  --pixel-shadow-hover: 6px 6px 0px rgba(0, 0, 0, 0.3);
+
+  --global-tip-block: #06ffa5;
+  --global-tip-block-bg: #e0fff4;
+  --global-tip-block-text: #004d2d;
+  --global-tip-block-title: #00b377;
+  --global-warning-block: #ffbe0b;
   --global-warning-block-bg: #fff8d8;
   --global-warning-block-text: #6b5900;
-  --global-warning-block-title: #b29400;
-  --global-danger-block: #c00;
-  --global-danger-block-bg: #ffe0e0;
-  --global-danger-block-text: #600;
-  --global-danger-block-title: #c00;
+  --global-warning-block-title: #d49a00;
+  --global-danger-block: #fb5607;
+  --global-danger-block-bg: #ffe5dc;
+  --global-danger-block-text: #8b2500;
+  --global-danger-block-title: #d64400;
 
   .fa-sun {
-    display : none;
+    display: none;
   }
+
   .fa-moon {
     padding-left: 10px;
     padding-top: 12px;
-    display : block;
+    display: block;
   }
 
   .repo-img-light {
     display: block;
   }
+
   .repo-img-dark {
     display: none;
   }
 }
 
 html[data-theme='dark'] {
-  --global-bg-color: #{$grey-color-dark};
-  --global-code-bg-color: #{$code-bg-color-dark};
-  --global-text-color: #{$grey-color-light};
-  --global-text-color-light: #{$grey-color-light};
-  --global-theme-color: #{$cyan-color};
-  --global-hover-color: #{$cyan-color};
-  --global-hover-text-color: #{$white-color};
-  --global-footer-bg-color: #{$grey-color-light};
-  --global-footer-text-color: #{$grey-color-dark};
-  --global-footer-link-color: #{$black-color};
-  --global-distill-app-color: #{$grey-color-light};
-  --global-divider-color: #424246;
-  --global-card-bg-color: #{$grey-900};
+  /* Retro 8-bit Color Palette - Dark Mode (CRT screen inspired) */
+  --global-bg-color: #1a1a2e;
+  --global-code-bg-color: #16213e;
+  --global-text-color: #eaeaea;
+  --global-text-color-light: #a8a8a8;
+  --global-theme-color: #00d9ff;
+  --global-hover-color: #00f5ff;
+  --global-hover-text-color: #000000;
+  --global-footer-bg-color: #0f0f1e;
+  --global-footer-text-color: #eaeaea;
+  --global-footer-link-color: #00d9ff;
+  --global-distill-app-color: #a8a8a8;
+  --global-divider-color: #00d9ff;
+  --global-card-bg-color: #16213e;
 
-  --global-tip-block: #42b983;
-  --global-tip-block-bg: #e2f5ec;
-  --global-tip-block-text: #215d42;
-  --global-tip-block-title: #359469;
-  --global-warning-block: #e7c000;
-  --global-warning-block-bg: #fff8d8;
-  --global-warning-block-text: #6b5900;
-  --global-warning-block-title: #b29400;
-  --global-danger-block: #c00;
-  --global-danger-block-bg: #ffe0e0;
-  --global-danger-block-text: #600;
-  --global-danger-block-title: #c00;
+  /* Retro accent colors - dark mode */
+  --retro-primary: #00d9ff;
+  --retro-secondary: #ff0080;
+  --retro-accent: #9d4edd;
+  --retro-success: #06ffa5;
+  --retro-warning: #ffd60a;
+  --retro-danger: #ff006e;
+  --code-text : #0096c7;
+
+  /* Pixel borders */
+  --pixel-border: 3px solid #00d9ff;
+  --pixel-border-light: 2px solid #0096c7;
+
+  /* Shadows - glowing effect for dark mode */
+  --pixel-shadow: 4px 4px 0px rgba(0, 217, 255, 0.3);
+  --pixel-shadow-hover: 6px 6px 0px rgba(0, 217, 255, 0.5);
+
+  --global-tip-block: #06ffa5;
+  --global-tip-block-bg: #002620;
+  --global-tip-block-text: #06ffa5;
+  --global-tip-block-title: #00ff88;
+  --global-warning-block: #ffd60a;
+  --global-warning-block-bg: #332700;
+  --global-warning-block-text: #ffd60a;
+  --global-warning-block-title: #ffed4e;
+  --global-danger-block: #ff006e;
+  --global-danger-block-bg: #330016;
+  --global-danger-block-text: #ff006e;
+  --global-danger-block-title: #ff4d9a;
 
   .fa-sun {
     padding-left: 10px;
     padding-top: 12px;
-    display : block;
+    display: block;
   }
+
   .fa-moon {
-    display : none;
+    display: none;
   }
 
   .repo-img-light {
     display: none;
   }
+
   .repo-img-dark {
     display: block;
   }
+}
+
+/* Subtle scanline effect overlay (optional) */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(0deg,
+      rgba(0, 0, 0, 0.01) 0px,
+      rgba(0, 0, 0, 0.01) 1px,
+      transparent 1px,
+      transparent 3px);
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.3;
 }

@@ -1,15 +1,26 @@
 ---
 ---
-
+@misc{nichols2025rightupdisentanglingorientation,
+  title       = {Right Side Up? Disentangling Orientation Understanding in MLLMs with Fine-grained Multi-axis Perception Tasks},
+  year        = {2025},
+  bibtex_show = {true},
+  selected    = {true},
+  pdf         = {https://arxiv.org/abs/2505.21649},
+  journal     = {under review},
+  preview     = {dori.png},
+  abbr        = {vlm},
+  abstract    = {Object orientation understanding represents a fundamental challenge in visual perception critical for applications like robotic manipulation and augmented reality. Current vision-language benchmarks fail to isolate this capability, often conflating it with positional relationships and general scene understanding. We introduce DORI (Discriminative Orientation Reasoning Intelligence), a comprehensive benchmark establishing object orientation perception as a primary evaluation target. DORI assesses four dimensions of orientation comprehension: frontal alignment, rotational transformations, relative directional relationships, and canonical orientation understanding. Through carefully curated tasks from 11 datasets spanning 67 object categories across synthetic and real-world scenarios, DORI provides insights on how multi-modal systems understand object orientations. Our evaluation of 15 state-of-the-art vision-language models reveals critical limitations: even the best models achieve only 54.2% accuracy on coarse tasks and 33.0% on granular orientation judgments, with performance deteriorating for tasks requiring reference frame shifts or compound rotations. These findings demonstrate the need for dedicated orientation representation mechanisms, as models show systematic inability to perform precise angular estimations, track orientation changes across viewpoints, and understand compound rotations - suggesting limitations in their internal 3D spatial representations. As the first diagnostic framework specifically designed for orientation awareness in multimodal systems, DORI offers implications for improving robotic control, 3D scene reconstruction, and human-AI interaction in physical environments.}
+}
 @article{tasnim2024recastreparameterizedcompactweight,
-      journal        = {ICLR},
-      title          = {RECAST: Reparameterized, Compact weight Adaptation for Sequential Tasks}, 
-      year           = {2025},
-      bibtex_show    = {true},
-      selected       = {true},
-      preview        = {recast.png},
-      pdf            = {https://arxiv.org/abs/2411.16870},
-      abbr           = {PEFT}
+  journal     = {ICLR},
+  title       = {RECAST: Reparameterized, Compact weight Adaptation for Sequential Tasks},
+  year        = {2025},
+  bibtex_show = {true},
+  selected    = {true},
+  preview     = {recast.png},
+  pdf         = {https://arxiv.org/abs/2411.16870},
+  abbr        = {PEFT},
+  abstract    = {Incremental learning aims to adapt to new sets of categories over time with minimal computational overhead. Prior work often addresses this task by training efficient task-specific adaptors that modify frozen layer weights or features to capture relevant information without affecting predictions on previously learned categories. While these adaptors are generally more efficient than finetuning the entire network, they still require tens to hundreds of thousands of task-specific trainable parameters even for relatively small networks, making it challenging to operate on resource-constrained environments with high communication costs like edge devices or mobile phones. Thus, we propose Reparameterized, Compact weight Adaptation for Sequential Tasks (RECAST), a novel method that dramatically reduces task-specific trainable parameters to fewer than 50 - several orders of magnitude less than competing methods like LoRA. RECAST accomplishes this efficiency by learning to decompose layer weights into a soft parameter-sharing framework consisting of shared weight templates and very few module-specific scaling factors or coefficients. This soft parameter-sharing framework allows for effective task-wise reparameterization by tuning only these coefficients while keeping templates frozen.A key innovation of RECAST is the novel weight reconstruction pipeline called Neural Mimicry, which eliminates the need for pretraining from scratch. This allows for high-fidelity emulation of existing pretrained weights within our framework and provides quick adaptability to any model scale and architecture}
 }
 @article{qraaitem2024arxiv,
   journal     = {NeuRIPS},
@@ -20,7 +31,8 @@
   preview     = {vlm.png},
   bibtex_show = {true},
   doi         = {10.48550/arXiv.2402.00626},
-  pdf         = {https://arxiv.org/pdf/2402.00626}
+  pdf         = {https://arxiv.org/pdf/2402.00626},
+  abstract    = {Typographic attacks, adding misleading text to images, can deceive vision-language models (LVLMs). The susceptibility of recent large LVLMs like GPT4-V to such attacks is understudied, raising concerns about amplified misinformation in personal assistant applications. Previous attacks use simple strategies, such as random misleading words, which don't fully exploit LVLMs' language reasoning abilities. We introduce an experimental setup for testing typographic attacks on LVLMs and propose two novel self-generated attacks: (1) Class-based attacks, where the model identifies a similar class to deceive itself, and (2) Reasoned attacks, where an advanced LVLM suggests an attack combining a deceiving class and description. Our experiments show these attacks significantly reduce classification performance by up to 60\% and are effective across different models, including InstructBLIP and MiniGPT4. Code: https://github.com/mqraitem/Self-Gen-Typo-Attack}
 }
 
 @article{rakib2023oodspeech,
@@ -32,23 +44,25 @@
   bibtex_show = {true},
   selected    = {true},
   preview     = {ood.png},
-  pdf         = {https://arxiv.org/pdf/2305.09688}
+  pdf         = {https://arxiv.org/pdf/2305.09688},
+  abstract    = {We present OOD-Speech, the first out-of-distribution (OOD) benchmarking dataset for Bengali automatic speech recognition (ASR). Being one of the most spoken languages globally, Bengali portrays large diversity in dialects and prosodic features, which demands ASR frameworks to be robust towards distribution shifts. For example, islamic religious sermons in Bengali are delivered with a tonality that is significantly different from regular speech. Our training dataset is collected via massively online crowdsourcing campaigns which resulted in 1177.94 hours collected and curated from  native Bengali speakers from South Asia. Our test dataset comprises 23.03 hours of speech collected and manually annotated from 17 different sources, e.g., Bengali TV drama, Audiobook, Talk show, Online class, and Islamic sermons to name a few. OOD-Speech is jointly the largest publicly available speech dataset, as well as the first out-of-distribution ASR benchmarking dataset for Bengali.}
 }
 @article{10.1109/cvprw56347.2022.00359,
   abbr        = {vision},
   title       = {Vista: vision transformer enhanced by u-net and image colorfulness frame filtration for automatic retail checkout},
-  journal     = {2022 IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops (CVPRW)},
+  journal     = {CVPR},
   year        = {2022},
   doi         = {10.1109/cvprw56347.2022.00359},
   bibtex_show = {true},
   selected    = {true},
   preview     = {vista.png},
-  pdf         = {https://openaccess.thecvf.com/content/CVPR2022W/AICity/papers/Shihab_VISTA_Vision_Transformer_Enhanced_by_U-Net_and_Image_Colorfulness_Frame_CVPRW_2022_paper.pdf}
+  pdf         = {https://openaccess.thecvf.com/content/CVPR2022W/AICity/papers/Shihab_VISTA_Vision_Transformer_Enhanced_by_U-Net_and_Image_Colorfulness_Frame_CVPRW_2022_paper.pdf},
+  abstract    = {Multi-class product counting and recognition identifies product items from images or videos for automated retail checkout. The task is challenging due to the real-world scenario of occlusions where product items overlap, fast movement in conveyor belt, large similarity in overall appearance of the items being scanned, novel products, the negative impact of misidentifying items. Further there is a domain bias between training and test sets, specifically the provided training dataset consists of synthetic images and the test set videos consist of foreign objects such as hands and tray. To address these aforementioned issues, we propose to segment and classify individual frames from a video sequence. The segmentation method consists of a unified single product item-and hand-segmentation followed by entropy masking to address the domain bias problem. The multi-class classification method is based on Vision Transformers (ViT). To identify the frames with target objects, we utilize several image processing methods and propose a custom metric to discard frames not having any product items. Combining all these mechanisms, our best system achieves 3rd place in the AI City Challenge 2022 Track 4 with F1 score of 0.4545.}
 }
 
 @article{10.18653/v1/2022.semeval-1.209,
   title       = {On leveraging data augmentation and ensemble to recognize complex named entities in bangla},
-  journal     = {Proceedings of the 16th International Workshop on Semantic Evaluation (SemEval-2022)},
+  journal     = {SemEval},
   year        = {2022},
   doi         = {10.18653/v1/2022.semeval-1.209},
   bibtex_show = {true},
@@ -56,11 +70,12 @@
   abbr        = {nlp},
   dimensions  = {false},
   preview     = {multi.png},
-  pdf         = {https://aclanthology.org/2022.semeval-1.209.pdf}
+  pdf         = {https://aclanthology.org/2022.semeval-1.209.pdf},
+  abstract    = {Many areas, such as the biological and healthcare domain, artistic works, and organization names, have nested, overlapping, discontinuous entity mentions that may even be syntactically or semantically ambiguous in practice. Traditional sequence tagging algorithms are unable to recognize these complex mentions because they may violate the assumptions upon which sequence tagging schemes are founded. In this paper, we describe our contribution to SemEval 2022 Task 11 on identifying such complex Named Entities. We have leveraged the ensemble of multiple ELECTRA-based models that were exclusively pretrained on the Bangla language with the performance of ELECTRA-based models pretrained on English to achieve competitive performance on the Track-11. Besides providing a system description, we will also present the outcomes of our experiments on architectural decisions, dataset augmentations, and post-competition findings.}
 }
 @article{10.32473/flairs.v34i1.128552,
   title       = {Observing the unobserved: a newspaper based dengue surveillance system for the low-income regions of bangladesh},
-  journal     = {The International FLAIRS Conference Proceedings},
+  journal     = {FLAIRS},
   year        = {2021},
   volume      = {34},
   issue       = {1},
@@ -69,13 +84,14 @@
   selected    = {false},
   abbr        = {nlp},
   preview     = {dengue.png},
-  pdf         = {https://journals.flvc.org/FLAIRS/article/view/128552}
+  pdf         = {https://journals.flvc.org/FLAIRS/article/view/128552},
+  abstract    = {Dengue is one of the emerging diseases of this century, which established itself as both endemic and epidemic-particularly in the tropical and subtropical-regions. Because of its high morbidity and mortality rates, Dengue is a significant economic and health burden for middle to lower-income countries. The lack of a stable, cost-effective, and suitable surveillance system has made the identification of dengue zones and designing potential control programs very challenging. As a result, it is not feasible to assess the effect of the intervention actions properly. Therefore, most of the prevention and mitigation efforts by the associated health officials are failing. In this work, we chose Bangladesh, a developing country from the South-East Asia region with its occasional history of dengue outbreaks and with a high out-of-pocket medical expenditure, as a use case. We use some well known data-mining techniques on the local newspapers, written in Bengali, to unearth valuable insights and develop a dengue news surveillance system. We categorize dengue-news and detect the spatio-temporal trends among crucial variables. Our technique provides an f-score of 91.45\% and very closely follows the ground truth of reported cases. Additionally, we identify the under-reported regions of the country effectively while establishing a meaningful relationship between complex socio-economic factors and reporting of dengue.}
 }
 
 @article{tasnim2021exploringscopepotentiallocal,
   title       = { Exploring the Scope and
                  Potential of Local Newspaper-based Dengue Surveillance in Bangladesh},
-  journal     = {KDD Health Workshop},
+  journal     = {KDD-Health},
   year        = {2022},
   volume      = {34},
   issue       = {1},
@@ -99,7 +115,6 @@
   preview     = {bob.jpeg},
   pdf         = {https://academic.oup.com/bib/article/22/5/bbab102/6210065?login=false}
 }
-
 @article{https://doi.org/10.13140/rg.2.2.18174.72006,
   doi       = {10.13140/RG.2.2.18174.72006},
   url       = {http://rgdoi.net/10.13140/RG.2.2.18174.72006},
@@ -108,5 +123,6 @@
   publisher = {Unpublished},
   year      = {2020},
   preview   = {vehicle.png},
-  pdf       = {https://www.researchgate.net/profile/Sowmen-Das/publication/356039571_Team_Passphrase_Dhaka_AI_Vehicle_Detection_Challenge_4th_place_Submission/links/618a431b07be5f31b75c5c7f/Team-Passphrase-Dhaka-AI-Vehicle-Detection-Challenge-4th-place-Submission.pdf}
+  pdf       = {https://www.researchgate.net/profile/Sowmen-Das/publication/356039571_Team_Passphrase_Dhaka_AI_Vehicle_Detection_Challenge_4th_place_Submission/links/618a431b07be5f31b75c5c7f/Team-Passphrase-Dhaka-AI-Vehicle-Detection-Challenge-4th-place-Submission.pdf},
+  abstract  = {Traffic detection comes with many different challenges depending on the specific characteristics of the problem domain. Dhaka traffic has its own distinctive elements and dynamics. To design an effective object detection model that captures the essence of dhaka traffic, careful model optimization and data engineering is needed. So, we focus on developing a robust pipeline using an ensemble of existing SOTA models, to ensure improved generalization and less dependency on model complexity.}
 }
