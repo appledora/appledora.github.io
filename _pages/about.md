@@ -1,6 +1,6 @@
 ---
 layout: about
-title: about
+title: START
 permalink: /
 subtitle: <a href="https://www.bu.edu/cs/ivc/people/">IVC-ML </a>, Boston University, Boston, MA. 
 

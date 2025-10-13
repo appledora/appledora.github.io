@@ -26,9 +26,6 @@ horizontal: false
           {% if project.img %}
             <img src="{{ project.img | relative_url }}" alt="{{ project.title }}" class="project-image">
           {% endif %}
-          <!-- {% if project.category %}
-            <p class="project-category">{{ project.category }}</p>
-          {% endif %} -->
           {% if project.github %}
             <p class="project-github"><a href="{{ project.github }}" target="_blank">
             <i class="fa-brands fa-github fa-2x"></i>
@@ -39,19 +36,3 @@ horizontal: false
     {% endfor %}
   </div>
 </div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const projectCards = document.querySelectorAll('.project-title');
-    
-    projectCards.forEach(card => {
-      card.addEventListener('mouseenter', function() {
-        this.classList.add('expanded');
-      });
-      
-      card.addEventListener('mouseleave', function() {
-        this.classList.remove('expanded');
-      });
-    });
-  });
-</script>

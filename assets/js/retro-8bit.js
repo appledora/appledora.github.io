@@ -1,44 +1,47 @@
 // Retro 8-bit Interactions - Improved Version
-document.addEventListener("DOMContentLoaded", function () {
-  // Konami Code Easter Egg
-  const konamiCode = [
-    "ArrowUp",
-    "ArrowUp",
-    "ArrowDown",
-    "ArrowDown",
-    "ArrowLeft",
-    "ArrowRight",
-    "ArrowLeft",
-    "ArrowRight",
-    "b",
-    "a",
-  ];
-  let konamiIndex = 0;
+(function () {
+  "use strict";
 
-  document.addEventListener("keydown", function (e) {
-    if (e.key === konamiCode[konamiIndex]) {
-      konamiIndex++;
-      if (konamiIndex === konamiCode.length) {
-        activateKonamiCode();
+  function setupRetroEffects() {
+    // Konami Code Easter Egg
+    const konamiCode = [
+      "ArrowUp",
+      "ArrowUp",
+      "ArrowDown",
+      "ArrowDown",
+      "ArrowLeft",
+      "ArrowRight",
+      "ArrowLeft",
+      "ArrowRight",
+      "b",
+      "a",
+    ];
+    let konamiIndex = 0;
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === konamiCode[konamiIndex]) {
+        konamiIndex++;
+        if (konamiIndex === konamiCode.length) {
+          activateKonamiCode();
+          konamiIndex = 0;
+        }
+      } else {
         konamiIndex = 0;
       }
-    } else {
-      konamiIndex = 0;
+    });
+
+    function activateKonamiCode() {
+      document.body.style.animation = "rainbow 2s infinite";
+      showAchievement("🎮 KONAMI CODE UNLOCKED! 🎮");
+      setTimeout(() => {
+        document.body.style.animation = "";
+      }, 5000);
     }
-  });
 
-  function activateKonamiCode() {
-    document.body.style.animation = "rainbow 2s infinite";
-    showAchievement("🎮 KONAMI CODE UNLOCKED! 🎮");
-    setTimeout(() => {
-      document.body.style.animation = "";
-    }, 5000);
-  }
-
-  function showAchievement(text) {
-    const achievement = document.createElement("div");
-    achievement.innerHTML = text;
-    achievement.style.cssText = `
+    function showAchievement(text) {
+      const achievement = document.createElement("div");
+      achievement.innerHTML = text;
+      achievement.style.cssText = `
       position: fixed;
       top: 50%;
       left: 50%;
@@ -53,24 +56,25 @@ document.addEventListener("DOMContentLoaded", function () {
       z-index: 10000;
       animation: bounce 0.5s ease;
     `;
-    document.body.appendChild(achievement);
-    setTimeout(() => {
-      achievement.remove();
-    }, 3000);
-  }
+      document.body.appendChild(achievement);
+      setTimeout(() => {
+        achievement.remove();
+      }, 3000);
+    }
 
-  // Pixel Button Click Effect
-  const buttons = document.querySelectorAll("a.btn, button");
-  buttons.forEach((button) => {
-    button.addEventListener("click", function (e) {
-      createParticles(e.clientX, e.clientY);
+    // Pixel Button Click Effect
+    const buttons = document.querySelectorAll("a.btn, button");
+    buttons.forEach((button) => {
+      button.addEventListener("click", function (e) {
+        createParticles(e.clientX, e.clientY);
+      });
     });
-  });
 
-  function createParticles(x, y) {
-    for (let i = 0; i < 5; i++) {
-      const particle = document.createElement("div");
-      particle.style.cssText = `
+    function createParticles(x, y) {
+      for (let i = 0; i < 3; i++) {
+        // Reduced from 5 to 3
+        const particle = document.createElement("div");
+        particle.style.cssText = `
         position: fixed;
         width: 8px;
         height: 8px;
@@ -80,40 +84,48 @@ document.addEventListener("DOMContentLoaded", function () {
         pointer-events: none;
         z-index: 9999;
       `;
-      document.body.appendChild(particle);
+        document.body.appendChild(particle);
 
-      const angle = (Math.PI * 2 * i) / 5;
-      const velocity = 3;
-      let dx = Math.cos(angle) * velocity;
-      let dy = Math.sin(angle) * velocity;
-      let life = 30;
+        const angle = (Math.PI * 2 * i) / 3;
+        const velocity = 3;
+        let dx = Math.cos(angle) * velocity;
+        let dy = Math.sin(angle) * velocity;
+        let life = 30;
 
-      const animate = () => {
-        if (life <= 0) {
-          particle.remove();
-          return;
-        }
-        const currentX = parseFloat(particle.style.left);
-        const currentY = parseFloat(particle.style.top);
-        particle.style.left = currentX + dx + "px";
-        particle.style.top = currentY + dy + "px";
-        particle.style.opacity = life / 30;
-        life--;
-        requestAnimationFrame(animate);
-      };
-      animate();
+        const animate = () => {
+          if (life <= 0) {
+            particle.remove();
+            return;
+          }
+          const currentX = parseFloat(particle.style.left);
+          const currentY = parseFloat(particle.style.top);
+          particle.style.left = currentX + dx + "px";
+          particle.style.top = currentY + dy + "px";
+          particle.style.opacity = life / 30;
+          life--;
+          requestAnimationFrame(animate);
+        };
+        animate();
+      }
     }
-  }
 
-  // Project card expansion with animation
-  const projectCards = document.querySelectorAll(".project-card");
-  projectCards.forEach((card) => {
-    card.addEventListener("click", function (e) {
-      if (e.target.tagName === "A") return;
-      this.classList.toggle("expanded");
-      const description = this.querySelector(".project-description");
+    // Project card expansion with EVENT DELEGATION for immediate response
+    // This works even if cards aren't in DOM yet
+    document.body.addEventListener("click", function (e) {
+      // Find if click was on or inside a project card
+      const projectCard = e.target.closest(".project-card");
+
+      if (!projectCard) return;
+
+      // Don't expand if clicking a link
+      if (e.target.tagName === "A" || e.target.closest("a")) return;
+
+      // Toggle expansion
+      projectCard.classList.toggle("expanded");
+
+      const description = projectCard.querySelector(".project-description");
       if (description) {
-        if (this.classList.contains("expanded")) {
+        if (projectCard.classList.contains("expanded")) {
           description.style.display = "block";
           setTimeout(() => {
             description.style.opacity = "1";
@@ -126,27 +138,75 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       }
     });
-  });
 
-  // CRT screen flicker effect on page load
-  document.body.style.animation = "flicker 0.1s ease-in";
-  setTimeout(() => {
-    document.body.style.animation = "";
-  }, 100);
+    // Also set up cards that are already in DOM for accessibility
+    function setupProjectCards() {
+      const projectCards = document.querySelectorAll(".project-card");
+      projectCards.forEach((card) => {
+        if (card.dataset.expandSetup) return;
+        card.dataset.expandSetup = "true";
 
-  // Fixed sparkle effect for headers
-  const headers = document.querySelectorAll("h1, h2, h3");
-  headers.forEach((header) => {
-    header.addEventListener("mouseenter", function (e) {
-      createSparkle(e);
+        // Add keyboard support
+        card.setAttribute("tabindex", "0");
+        card.setAttribute("role", "button");
+
+        card.addEventListener("keydown", function (e) {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            this.click();
+          }
+        });
+      });
+    }
+
+    setupProjectCards();
+
+    // Watch for new cards
+    if (typeof MutationObserver !== "undefined") {
+      const projectObserver = new MutationObserver(function (mutations) {
+        let shouldSetup = false;
+        mutations.forEach(function (mutation) {
+          if (mutation.addedNodes.length > 0) {
+            mutation.addedNodes.forEach(function (node) {
+              if (
+                node.nodeType === 1 &&
+                (node.classList.contains("project-card") ||
+                  node.querySelector(".project-card"))
+              ) {
+                shouldSetup = true;
+              }
+            });
+          }
+        });
+        if (shouldSetup) {
+          setupProjectCards();
+        }
+      });
+      projectObserver.observe(document.body, {
+        childList: true,
+        subtree: true,
+      });
+    }
+
+    // CRT screen flicker effect on page load
+    document.body.style.animation = "flicker 0.1s ease-in";
+    setTimeout(() => {
+      document.body.style.animation = "";
+    }, 100);
+
+    // Fixed sparkle effect for headers
+    const headers = document.querySelectorAll("h1, h2, h3");
+    headers.forEach((header) => {
+      header.addEventListener("mouseenter", function (e) {
+        createSparkle(e);
+      });
     });
-  });
 
-  function createSparkle(event) {
-    const sparkle = document.createElement("span");
-    sparkle.innerHTML = "✨";
-    sparkle.className = "sparkle-effect";
-    sparkle.style.cssText = `
+    function createSparkle(event) {
+      const sparkle = document.createElement("span");
+      sparkle.innerHTML = "✨";
+      sparkle.className = "sparkle-effect";
+      sparkle.style.cssText = `
       position: fixed;
       left: ${event.clientX + 10}px;
       top: ${event.clientY - 10}px;
@@ -155,103 +215,104 @@ document.addEventListener("DOMContentLoaded", function () {
       pointer-events: none;
       z-index: 9999;
     `;
-    document.body.appendChild(sparkle);
-    setTimeout(() => {
-      sparkle.remove();
-    }, 800);
-  }
-
-  // Smooth scroll enhancement with retro feel
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener("click", function (e) {
-      const href = this.getAttribute("href");
-      if (href === "#" || !href) return;
-
-      const target = document.querySelector(href);
-      if (target) {
-        e.preventDefault();
-        const targetPosition =
-          target.getBoundingClientRect().top + window.pageYOffset;
-        const startPosition = window.pageYOffset;
-        const distance = targetPosition - startPosition;
-        const duration = 800;
-        let start = null;
-
-        function animation(currentTime) {
-          if (start === null) start = currentTime;
-          const timeElapsed = currentTime - start;
-          const run = ease(timeElapsed, startPosition, distance, duration);
-          window.scrollTo(0, run);
-          if (timeElapsed < duration) requestAnimationFrame(animation);
-        }
-
-        function ease(t, b, c, d) {
-          t /= d / 2;
-          if (t < 1) return (c / 2) * t * t + b;
-          t--;
-          return (-c / 2) * (t * (t - 2) - 1) + b;
-        }
-
-        requestAnimationFrame(animation);
-      }
-    });
-  });
-
-  // Typing effect for specific text elements
-  const typingElements = document.querySelectorAll(".typing-effect");
-  typingElements.forEach((element) => {
-    const text = element.textContent;
-    element.textContent = "";
-    element.style.opacity = "1";
-    let index = 0;
-
-    function type() {
-      if (index < text.length) {
-        element.textContent += text.charAt(index);
-        index++;
-        setTimeout(type, 50);
-      }
+      document.body.appendChild(sparkle);
+      setTimeout(() => {
+        sparkle.remove();
+      }, 800);
     }
 
-    // Start typing when element is in viewport
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          type();
-          observer.unobserve(entry.target);
+    // Smooth scroll enhancement with retro feel
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener("click", function (e) {
+        const href = this.getAttribute("href");
+        if (href === "#" || !href) return;
+
+        const target = document.querySelector(href);
+        if (target) {
+          e.preventDefault();
+          const targetPosition =
+            target.getBoundingClientRect().top + window.pageYOffset;
+          const startPosition = window.pageYOffset;
+          const distance = targetPosition - startPosition;
+          const duration = 800;
+          let start = null;
+
+          function animation(currentTime) {
+            if (start === null) start = currentTime;
+            const timeElapsed = currentTime - start;
+            const run = ease(timeElapsed, startPosition, distance, duration);
+            window.scrollTo(0, run);
+            if (timeElapsed < duration) requestAnimationFrame(animation);
+          }
+
+          function ease(t, b, c, d) {
+            t /= d / 2;
+            if (t < 1) return (c / 2) * t * t + b;
+            t--;
+            return (-c / 2) * (t * (t - 2) - 1) + b;
+          }
+
+          requestAnimationFrame(animation);
         }
       });
     });
-    observer.observe(element);
-  });
 
-  // Glitch effect on random intervals for specific elements
-  const glitchElements = document.querySelectorAll(".glitch-effect");
-  glitchElements.forEach((element) => {
-    setInterval(() => {
-      if (Math.random() > 0.95) {
-        element.style.animation = "glitch 0.3s ease";
-        setTimeout(() => {
-          element.style.animation = "";
-        }, 300);
+    // Typing effect for specific text elements
+    const typingElements = document.querySelectorAll(".typing-effect");
+    typingElements.forEach((element) => {
+      const text = element.textContent;
+      element.textContent = "";
+      element.style.opacity = "1";
+      let index = 0;
+
+      function type() {
+        if (index < text.length) {
+          element.textContent += text.charAt(index);
+          index++;
+          setTimeout(type, 50);
+        }
       }
-    }, 2000);
-  });
 
-  // Pixel trail cursor effect (subtle)
+      // Start typing when element is in viewport
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            type();
+            observer.unobserve(entry.target);
+          }
+        });
+      });
+      observer.observe(element);
+    });
+
+    // Glitch effect on random intervals for specific elements
+    const glitchElements = document.querySelectorAll(".glitch-effect");
+    glitchElements.forEach((element) => {
+      setInterval(() => {
+        if (Math.random() > 0.95) {
+          element.style.animation = "glitch 0.3s ease";
+          setTimeout(() => {
+            element.style.animation = "";
+          }, 300);
+        }
+      }, 2000);
+    });
+
+    // Pixel trail cursor effect - DISABLED for performance
+    /*
   let lastX = 0;
   let lastY = 0;
   let throttleTimer = false;
 
-  document.addEventListener("mousemove", (e) => {
+  document.addEventListener('mousemove', (e) => {
     if (throttleTimer) return;
     throttleTimer = true;
-
+    
     setTimeout(() => {
       const distance = Math.sqrt(
         Math.pow(e.clientX - lastX, 2) + Math.pow(e.clientY - lastY, 2)
       );
-
+      
       if (distance > 50) {
         createPixelTrail(e.clientX, e.clientY);
         lastX = e.clientX;
@@ -262,7 +323,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   function createPixelTrail(x, y) {
-    const trail = document.createElement("div");
+    const trail = document.createElement('div');
     trail.style.cssText = `
       position: fixed;
       width: 4px;
@@ -278,15 +339,17 @@ document.addEventListener("DOMContentLoaded", function () {
     document.body.appendChild(trail);
     setTimeout(() => trail.remove(), 500);
   }
+  */
 
-  // Page transition effect
-  window.addEventListener("beforeunload", () => {
-    document.body.style.animation = "fadeOut 0.3s ease-out";
-  });
+    // Page transition effect
+    window.addEventListener("beforeunload", () => {
+      document.body.style.animation = "fadeOut 0.3s ease-out";
+    });
 
-  // Add scan lines effect overlay (optional, subtle)
-  const scanlines = document.createElement("div");
-  scanlines.className = "scanlines";
+    // Scan lines effect - DISABLED for performance
+    /*
+  const scanlines = document.createElement('div');
+  scanlines.className = 'scanlines';
   scanlines.style.cssText = `
     position: fixed;
     top: 0;
@@ -305,7 +368,16 @@ document.addEventListener("DOMContentLoaded", function () {
     opacity: 0.3;
   `;
   document.body.appendChild(scanlines);
-});
+  */
+  }
+
+  // Run immediately if DOM is already loaded
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", setupRetroEffects);
+  } else {
+    setupRetroEffects();
+  }
+})();
 
 // Enhanced CSS animations
 const style = document.createElement("style");

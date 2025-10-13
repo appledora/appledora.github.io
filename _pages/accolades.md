@@ -2,7 +2,7 @@
 layout: page
 permalink: /prize/
 title: accolades
-description: a list of awards and honors since 2019
+description: 
 nav: true
 nav_order: 4
 ---

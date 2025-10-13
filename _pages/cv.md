@@ -1,7 +1,7 @@
 ---
 layout: cv
 permalink: /misc/
-title: more
+title: EXTRA
 nav: True
 nav_order: 5
 cv_pdf: cv.pdf
