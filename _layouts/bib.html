@@ -35,7 +35,7 @@
   {% endif %}
   <div class="links">
     {% if entry.pdf %}
-    <a href="{{ entry.pdf | prepend: '/assets/pdf/' | relative_url }}" class="btn" target="_blank">PDF</a>
+    <a href="{{ entry.pdf | relative_url }}" class="btn" target="_blank">PDF</a>
     {% endif %}
     {% if entry.arxiv %}
     <a href="https://arxiv.org/abs/{{ entry.arxiv }}" class="btn" target="_blank">arXiv</a>
