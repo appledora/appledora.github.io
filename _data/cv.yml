@@ -1,4 +1,4 @@
-- title: Education
+- title: 🎓 Education
   type: time_table
   contents:
     - title: PhD
@@ -10,7 +10,7 @@
       institution: Shahjalal University of Science and Technology, Sylhet, Bangladesh
       year: 2017 - 2021
 
-- title: Experience
+- title: 💼 Experience
   type: time_table
   contents:
     - title: Research Developer
@@ -52,7 +52,7 @@
 #         - Champion in BRACATHON 3.0 - Healthcare
 #         - Champion in SUST Tech Fest - Hackathon
 
-- title: Research Interests
+- title:  🤖 Research Interests
   type: nested_list
   contents:
     - title: Primary
@@ -68,7 +68,7 @@
 #   contents:
 #     - <u>Hobbies:</u> Hobby 1, Hobby 2, etc.
 
-- title: Skills
+- title:  🛠️ Skills
   type: nested_list
   contents:
     - title: Programming Languages
@@ -88,7 +88,7 @@
       items:
         - Git, Docker, Linux, Bash, LaTeX, Markdown, HTML, CSS, Firebase
 
-- title: Leadership & Service
+- title: 🧭 Leadership & Service
   type: nested_list
   contents:
     - title: Leadership
@@ -101,7 +101,23 @@
         - Mentor - HSA , Intl. ML Olympiad
         - Volunteer - Outreacy, BDOSN Ada Lovelace Celebration,
 
-- title: Non-academic Interests
+- title: 🏅 Accolades
+  type: nested_list
+  contents:
+    - title:
+      items:
+        - 🥇 Champion, BRACATHON 3.0 - Healthcare, 2019
+        - 🥇 Champion, SUST Tech Fest - Hackathon, 2019
+        - 🏅 4th place, AI-Based Dhaka Traffic Detection Challenge, 2020
+        - 💻 Grace Hopper Scholarship Recipient, 2021
+        - 🥈 2nd Runner-up, CVPR AI City Challenge Track-4, 2022
+        - 🥈 2nd Runner-up, Microsoft Imagine Cup SEANM, 2022
+        - 🌐 Outreachy Internship at the Wikimedia Foundation, 2022
+        - 🎓 Dean's Fellowship, Boston University, 2023
+        - 💫 CRA-WP Grad Cohort Scholarship, 2025
+        - 🌟 CVPR WiCV Mentorship Grant, 2025
+
+- title: 🌙 Non-academic Interests
   type: nested_list
   contents:
     - title:

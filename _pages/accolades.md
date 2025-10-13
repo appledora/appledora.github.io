@@ -3,7 +3,7 @@ layout: page
 permalink: /prize/
 title: accolades
 description: 
-nav: true
+nav: false
 nav_order: 4
 ---
 <!-- _pages/accolades.md -->
