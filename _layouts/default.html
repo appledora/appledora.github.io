@@ -28,40 +28,53 @@
         toggle.addEventListener('click', function (e) {
           e.preventDefault();
           const html = document.documentElement;
-          const current = html.getAttribute('data-theme');
+          const current = html.getAttribute('data-theme') || 'light';
           const newTheme = current === 'dark' ? 'light' : 'dark';
 
           html.classList.add('transition');
           html.setAttribute('data-theme', newTheme);
           localStorage.setItem('theme', newTheme);
 
-          // Update icon
-          const icon = this.querySelector('i');
-          if (icon) {
-            icon.className = newTheme === 'dark' ? 'fa-solid fa-moon' : 'fa-solid fa-sun';
-          }
-
           setTimeout(() => html.classList.remove('transition'), 750);
         });
       }
 
-      // Try to set up immediately
+      // Try multiple times to catch the toggle button
+      let attempts = 0;
+      const maxAttempts = 10;
+
+      function trySetup() {
+        setupToggle();
+        if (!document.getElementById('light-toggle') && attempts < maxAttempts) {
+          attempts++;
+          setTimeout(trySetup, 50);
+        }
+      }
+
+      // Start trying immediately
+      trySetup();
+
+      // Also try on standard events
       if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', setupToggle);
-        // Also try early
         document.addEventListener('readystatechange', function () {
           if (document.readyState === 'interactive') setupToggle();
         });
-      } else {
-        setupToggle();
       }
 
       // Watch for toggle being added
       if (typeof MutationObserver !== 'undefined') {
-        new MutationObserver(setupToggle).observe(document.documentElement, {
-          childList: true,
-          subtree: true
+        const observer = new MutationObserver(function (mutations) {
+          setupToggle();
         });
+
+        // Start observing as soon as possible
+        if (document.documentElement) {
+          observer.observe(document.documentElement, {
+            childList: true,
+            subtree: true
+          });
+        }
       }
     })();
   </script>
@@ -119,7 +132,7 @@
   {% include scripts/analytics.html %}
   {% include scripts/progressBar.html %}
   {% include scripts/wechatModal.html %}
-  <script src="{{ '/assets/js/publications-expand.js' | relative_url }}" defer></script>
+  <!-- <script src="{{ '/assets/js/publications-expand.js' | relative_url }}" defer></script> -->
 
 </body>
 
