@@ -1,6 +1,6 @@
 ---
 ---
-@misc{nichols2025rightupdisentanglingorientation,
+@article{nichols2025rightupdisentanglingorientation,
   title       = {Right Side Up? Disentangling Orientation Understanding in MLLMs with Fine-grained Multi-axis Perception Tasks},
   year        = {2025},
   bibtex_show = {true},
@@ -21,6 +21,20 @@
   pdf         = {https://arxiv.org/abs/2411.16870},
   abbr        = {PEFT},
   abstract    = {Incremental learning aims to adapt to new sets of categories over time with minimal computational overhead. Prior work often addresses this task by training efficient task-specific adaptors that modify frozen layer weights or features to capture relevant information without affecting predictions on previously learned categories. While these adaptors are generally more efficient than finetuning the entire network, they still require tens to hundreds of thousands of task-specific trainable parameters even for relatively small networks, making it challenging to operate on resource-constrained environments with high communication costs like edge devices or mobile phones. Thus, we propose Reparameterized, Compact weight Adaptation for Sequential Tasks (RECAST), a novel method that dramatically reduces task-specific trainable parameters to fewer than 50 - several orders of magnitude less than competing methods like LoRA. RECAST accomplishes this efficiency by learning to decompose layer weights into a soft parameter-sharing framework consisting of shared weight templates and very few module-specific scaling factors or coefficients. This soft parameter-sharing framework allows for effective task-wise reparameterization by tuning only these coefficients while keeping templates frozen.A key innovation of RECAST is the novel weight reconstruction pipeline called Neural Mimicry, which eliminates the need for pretraining from scratch. This allows for high-fidelity emulation of existing pretrained weights within our framework and provides quick adaptability to any model scale and architecture}
+}
+@article{chowdhury2025factsfolkloreevaluatinglarge,
+  title         = {From Facts to Folklore: Evaluating Large Language Models on Bengali Cultural Knowledge},
+  year          = {2025},
+  journal       = {AACL-IJCNLP},
+  eprint        = {2510.20043},
+  archiveprefix = {arXiv},
+  primaryclass  = {cs.CL},
+  pdf           = {https://arxiv.org/abs/2510.20043},
+  abbr          = {nlp},
+  selected      = {true},
+  bibtex_show   = {true},
+  preview       = {folklore.png},
+  abstract      = {Recent progress in NLP research has demonstrated remarkable capabilities of large language models (LLMs) across a wide range of tasks. While recent multilingual benchmarks have advanced cultural evaluation for LLMs, critical gaps remain in capturing the nuances of low-resource cultures. Our work addresses these limitations through a Bengali Language Cultural Knowledge (BLanCK) dataset including folk traditions, culinary arts, and regional dialects. Our investigation of several multilingual language models shows that while these models perform well in non-cultural categories, they struggle significantly with cultural knowledge and performance improves substantially across all models when context is provided, emphasizing context-aware architectures and culturally curated training data.}
 }
 @article{qraaitem2024arxiv,
   journal     = {NeuRIPS},
@@ -110,7 +124,7 @@
   issue       = {5},
   doi         = {10.1093/bib/bbab102},
   bibtex_show = {true},
-  selected    = {true},
+  selected    = {false},
   abbr        = {bio},
   preview     = {bob.jpeg},
   pdf         = {https://academic.oup.com/bib/article/22/5/bbab102/6210065?login=false}
