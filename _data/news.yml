@@ -1,6 +1,13 @@
+- date: 2026-02-21
+  inline: true
+  content: "Second PhD paper accepted at CVPR'26 (Main Track)! 🎉"
+  related_posts: true
+  related_post: "CVPR-2026"
+  link: ""
+
 - date: 2025-05-22
   inline: true
-  content: "🚨 Second PhD paper is online! Read it on : <a href='https://arxiv.org/abs/2505.21649' target='_blank' rel='noopener'>[arXiv]</a>"
+  content: "🚨 One first-author paper on Orientation understanding is online! Read it on : <a href='https://arxiv.org/abs/2505.21649' target='_blank' rel='noopener'>[arXiv]</a>"
   related_posts: true
   related_post: "iclr-2026"
   link: "https://arxiv.org/abs/2505.21649"
