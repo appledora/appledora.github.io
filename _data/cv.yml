@@ -13,6 +13,9 @@
 - title: 💼 Experience
   type: time_table
   contents:
+    - title: Graduate Teaching Fellow
+      institution: Boston University, Boston, MA, USA
+      year: Spring'25 and Spring'26
     - title: Research Developer
       institution: Wikimedia Foundation, San Francisco, CA, USA
       year: 2022 - 2023
@@ -28,6 +31,7 @@
     - title: Research Affiliate
       institution: Bengali.AI, Dhaka, Bangladesh
       year: 2021 - 2023
+
 
 # - title: Honors and Awards
 #   type: time_table
