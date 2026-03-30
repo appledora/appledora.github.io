@@ -25,6 +25,7 @@ jobs:
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: '3.2.2'
+        bundler: latest 
         bundler-cache: true
     - name: Update _config.yml ⚙️
       uses: fjogeleit/yaml-update-action@v0.13.1
