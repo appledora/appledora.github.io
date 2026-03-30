@@ -2729,7 +2729,7 @@ html[data-theme='dark'] {
 
 /* Content styling inside CRT */
 .crt-content-cyan p {
-  font-family: 'VT323', monospace;
+  font-family: 'Courier New', monospace;
   font-size: 1.15rem;
   line-height: 1.7;
   color: #2d6a6a;
@@ -2737,8 +2737,8 @@ html[data-theme='dark'] {
 }
 
 .crt-content-cyan strong {
-  color: #008b8b;
-  font-weight: bold;
+  color: inherit;
+  font-weight: normal;
 }
 
 .crt-content-cyan a {
@@ -2752,7 +2752,7 @@ html[data-theme='dark'] {
 }
 
 .crt-content-cyan ul {
-  font-family: 'VT323', monospace;
+  font-family: 'Courier New', monospace;
   font-size: 1.15rem;
   line-height: 1.7;
   color: #2d6a6a;
@@ -2770,7 +2770,7 @@ html[data-theme='dark'] {
   border: 2px solid #b6e8ff;
   border-radius: 6px;
   padding: 1rem;
-  font-family: 'VT323', monospace;
+  font-family: 'Courier New', monospace;
   font-size: 1.1rem;
   color: #0077b6;
   margin: 1.5rem 0;
@@ -2803,7 +2803,8 @@ html[data-theme='dark'] {
   }
 
   .crt-content-cyan strong {
-    color: #7dd3e8;
+    color: inherit;
+    font-weight: normal;
   }
 
   .crt-content-cyan a {

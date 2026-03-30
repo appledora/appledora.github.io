@@ -60,11 +60,16 @@
   contents:
     - title: Primary
       items:
-        - Parameter-efficient Finetuning, Model Editing, Adversarial Attacks, Machine Unlearning
+        - Parameter-efficient Finetuning
+        - Mechanistic Interpretability
+        - Adversarial Attacks
+        - Machine Unlearning
     - title: Secondary
       items:
-        - Bias Mitigation & Fair Representations, Robust Domain Adaptation,
-        - Knowledge Infusion, </br>AI For Social Good
+        - Bias Mitigation & Fair Representations
+        - Robust Domain Adaptation
+        - Knowledge Infusion
+        - AI For Social Good & Scientific Discovery
 
 # - title: Other Interests
 #   type: list
