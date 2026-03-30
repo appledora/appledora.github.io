@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300">
+  <rect width="400" height="300" fill="#1a1a2e"/>
+  <rect x="50" y="50" width="300" height="200" fill="none" stroke="#00b4d8" stroke-width="3" stroke-dasharray="10,5"/>
+  <text x="200" y="140" font-family="monospace" font-size="24" fill="#00b4d8" text-anchor="middle">CODE QUEST</text>
+  <text x="200" y="170" font-family="monospace" font-size="14" fill="#8338ec" text-anchor="middle">[RESEARCH BUILD]</text>
+  <circle cx="200" cy="80" r="30" fill="none" stroke="#ff006e" stroke-width="3"/>
+  <polygon points="200,65 210,85 190,85" fill="#ff006e"/>
+</svg>

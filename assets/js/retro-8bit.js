@@ -480,3 +480,21 @@ style.textContent = `
   }
 `;
 document.head.appendChild(style);
+
+// Flip card functionality for publications
+(function() {
+  function setupFlipCards() {
+    const flipCards = document.querySelectorAll('.flip-card');
+    flipCards.forEach(card => {
+      card.addEventListener('click', function(e) {
+        if (e.target.tagName === 'A' || e.target.closest('a')) return;
+        this.classList.toggle('flipped');
+      });
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupFlipCards);
+  } else {
+    setupFlipCards();
+  }
+})();

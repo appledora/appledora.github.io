@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300">
+  <rect width="400" height="300" fill="#0f0f1e"/>
+  <polygon points="200,40 350,260 50,260" fill="none" stroke="#ff0080" stroke-width="3"/>
+  <circle cx="200" cy="150" r="50" fill="none" stroke="#00d9ff" stroke-width="3"/>
+  <text x="200" y="160" font-family="monospace" font-size="28" fill="#ff0080" text-anchor="middle">BUILD</text>
+  <text x="200" y="220" font-family="monospace" font-size="14" fill="#ffd60a" text-anchor="middle">[IN PROGRESS]</text>
+  <rect x="10" y="10" width="20" height="20" fill="#06ffa5"/>
+  <rect x="370" y="10" width="20" height="20" fill="#06ffa5"/>
+  <rect x="10" y="270" width="20" height="20" fill="#06ffa5"/>
+  <rect x="370" y="270" width="20" height="20" fill="#06ffa5"/>
+</svg>

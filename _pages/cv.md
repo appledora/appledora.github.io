@@ -1,11 +1,11 @@
 ---
 layout: cv
 permalink: /misc/
-title: EXTRA
+title: 🏆 BONUS
 nav: True
 nav_order: 4
 cv_pdf: cv.pdf
-description: 
+description: "🎮 Research Philosophy & Character Stats"
 # toc:
 #   sidebar: left
 ---

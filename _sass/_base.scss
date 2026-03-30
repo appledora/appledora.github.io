@@ -3,12 +3,12 @@
  ******************************************************************************/
 
 // Import retro pixel fonts
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Perfect+DOS+VGA+432+Win&display=swap');
 
 // Typography
 
 body {
-  font-family: 'Courier New', monospace;
+  font-family: 'Perfect DOS VGA 432 Win', 'Courier New', monospace;
 }
 
 h1 {
@@ -65,6 +65,108 @@ hr {
   border: none;
   border-top: 2px dashed var(--global-divider-color);
   margin: 2rem 0;
+}
+
+/* ========================================
+   Pixel Art Dividers - RPG Style
+   ======================================== */
+
+hr.pixel-divider {
+  border: none;
+  height: 8px;
+  margin: 2.5rem 0;
+  position: relative;
+  background-image:
+    repeating-linear-gradient(90deg,
+      var(--retro-primary) 0px,
+      var(--retro-primary) 8px,
+      transparent 8px,
+      transparent 16px,
+      var(--retro-secondary) 16px,
+      var(--retro-secondary) 24px,
+      transparent 24px,
+      transparent 32px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+hr.pixel-divider::before {
+  content: '♦';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.8rem;
+  color: var(--retro-accent);
+  background: var(--global-bg-color);
+  padding: 0 0.5rem;
+  text-shadow: 0 0 5px var(--retro-accent);
+}
+
+hr.pixel-divider.heart::before {
+  content: '❤';
+  color: var(--retro-secondary);
+  text-shadow: 0 0 5px var(--retro-secondary);
+}
+
+hr.pixel-divider.star::before {
+  content: '★';
+  color: var(--retro-warning);
+  text-shadow: 0 0 5px var(--retro-warning);
+}
+
+hr.pixel-divider.sword::before {
+  content: '';
+  color: var(--retro-primary);
+  text-shadow: 0 0 5px var(--retro-primary);
+}
+
+/* RPG-style section separator */
+.rpg-separator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem 0;
+  gap: 1rem;
+}
+
+.rpg-separator::before,
+.rpg-separator::after {
+  content: '';
+  flex: 1;
+  height: 4px;
+  background: repeating-linear-gradient(90deg,
+      var(--retro-primary) 0px,
+      var(--retro-primary) 8px,
+      transparent 8px,
+      transparent 16px);
+}
+
+.rpg-separator span {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.6rem;
+  color: var(--retro-accent);
+  padding: 0.25rem 0.75rem;
+  background: var(--global-bg-color);
+  border: 2px solid var(--retro-accent);
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* RPG sword bullet points for CV lists */
+.cv ul.card-text li.list-group-item {
+  list-style: none !important;
+  position: relative;
+  padding-left: 1.5rem !important;
+}
+
+.cv ul.card-text li.list-group-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 0.9rem;
+  color: var(--retro-primary);
+  text-shadow: 0 0 3px var(--retro-primary);
 }
 
 table {
@@ -324,10 +426,10 @@ blockquote {
 // Profile - Clean character stat style
 
 .profile {
-  border-left: 4px solid var(--retro-primary);
+  // border-left: 4px solid var(--retro-primary);
   padding: 1.5rem;
-  background: var(--global-card-bg-color);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  // background: var(--global-card-bg-color);
+  // box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 
   .img {
     width: fit-content;
@@ -388,15 +490,133 @@ blockquote {
   }
 }
 
-// Navbar - Clean game menu style
+// Navbar - Mini-map / Game menu style
 
 .navbar {
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  border-bottom: 2px solid var(--retro-primary);
-  background-color: var(--global-bg-color);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-bottom: 3px solid var(--retro-primary);
+  background: linear-gradient(180deg,
+      rgba(0, 180, 216, 0.1) 0%,
+      var(--global-bg-color) 100%);
   opacity: 0.98;
   font-family: 'Press Start 2P', cursive;
+  font-size: 0.65rem;
+  // position: relative;
+}
+
+.navbar::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: repeating-linear-gradient(90deg,
+      var(--retro-primary) 0px,
+      var(--retro-primary) 8px,
+      var(--retro-secondary) 8px,
+      var(--retro-secondary) 16px);
+}
+
+/* Mini-map style nav items */
+.navbar .navbar-nav .nav-item {
+  position: relative;
+  margin: 0 0.25rem;
+}
+
+.navbar .navbar-nav .nav-item .nav-link {
+  position: relative;
+  padding: 0.5rem 0.75rem;
+  border: 2px solid transparent;
+  border-radius: 0;
+  transition: all 0.2s ease;
+}
+
+.navbar .navbar-nav .nav-item .nav-link:hover {
+  background: rgba(0, 180, 216, 0.1);
+  border-color: var(--retro-primary);
+  box-shadow: 0 0 8px rgba(0, 180, 216, 0.4);
+  padding-left: 1.5rem;
+}
+
+.navbar .navbar-nav .nav-item .nav-link:hover::before {
+  content: '⚔';
+  position: absolute;
+  left: 4px;
+  top: 50%;
+  transform: translateY(-50%);
   font-size: 0.7rem;
+  color: var(--retro-secondary);
+  text-shadow: 0 0 5px var(--retro-secondary);
+  animation: sword-glow 1.5s infinite;
+}
+
+@keyframes sword-glow {
+
+  0%,
+  100% {
+    text-shadow: 0 0 5px var(--retro-secondary);
+    opacity: 1;
+  }
+
+  50% {
+    text-shadow: 0 0 10px var(--retro-secondary), 0 0 15px var(--retro-primary);
+    opacity: 0.8;
+  }
+}
+
+/* Active page - highlighted like player location */
+.navbar .navbar-nav .nav-item.active>.nav-link {
+  background: linear-gradient(135deg,
+      rgba(0, 180, 216, 0.2) 0%,
+      rgba(131, 56, 236, 0.2) 100%);
+  border: 2px solid var(--retro-primary);
+  box-shadow:
+    0 0 10px rgba(0, 180, 216, 0.5),
+    inset 0 0 5px rgba(0, 180, 216, 0.2);
+  color: var(--retro-primary);
+  padding-left: 1.5rem;
+}
+
+.navbar .navbar-nav .nav-item.active>.nav-link::before {
+  content: '►';
+  position: absolute;
+  left: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.5rem;
+  color: var(--retro-secondary);
+  animation: blink 1.5s infinite;
+}
+
+@keyframes blink {
+
+  0%,
+  50%,
+  100% {
+    opacity: 1;
+  }
+
+  25%,
+  75% {
+    opacity: 0.5;
+  }
+}
+
+/* Navbar brand - game title style */
+.navbar .navbar-brand {
+  position: relative;
+  padding: 0.5rem 1rem;
+  background: linear-gradient(90deg,
+      rgba(0, 180, 216, 0.15) 0%,
+      rgba(131, 56, 236, 0.15) 100%);
+  border: 2px solid var(--retro-primary);
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
+}
+
+.navbar .navbar-brand:hover {
+  transform: translateY(-1px);
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.3);
 }
 
 .navbar .dropdown-menu {
@@ -527,15 +747,43 @@ blockquote {
 }
 
 #light-toggle {
-  padding: 0;
+  padding: 0.5rem;
   border: 0;
-  background-color: inherit;
+  background-color: transparent;
   color: var(--global-text-color);
-  font-size: 1.2rem;
+  font-size: 1.3rem;
+  cursor: pointer;
+  z-index: 100;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   &:hover {
     color: var(--retro-primary);
-    transform: scale(1.2);
+    transform: scale(1.15);
+  }
+
+  i {
+    display: block;
+  }
+
+  .fa-sun {
+    display: none;
+  }
+
+  .fa-moon {
+    display: block;
+  }
+}
+
+html[data-theme='dark'] #light-toggle {
+  .fa-sun {
+    display: block;
+  }
+
+  .fa-moon {
+    display: none;
   }
 }
 
@@ -1792,4 +2040,2654 @@ nav[data-toggle="toc"] {
   &:hover {
     transform: scale(1.2);
   }
+}
+
+/* Publications - Compact with Year Grouping */
+.publications-compact {
+  margin-top: 1rem;
+}
+
+.publications-compact h1 {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1.5rem;
+  color: var(--retro-primary);
+  text-align: left;
+  margin-bottom: 1.5rem;
+}
+
+/* Year group wrapper */
+.publications-compact .year-group {
+  position: relative;
+  margin-bottom: 2rem;
+  padding-left: 75px;
+}
+
+/* Year badge */
+.publications-compact .year-badge {
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: var(--retro-accent);
+  color: var(--global-bg-color);
+  padding: 6px 8px;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.55rem;
+  min-width: 60px;
+  text-align: center;
+  z-index: 10;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
+}
+
+.publications-compact ol.bibliography {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* Hide empty li separators */
+.publications-compact ol.bibliography li:empty,
+.publications-compact ol.bibliography li br,
+.publications-compact ol.bibliography li:not(.publication-item) {
+  display: none !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.publications-compact ol.bibliography li {
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  border: 2px solid var(--global-divider-color);
+  border-left: 4px solid var(--retro-primary);
+  background: var(--global-card-bg-color);
+  overflow: hidden;
+}
+
+/* Centered paper image - contained within card */
+.publications-compact .preview {
+  display: block !important;
+  max-width: 100%;
+  width: 100%;
+  max-height: 200px;
+  object-fit: contain;
+  border: 2px solid var(--global-divider-color);
+  margin: 0.75rem auto;
+  display: block;
+}
+
+.publications-compact .publication-header {
+  display: block;
+}
+
+.publications-compact .abbr abbr {
+  background-color: var(--retro-accent);
+  padding: 2px 6px;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.45rem;
+  color: white;
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+
+.publications-compact .title {
+  font-family: 'VT323', monospace;
+  font-size: 1.1rem;
+  color: var(--retro-primary);
+  font-weight: bold;
+  margin: 0.5rem 0;
+  display: inline;
+}
+
+.title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin: 0.5rem 0;
+}
+
+.btn-pdf {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.4rem;
+  padding: 0.25rem 0.5rem;
+  border: 2px solid var(--retro-primary);
+  background: rgba(0, 180, 216, 0.1);
+  color: var(--retro-primary);
+  white-space: nowrap;
+  box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
+}
+
+.btn-pdf:hover {
+  background: var(--retro-primary);
+  color: var(--global-bg-color);
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
+}
+
+.publications-compact .author {
+  font-family: 'VT323', monospace;
+  font-size: 0.95rem;
+  margin: 0.2rem 0;
+}
+
+.publications-compact .venue-badge {
+  font-family: 'VT323', monospace;
+  font-size: 0.85rem;
+  color: var(--retro-accent);
+  background: rgba(131, 56, 236, 0.1);
+  padding: 2px 6px;
+  border-left: 2px solid var(--retro-accent);
+  display: inline-block;
+  margin-top: 0.5rem;
+}
+
+.publications-compact .links {
+  margin-top: 0.5rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.publications-compact .links a.btn {
+  font-family: 'VT323', monospace;
+  font-size: 0.85rem;
+  padding: 2px 8px;
+  border: 2px solid var(--global-divider-color);
+  background: transparent;
+  color: var(--retro-primary);
+}
+
+.publications-compact .links a.btn:hover {
+  background: var(--retro-primary);
+  color: var(--global-bg-color);
+}
+
+.publications-compact .abstract-content {
+  display: none;
+  margin-top: 0.75rem;
+  padding: 0.75rem;
+  background: var(--global-bg-color);
+  border: 2px solid var(--retro-primary);
+  font-family: 'VT323', monospace;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.publications-compact li.expanded .abstract-content {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .publications-compact .year-group {
+    padding-left: 0;
+  }
+
+  .publications-compact .year-badge {
+    position: relative;
+    left: 0;
+    margin-bottom: 0.5rem;
+    display: inline-block;
+  }
+}
+
+/* Project Card - Accordion Style, Opens at Top Center */
+.project-card.expanded {
+  grid-column: 1 / -1;
+  order: -1;
+  max-height: none;
+  z-index: 100;
+  border-top-color: var(--retro-secondary);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.project-title-clickable {
+  cursor: pointer;
+  color: var(--retro-primary);
+}
+
+.project-title-clickable:hover {
+  color: var(--retro-secondary);
+}
+
+/* Compact MISC/Extra Page with Flip Tablets */
+.stat-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.stat-card-flip-container {
+  perspective: 1000px;
+  height: 200px;
+  cursor: pointer;
+}
+
+.stat-card-flip {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s;
+  transform-style: preserve-3d;
+}
+
+.stat-card-flip.flipped {
+  transform: rotateY(180deg);
+}
+
+.stat-card-front,
+.stat-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border: 2px solid var(--global-divider-color);
+  border-top: 3px solid var(--retro-warning);
+  border-radius: 0;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.stat-card-front {
+  background: var(--global-card-bg-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.stat-card-back {
+  background: var(--global-card-bg-color);
+  transform: rotateY(180deg);
+  overflow-y: auto;
+  border-top-color: var(--retro-accent);
+}
+
+.stat-card-front .stat-card-icon {
+  font-size: 2.5rem;
+  color: var(--retro-accent);
+  margin-bottom: 0.75rem;
+}
+
+.stat-card-front .stat-card-title {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.5rem;
+  color: var(--retro-primary);
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.stat-card-front .click-hint {
+  margin-top: 0.75rem;
+  font-family: 'VT323', monospace;
+  font-size: 0.85rem;
+  color: var(--global-text-color-light);
+}
+
+.stat-card-back .stat-card-content {
+  font-family: 'VT323', monospace;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.stat-card-back .stat-card-content ul {
+  padding-left: 1rem;
+  margin: 0.5rem 0;
+}
+
+.stat-card-back .stat-card-content li {
+  margin-bottom: 0.3rem;
+}
+
+.stat-card-close {
+  margin-top: 0.75rem;
+  padding-top: 0.5rem;
+  border-top: 1px dashed var(--global-divider-color);
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.4rem;
+  color: var(--retro-danger);
+  text-align: center;
+  cursor: pointer;
+}
+
+@media (max-width: 576px) {
+  .stat-cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stat-card-flip-container {
+    height: 180px;
+  }
+}
+
+/* ========================================
+   MISC Page - Research Motivation CRT
+   ======================================== */
+
+.research-motivation-crt {
+  margin: 2rem 0 3rem 0;
+}
+
+.crt-frame {
+  position: relative;
+  background: linear-gradient(180deg, #f8e8e8 0%, #f0d0d0 100%);
+  border: 4px solid #d4a5a5;
+  border-radius: 12px;
+  padding: 3px;
+  box-shadow:
+    0 0 30px rgba(255, 105, 180, 0.4),
+    inset 0 0 60px rgba(255, 192, 203, 0.3),
+    0 10px 40px rgba(255, 105, 180, 0.3);
+  overflow: hidden;
+}
+
+.crt-screen-research {
+  position: relative;
+  background: linear-gradient(180deg,
+      #fff5f8 0%,
+      #ffe8f0 50%,
+      #fff5f8 100%);
+  border-radius: 6px;
+  padding: 2rem;
+  min-height: 180px;
+  border: 2px solid #ffb6c1;
+}
+
+.crt-content-research {
+  position: relative;
+  z-index: 2;
+}
+
+.crt-scanline-research {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(0deg,
+      rgba(255, 182, 193, 0.08) 0px,
+      rgba(255, 182, 193, 0.08) 1px,
+      transparent 1px,
+      transparent 3px);
+  pointer-events: none;
+  z-index: 10;
+  animation: scanline-move 10s linear infinite;
+}
+
+.crt-screen-research::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(ellipse at center,
+      transparent 0%,
+      rgba(255, 182, 193, 0.3) 100%);
+  pointer-events: none;
+  z-index: 5;
+  border-radius: 6px;
+}
+
+.motivation-text {
+  font-family: 'VT323', monospace;
+  font-size: 1.2rem;
+  line-height: 1.7;
+  color: #8b4a6c;
+}
+
+.motivation-statement {
+  font-size: 1.0rem;
+  color: #d63384;
+  text-shadow: 0 0 8px rgba(214, 51, 132, 0.4);
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px dashed rgba(214, 51, 132, 0.3);
+}
+
+.motivation-text p {
+  margin-bottom: 1rem;
+}
+
+/* ========================================
+   MISC Page - Unified Tag Styles
+   ======================================== */
+
+/* Research Interests Tags */
+.research-interests-tags {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.research-category {
+  .research-category-title {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.5rem;
+    color: var(--retro-accent);
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .research-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+}
+
+.research-tag {
+  display: inline-block;
+  background: linear-gradient(135deg,
+      rgba(0, 180, 216, 0.15) 0%,
+      rgba(131, 56, 236, 0.15) 100%);
+  border: 2px solid var(--retro-primary);
+  color: var(--global-text-color);
+  padding: 0.4rem 0.8rem;
+  border-radius: 0;
+  font-family: 'VT323', monospace;
+  font-size: 1rem;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+}
+
+.research-tag:hover {
+  transform: translateY(-2px);
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.15);
+  border-color: var(--retro-secondary);
+  background: linear-gradient(135deg,
+      rgba(255, 0, 110, 0.2) 0%,
+      rgba(0, 180, 216, 0.2) 100%);
+}
+
+/* Skills Tags - Same style */
+.skills-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.skill-category {
+  .skill-category-title {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.5rem;
+    color: var(--retro-accent);
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+}
+
+.skill-tag {
+  display: inline-block;
+  background: linear-gradient(135deg,
+      rgba(0, 180, 216, 0.15) 0%,
+      rgba(131, 56, 236, 0.15) 100%);
+  border: 2px solid var(--retro-primary);
+  color: var(--global-text-color);
+  padding: 0.4rem 0.8rem;
+  border-radius: 0;
+  font-family: 'VT323', monospace;
+  font-size: 1rem;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+}
+
+.skill-tag:hover {
+  transform: translateY(-2px);
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.15);
+  border-color: var(--retro-secondary);
+  background: linear-gradient(135deg,
+      rgba(255, 0, 110, 0.2) 0%,
+      rgba(0, 180, 216, 0.2) 100%);
+}
+
+/* Non-academic Interest Tags - Same style */
+.non-academic-tags {
+  .interest-tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+}
+
+.interest-tag {
+  display: inline-block;
+  background: linear-gradient(135deg,
+      rgba(0, 180, 216, 0.15) 0%,
+      rgba(131, 56, 236, 0.15) 100%);
+  border: 2px solid var(--retro-primary);
+  color: var(--global-text-color);
+  padding: 0.4rem 0.8rem;
+  border-radius: 0;
+  font-family: 'VT323', monospace;
+  font-size: 1rem;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.interest-tag:hover {
+  transform: translateY(-2px);
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.15);
+  border-color: var(--retro-secondary);
+  background: linear-gradient(135deg,
+      rgba(255, 0, 110, 0.2) 0%,
+      rgba(0, 180, 216, 0.2) 100%);
+}
+
+/* Dark mode enhancements */
+html[data-theme='dark'] {
+  .crt-frame {
+    background: linear-gradient(180deg, #2d1f2a 0%, #1f1520 100%);
+    border-color: #8b5c7a;
+    box-shadow:
+      0 0 40px rgba(255, 105, 180, 0.3),
+      inset 0 0 80px rgba(255, 192, 203, 0.2),
+      0 10px 50px rgba(255, 105, 180, 0.4);
+  }
+
+  .crt-screen-research {
+    background: linear-gradient(180deg,
+        #1a1018 0%,
+        #251520 50%,
+        #1a1018 100%);
+    border-color: #c77d9a;
+  }
+
+  .motivation-text {
+    color: #e8b8cf;
+  }
+
+  .motivation-statement {
+    color: #ff80bf;
+    text-shadow: 0 0 12px rgba(255, 128, 191, 0.5);
+  }
+
+  .crt-scanline-research {
+    background: repeating-linear-gradient(0deg,
+        rgba(255, 128, 191, 0.06) 0px,
+        rgba(255, 128, 191, 0.06) 1px,
+        transparent 1px,
+        transparent 3px);
+  }
+
+  .crt-screen-research::before {
+    background: radial-gradient(ellipse at center,
+        transparent 0%,
+        rgba(255, 128, 191, 0.25) 100%);
+  }
+
+  .research-tag,
+  .skill-tag,
+  .interest-tag {
+    box-shadow: 0 0 10px rgba(255, 128, 191, 0.3);
+
+    &:hover {
+      box-shadow: 0 0 15px rgba(255, 128, 191, 0.5);
+    }
+  }
+}
+
+/* Mobile responsive */
+@media (max-width: 576px) {
+  .crt-screen-research {
+    padding: 1.25rem;
+  }
+
+  .motivation-text {
+    font-size: 1rem;
+  }
+
+  .motivation-statement {
+    font-size: 1.15rem;
+  }
+
+  .research-tag,
+  .skill-tag,
+  .interest-tag {
+    font-size: 0.9rem;
+    padding: 0.3rem 0.6rem;
+  }
+}
+
+/* ========================================
+   Homepage - Cyan CRT Intro Panel
+   ======================================== */
+
+.intro-crt-panel {
+  margin: 1.5rem 0 2rem 0;
+}
+
+.crt-frame-cyan {
+  position: relative;
+  background: linear-gradient(180deg, #e8f8f8 0%, #d0f0f0 100%);
+  border: 4px solid #a5d4d4;
+  border-radius: 12px;
+  padding: 3px;
+  box-shadow:
+    0 0 30px rgba(0, 217, 255, 0.4),
+    inset 0 0 60px rgba(192, 240, 255, 0.3),
+    0 10px 40px rgba(0, 217, 255, 0.3);
+  overflow: hidden;
+}
+
+.crt-screen-cyan {
+  position: relative;
+  background: linear-gradient(180deg,
+      #f5ffff 0%,
+      #e8f8ff 50%,
+      #f5ffff 100%);
+  border-radius: 6px;
+  padding: 1.5rem;
+  min-height: 150px;
+  border: 2px solid #b6e8ff;
+}
+
+.crt-content-cyan {
+  position: relative;
+  z-index: 2;
+}
+
+.crt-scanline-cyan {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(0deg,
+      rgba(0, 217, 255, 0.08) 0px,
+      rgba(0, 217, 255, 0.08) 1px,
+      transparent 1px,
+      transparent 3px);
+  pointer-events: none;
+  z-index: 10;
+  animation: scanline-move 10s linear infinite;
+}
+
+.crt-screen-cyan::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(ellipse at center,
+      transparent 0%,
+      rgba(0, 217, 255, 0.3) 100%);
+  pointer-events: none;
+  z-index: 5;
+  border-radius: 6px;
+}
+
+/* Content styling inside CRT */
+.crt-content-cyan p {
+  font-family: 'VT323', monospace;
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: #2d6a6a;
+  margin-bottom: 1rem;
+}
+
+.crt-content-cyan strong {
+  color: #008b8b;
+  font-weight: bold;
+}
+
+.crt-content-cyan a {
+  color: #0096c7;
+  border-bottom: 2px dotted #0096c7;
+}
+
+.crt-content-cyan a:hover {
+  color: #0077b6;
+  border-bottom-style: solid;
+}
+
+.crt-content-cyan ul {
+  font-family: 'VT323', monospace;
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: #2d6a6a;
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+}
+
+.crt-content-cyan ul li {
+  margin-bottom: 0.75rem;
+}
+
+/* Quote block styling */
+.crt-content-cyan pre {
+  background: rgba(0, 217, 255, 0.1);
+  border: 2px solid #b6e8ff;
+  border-radius: 6px;
+  padding: 1rem;
+  font-family: 'VT323', monospace;
+  font-size: 1.1rem;
+  color: #0077b6;
+  margin: 1.5rem 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+/* Dark mode */
+html[data-theme='dark'] {
+  .crt-frame-cyan {
+    background: linear-gradient(180deg, #1a2d2d 0%, #102020 100%);
+    border-color: #5c8a8a;
+    box-shadow:
+      0 0 40px rgba(0, 217, 255, 0.3),
+      inset 0 0 80px rgba(192, 240, 255, 0.2),
+      0 10px 50px rgba(0, 217, 255, 0.4);
+  }
+
+  .crt-screen-cyan {
+    background: linear-gradient(180deg,
+        #0a1a1a 0%,
+        #102525 50%,
+        #0a1a1a 100%);
+    border-color: #7dc9e8;
+  }
+
+  .crt-content-cyan p,
+  .crt-content-cyan ul {
+    color: #b8e8e8;
+  }
+
+  .crt-content-cyan strong {
+    color: #7dd3e8;
+  }
+
+  .crt-content-cyan a {
+    color: #7dd3e8;
+    border-bottom-color: #7dd3e8;
+  }
+
+  .crt-content-cyan a:hover {
+    color: #a8e8ff;
+  }
+
+  .crt-content-cyan pre {
+    background: rgba(0, 217, 255, 0.15);
+    border-color: #5ca8c7;
+    color: #7dd3e8;
+  }
+
+  .crt-scanline-cyan {
+    background: repeating-linear-gradient(0deg,
+        rgba(0, 217, 255, 0.06) 0px,
+        rgba(0, 217, 255, 0.06) 1px,
+        transparent 1px,
+        transparent 3px);
+  }
+
+  .crt-screen-cyan::before {
+    background: radial-gradient(ellipse at center,
+        transparent 0%,
+        rgba(0, 217, 255, 0.25) 100%);
+  }
+}
+
+/* Mobile responsive */
+@media (max-width: 576px) {
+  .crt-screen-cyan {
+    padding: 1.25rem;
+  }
+
+  .crt-content-cyan p,
+  .crt-content-cyan ul {
+    font-size: 1rem;
+  }
+
+  .crt-content-cyan pre {
+    font-size: 0.95rem;
+    padding: 0.75rem;
+  }
+}
+
+/* ========================================
+   Homepage - Profile & Layout Adjustments
+   ======================================== */
+
+.profile-wrapper-layout {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  align-items: flex-start;
+}
+
+.profile-floated {
+  flex: 0 0 28%;
+  max-width: 28%;
+  margin: 0 !important;
+}
+
+.profile-floated.float-right {
+  margin-left: 0 !important;
+  order: 2;
+}
+
+.profile-floated.float-left {
+  margin-right: 0 !important;
+  order: 1;
+}
+
+.intro-content-wrapper {
+  flex: 1;
+  order: 1;
+}
+
+.profile-floated.float-right+.intro-content-wrapper {
+  order: 1;
+}
+
+/* Full-width quote box */
+.quote-full-width-container {
+  width: 100%;
+  margin: 2.5rem 0 3rem 0;
+  clear: both;
+}
+
+.quote-box {
+  background: linear-gradient(135deg,
+      rgba(255, 182, 193, 0.15) 0%,
+      rgba(255, 128, 191, 0.1) 100%);
+  border: 3px solid #ff80bf;
+  border-left: 6px solid #ff80bf;
+  border-radius: 0;
+  padding: 2rem 2.5rem;
+  box-shadow:
+    0 4px 15px rgba(255, 128, 191, 0.3),
+    inset 0 0 30px rgba(255, 182, 193, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.quote-box::before {
+  content: '"';
+  position: absolute;
+  top: -10px;
+  left: 20px;
+  font-family: 'Dancing Script', cursive;
+  font-size: 6rem;
+  color: rgba(255, 128, 191, 0.2);
+  line-height: 1;
+}
+
+.quote-content {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.6rem;
+  line-height: 1.8;
+  color: #8b4a6c;
+  margin: 0;
+  position: relative;
+  z-index: 2;
+  font-style: italic;
+}
+
+.quote-attribution {
+  font-family: 'VT323', monospace;
+  font-size: 1.1rem;
+  color: #d63384;
+  text-align: right;
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 2px dashed rgba(214, 51, 132, 0.3);
+}
+
+/* Dancing Script font import */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&display=swap');
+
+/* Dark mode */
+html[data-theme='dark'] {
+  .quote-box {
+    background: linear-gradient(135deg,
+        rgba(255, 128, 191, 0.15) 0%,
+        rgba(157, 78, 221, 0.1) 100%);
+    border-color: #c77d9a;
+    border-left-color: #c77d9a;
+    box-shadow:
+      0 4px 20px rgba(255, 128, 191, 0.4),
+      inset 0 0 40px rgba(255, 128, 191, 0.15);
+  }
+
+  .quote-box::before {
+    color: rgba(255, 128, 191, 0.15);
+  }
+
+  .quote-content {
+    color: #e8b8cf;
+  }
+
+  .quote-attribution {
+    color: #ff80bf;
+    border-top-color: rgba(255, 128, 191, 0.3);
+  }
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .profile-wrapper-layout {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .profile-floated {
+    flex: none;
+    max-width: 100%;
+    order: 1 !important;
+  }
+
+  .intro-content-wrapper {
+    order: 2 !important;
+  }
+
+  .quote-content {
+    font-size: 1.3rem;
+  }
+
+  .quote-box {
+    padding: 1.5rem;
+  }
+}
+
+/* ========================================
+   Homepage Specific Layout
+   ======================================== */
+
+.homepage-post .profile-wrapper-layout {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 0;
+  align-items: flex-start;
+}
+
+.homepage-post .profile-floated {
+  flex: 0 0 35%;
+  max-width: 35%;
+  margin: 0 !important;
+}
+
+.homepage-post .profile-floated.float-right {
+  margin-left: 0 !important;
+}
+
+.homepage-post .profile-floated.float-left {
+  margin-right: 0 !important;
+}
+
+.homepage-post .intro-content-wrapper {
+  flex: 1;
+}
+
+/* Quote box styling */
+.quote-full-width-container {
+  width: 100%;
+  margin: 2rem 0 2.5rem 0;
+  clear: both;
+}
+
+.quote-box {
+  background: linear-gradient(135deg,
+      rgba(255, 182, 193, 0.15) 0%,
+      rgba(255, 128, 191, 0.1) 100%);
+  border: 3px solid #ff80bf;
+  border-left: 6px solid #ff80bf;
+  border-radius: 0;
+  padding: 1.5rem 2rem;
+  box-shadow:
+    0 4px 15px rgba(255, 128, 191, 0.3),
+    inset 0 0 30px rgba(255, 182, 193, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.quote-box::before {
+  content: '"';
+  position: absolute;
+  top: -10px;
+  left: 20px;
+  font-family: 'Dancing Script', cursive;
+  font-size: 5rem;
+  color: rgba(255, 128, 191, 0.2);
+  line-height: 1;
+}
+
+.quote-content {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.5rem;
+  line-height: 1.7;
+  color: #8b4a6c;
+  margin: 0;
+  position: relative;
+  z-index: 2;
+  font-style: italic;
+}
+
+.quote-attribution {
+  font-family: 'VT323', monospace;
+  font-size: 1.1rem;
+  color: #d63384;
+  text-align: right;
+  margin-top: 0.75rem;
+  padding-top: 0.5rem;
+  border-top: 2px dashed rgba(214, 51, 132, 0.3);
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&display=swap');
+
+/* Dark mode */
+html[data-theme='dark'] .quote-box {
+  background: linear-gradient(135deg,
+      rgba(255, 128, 191, 0.15) 0%,
+      rgba(157, 78, 221, 0.1) 100%);
+  border-color: #c77d9a;
+  border-left-color: #c77d9a;
+  box-shadow:
+    0 4px 20px rgba(255, 128, 191, 0.4),
+    inset 0 0 40px rgba(255, 128, 191, 0.15);
+}
+
+html[data-theme='dark'] .quote-box::before {
+  color: rgba(255, 128, 191, 0.15);
+}
+
+html[data-theme='dark'] .quote-content {
+  color: #e8b8cf;
+}
+
+html[data-theme='dark'] .quote-attribution {
+  color: #ff80bf;
+  border-top-color: rgba(255, 128, 191, 0.3);
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .homepage-post .profile-wrapper-layout {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .homepage-post .profile-floated {
+    flex: none;
+    max-width: 100%;
+  }
+
+  .quote-content {
+    font-size: 1.3rem;
+  }
+
+  .quote-box {
+    padding: 1.25rem 1.5rem;
+  }
+}
+
+/* ========================================
+   MISC Page - Compact Time Tables
+   ======================================== */
+
+.cv .card .time-table {
+  margin-bottom: 0.5rem;
+}
+
+.cv .card .time-table .table-cv {
+  margin-bottom: 0.5rem;
+}
+
+.cv .card .time-table .table-cv tr {
+  margin-bottom: 0.4rem;
+}
+
+.cv .card .time-table .table-cv td {
+  padding: 0.4rem 0;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.cv .card .time-table .table-cv .year {
+  font-size: 0.85rem;
+  padding-top: 0.4rem;
+}
+
+.cv .card .time-table .table-cv .institution {
+  font-size: 0.95rem;
+}
+
+.cv .card .time-table .table-cv .description {
+  font-size: 0.9rem;
+  line-height: 1.35;
+}
+
+/* Reduce card padding on MISC page */
+.cv .card {
+  padding: 1rem !important;
+  margin-top: 1rem !important;
+}
+
+.cv .card .card-title {
+  font-size: 0.65rem;
+  margin-bottom: 0.75rem;
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+  .cv .card .time-table .table-cv td {
+    font-size: 0.85rem;
+    padding: 0.3rem 0;
+  }
+
+  .cv .card {
+    padding: 0.75rem !important;
+  }
+}
+
+/* ========================================
+   Homepage - Profile Floated Inside CRT
+   ======================================== */
+
+.intro-with-profile {
+  margin: 1.5rem 0 2rem 0;
+  width: 100%;
+}
+
+.profile-floated-homepage {
+  float: right;
+  width: 26%;
+  // margin: 0 0 1.5rem 1.5rem !important;
+  position: relative;
+  z-index: 10;
+}
+
+.profile-floated-homepage.float-left {
+  float: left;
+  margin: 0 1.5rem 1.5rem 0 !important;
+}
+
+.profile-floated-homepage .more-info {
+  margin-top: 1rem;
+  font-size: 0.95rem;
+}
+
+/* Clear floats after content */
+.crt-content-cyan::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Mobile - no float */
+@media (max-width: 768px) {
+  .profile-floated-homepage {
+    float: none;
+    width: 100%;
+    margin: 0 0 1.5rem 0 !important;
+    text-align: center;
+  }
+
+  .profile-floated-homepage .profile {
+    float: none !important;
+    margin: 0 auto !important;
+  }
+}
+
+/* ========================================
+   MISC Page - Ultra Compact Time Tables
+   ======================================== */
+
+/* Education & Experience compact styling */
+.cv .card {
+  padding: 0.75rem !important;
+  margin-top: 0.75rem !important;
+}
+
+.cv .card .card-title {
+  font-size: 0.6rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Time table compact */
+.cv .time-table {
+  margin-bottom: 0.25rem;
+}
+
+.cv .time-table .table-cv {
+  margin-bottom: 0;
+  width: 100%;
+}
+
+.cv .time-table .table-cv tr {
+  display: block;
+  margin-bottom: 0.3rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px dashed rgba(128, 128, 128, 0.2);
+}
+
+.cv .time-table .table-cv tr:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.cv .time-table .table-cv td {
+  display: block;
+  padding: 0.15rem 0;
+  line-height: 1.3;
+}
+
+.cv .time-table .table-cv .year {
+  font-size: 0.75rem;
+  color: var(--retro-accent);
+  font-weight: bold;
+  margin-bottom: 0.15rem;
+}
+
+.cv .time-table .table-cv .institution {
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: var(--global-text-color);
+}
+
+.cv .time-table .table-cv .description {
+  font-size: 0.8rem;
+  color: var(--global-text-color-light);
+}
+
+.cv .time-table .table-cv .advisor,
+.cv .time-table .table-cv .group {
+  font-size: 0.8rem;
+  color: var(--global-text-color-light);
+}
+
+/* Nested lists compact */
+.cv .card .nested-list {
+  margin-bottom: 0.5rem;
+}
+
+.cv .card .nested-list ul {
+  margin: 0.25rem 0;
+  padding-left: 1.25rem;
+}
+
+.cv .card .nested-list li {
+  margin-bottom: 0.25rem;
+  font-size: 0.9rem;
+  line-height: 1.35;
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+  .cv .card {
+    padding: 0.5rem !important;
+  }
+
+  .cv .card .card-title {
+    font-size: 0.55rem;
+  }
+
+  .cv .time-table .table-cv td {
+    font-size: 0.75rem;
+    padding: 0.1rem 0;
+  }
+
+  .cv .card .nested-list li {
+    font-size: 0.85rem;
+  }
+}
+
+/* ========================================
+   Homepage - Simple Quote Box
+   ======================================== */
+
+.quote-simple {
+  display: block;
+  width: 100%;
+  margin: 2rem 0;
+  padding: 1.0rem 1.0rem;
+  background: #ffffff;
+  border: 2px solid #00b4d8;
+  border-left: 4px solid #00b4d8;
+  border-radius: 0;
+  box-shadow: 0 2px 8px rgba(0, 180, 216, 0.15);
+  font-family: 'Courier New', monospace;
+  position: relative;
+}
+
+.quote-simple .quote-text {
+  display: block;
+  font-size: 1rem;
+  line-height: 1.0;
+  color: #212529;
+  font-style: italic;
+  margin-bottom: 0.5rem;
+}
+
+.quote-simple .quote-attribution {
+  display: block;
+  font-size: 0.85rem;
+  color: #0077b6;
+  text-align: right;
+  font-weight: bold;
+}
+
+.quote-simple .blinking-cursor {
+  display: inline-block;
+  color: #00b4d8;
+  font-size: 1.2rem;
+  margin-left: 4px;
+  animation: blink-cursor 1s infinite;
+  vertical-align: middle;
+}
+
+@keyframes blink-cursor {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Dark mode */
+html[data-theme='dark'] .quote-simple {
+  background: #1a1a2e;
+  border-color: #00d9ff;
+  border-left-color: #00d9ff;
+  box-shadow: 0 2px 12px rgba(0, 217, 255, 0.2);
+}
+
+html[data-theme='dark'] .quote-simple .quote-text {
+  color: #eaeaea;
+}
+
+html[data-theme='dark'] .quote-simple .quote-attribution {
+  color: #00d9ff;
+}
+
+/* ========================================
+   MISC Page - MAXIMUM Compact Sections
+   ======================================== */
+
+/* Education & Experience - Maximum compact */
+.cv .card {
+  padding: 0.5rem !important;
+  margin-top: 0.5rem !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.cv .card .card-title {
+  font-size: 0.55rem;
+  margin-bottom: 0.35rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 2px solid var(--retro-accent);
+}
+
+/* Time table - maximum compact */
+.cv .time-table {
+  margin-bottom: 0;
+}
+
+.cv .time-table .table-cv {
+  margin-bottom: 0;
+  width: 100%;
+}
+
+.cv .time-table .table-cv tr {
+  display: block;
+  margin-bottom: 0.2rem;
+  padding-bottom: 0.2rem;
+}
+
+.cv .time-table .table-cv td {
+  display: block;
+  padding: 0.1rem 0;
+  line-height: 1.2;
+  font-size: 0.8rem;
+}
+
+.cv .time-table .table-cv .year {
+  font-size: 0.7rem;
+  color: var(--retro-accent);
+  font-weight: bold;
+  margin-bottom: 0.05rem;
+}
+
+.cv .time-table .table-cv .institution {
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: var(--global-text-color);
+}
+
+.cv .time-table .table-cv .description,
+.cv .time-table .table-cv .advisor,
+.cv .time-table .table-cv .group {
+  font-size: 0.75rem;
+  color: var(--global-text-color-light);
+}
+
+/* Remove extra spacing from nested elements */
+.cv .card p {
+  margin-bottom: 0.25rem;
+}
+
+.cv .card ul {
+  margin: 0.2rem 0;
+  padding-left: 1rem;
+}
+
+.cv .card li {
+  margin-bottom: 0.15rem;
+  font-size: 0.8rem;
+  line-height: 1.25;
+}
+
+/* Nested list items - maximum compact */
+.cv .card .nested-list {
+  margin-bottom: 0.25rem;
+}
+
+.cv .card .nested-list .list-category {
+  font-size: 0.7rem;
+  margin-bottom: 0.15rem;
+}
+
+.cv .card .nested-list ul {
+  margin: 0.15rem 0;
+}
+
+.cv .card .nested-list li {
+  margin-bottom: 0.1rem;
+  font-size: 0.75rem;
+  line-height: 1.2;
+}
+
+/* Mobile - even more compact */
+@media (max-width: 576px) {
+  .cv .card {
+    padding: 0.4rem !important;
+  }
+
+  .cv .card .card-title {
+    font-size: 0.5rem;
+  }
+
+  .cv .time-table .table-cv td {
+    font-size: 0.7rem;
+    padding: 0.05rem 0;
+  }
+
+  .cv .card li {
+    font-size: 0.7rem;
+  }
+}
+
+/* ========================================
+   Homepage - Quote Outside CRT Panel (Console Vibe)
+   ======================================== */
+
+.quote-simple-wrapper {
+  width: 100%;
+  margin: 1.5rem 0 2rem 0;
+  clear: both;
+}
+
+.quote-simple {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 1rem 1.25rem;
+  background: linear-gradient(135deg,
+      rgba(0, 180, 216, 0.05) 0%,
+      rgba(131, 56, 236, 0.05) 100%);
+  border: 1px solid var(--retro-primary);
+  border-left: 4px solid var(--retro-secondary);
+  border-radius: 0;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
+  font-family: 'Perfect DOS VGA 432 Win', monospace;
+  position: relative;
+}
+
+.quote-simple::before {
+  content: '> ';
+  color: var(--retro-secondary);
+  font-weight: bold;
+  margin-right: 0.5rem;
+}
+
+.quote-simple .quote-text {
+  display: block;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--global-text-color);
+  font-style: normal;
+  font-family: 'Perfect DOS VGA 432 Win', monospace;
+  margin-bottom: 0.4rem;
+}
+
+.quote-simple .quote-attribution {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--retro-primary);
+  text-align: right;
+  font-weight: bold;
+  font-family: 'Perfect DOS VGA 432 Win', monospace;
+}
+
+.quote-simple .blinking-cursor {
+  display: inline-block;
+  width: 8px;
+  height: 16px;
+  background: var(--retro-secondary);
+  font-size: 0;
+  margin-left: 4px;
+  animation: blink-cursor 1s infinite;
+  vertical-align: middle;
+  box-shadow: 0 0 5px var(--retro-secondary);
+}
+
+@keyframes blink-cursor {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Dark mode console quote */
+html[data-theme='dark'] .quote-simple-wrapper {
+  /* wrapper inherits dark mode */
+}
+
+html[data-theme='dark'] .quote-simple {
+  background: linear-gradient(135deg,
+      rgba(0, 217, 255, 0.08) 0%,
+      rgba(131, 56, 236, 0.08) 100%);
+  border-color: var(--retro-primary);
+  border-left-color: var(--retro-secondary);
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
+}
+
+html[data-theme='dark'] .quote-simple .quote-text {
+  color: var(--global-text-color);
+}
+
+html[data-theme='dark'] .quote-simple .quote-attribution {
+  color: var(--retro-primary);
+}
+
+html[data-theme='dark'] .quote-simple .blinking-cursor {
+  background: var(--retro-secondary);
+  box-shadow: 0 0 8px var(--retro-secondary);
+}
+
+/* ========================================
+   Current Status Box - RPG Quest Board
+   ======================================== */
+
+.status-box-crt {
+  position: relative;
+  background: linear-gradient(180deg,
+      rgba(0, 180, 216, 0.1) 0%,
+      rgba(131, 56, 236, 0.1) 100%);
+  border: 2px solid var(--retro-primary);
+  border-left: 4px solid var(--retro-secondary);
+  border-radius: 0;
+  padding: 0.75rem;
+  margin: 1rem;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
+  max-width: 280px;
+  animation: status-pulse 3s infinite;
+}
+
+@keyframes status-pulse {
+
+  0%,
+  100% {
+    box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
+  }
+
+  50% {
+    box-shadow: 2px 2px 0 rgba(0, 180, 216, 0.4), 0 0 10px rgba(0, 180, 216, 0.3);
+  }
+}
+
+.status-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px dashed var(--retro-primary);
+}
+
+.status-icon {
+  font-size: 1.2rem;
+  animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+.status-title {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.5rem;
+  color: var(--retro-primary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.status-content {
+  margin-bottom: 0.5rem;
+}
+
+.status-item {
+  font-family: 'VT323', monospace;
+  font-size: 0.85rem;
+  color: var(--global-text-color);
+  margin: 0.25rem 0;
+  line-height: 1.4;
+}
+
+.status-blink {
+  text-align: right;
+  font-size: 0.8rem;
+  color: var(--retro-secondary);
+  animation: blink-cursor 1s infinite;
+}
+
+/* Dark mode */
+html[data-theme='dark'] .status-box-crt {
+  background: linear-gradient(180deg,
+      rgba(0, 217, 255, 0.15) 0%,
+      rgba(131, 56, 236, 0.15) 100%);
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3), 0 0 10px rgba(0, 217, 255, 0.2);
+}
+
+html[data-theme='dark'] .status-box-crt:hover {
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 217, 255, 0.4);
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .status-box-crt {
+    max-width: 100%;
+    margin: 1rem 0;
+  }
+}
+
+/* Status Box under Profile - Homepage */
+.status-box-profile {
+  position: relative;
+  background: linear-gradient(180deg,
+      rgba(0, 180, 216, 0.1) 0%,
+      rgba(131, 56, 236, 0.1) 100%);
+  border: 2px solid var(--retro-primary);
+  border-left: 4px solid var(--retro-secondary);
+  border-radius: 0;
+  padding: 0.6rem;
+  margin-top: 1rem;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
+  max-width: 100%;
+  animation: status-pulse 3s infinite;
+}
+
+.status-box-profile .status-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px dashed var(--retro-primary);
+}
+
+.status-box-profile .status-icon {
+  font-size: 1rem;
+  animation: bounce 1s infinite;
+}
+
+.status-box-profile .status-title {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.45rem;
+  color: var(--retro-primary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.status-box-profile .status-content {
+  margin-bottom: 0.5rem;
+}
+
+.status-box-profile .status-item {
+  font-family: 'VT323', monospace;
+  font-size: 0.75rem;
+  color: var(--global-text-color);
+  margin: 0.2rem 0;
+  line-height: 1.3;
+}
+
+.status-box-profile .status-blink {
+  text-align: right;
+  font-size: 0.7rem;
+  color: var(--retro-secondary);
+  animation: blink-cursor 1s infinite;
+}
+
+/* Dark mode for profile status box */
+html[data-theme='dark'] .status-box-profile {
+  background: linear-gradient(180deg,
+      rgba(0, 217, 255, 0.15) 0%,
+      rgba(131, 56, 236, 0.15) 100%);
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3), 0 0 10px rgba(0, 217, 255, 0.2);
+}
+
+/* ========================================
+   News Timeline - RPG Quest Log Style
+   ======================================== */
+
+.news-timeline {
+  position: relative;
+  padding: 2rem 0;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.news-timeline::before {
+  content: '';
+  position: absolute;
+  left: 2rem;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(180deg,
+      var(--retro-primary) 0%,
+      var(--retro-accent) 100%);
+  box-shadow: 0 0 10px rgba(0, 180, 216, 0.5);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 2rem;
+  padding-left: 5rem;
+  animation: slide-in 0.5s ease-out;
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.timeline-marker {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 4.5rem;
+  text-align: right;
+  padding-right: 1rem;
+}
+
+.timeline-date {
+  display: inline-block;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.5rem;
+  color: var(--retro-primary);
+  background: var(--global-bg-color);
+  padding: 0.25rem 0.5rem;
+  border: 2px solid var(--retro-primary);
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
+  text-shadow: 0 0 5px rgba(0, 180, 216, 0.5);
+}
+
+.timeline-content {
+  position: relative;
+  background: linear-gradient(135deg,
+      rgba(0, 180, 216, 0.05) 0%,
+      rgba(131, 56, 236, 0.05) 100%);
+  border: 2px solid var(--retro-primary);
+  border-left: 4px solid var(--retro-secondary);
+  padding: 1rem 1.25rem;
+  border-radius: 0;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.timeline-content:hover {
+  transform: translateX(5px);
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
+  border-left-color: var(--retro-accent);
+}
+
+.timeline-badge {
+  position: absolute;
+  left: -2.2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3rem;
+  height: 3rem;
+  background: var(--global-bg-color);
+  border: 2px solid var(--retro-primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  box-shadow: 0 0 10px rgba(0, 180, 216, 0.5);
+  z-index: 10;
+}
+
+.timeline-content:hover .timeline-badge {
+  border-color: var(--retro-secondary);
+  box-shadow: 0 0 15px rgba(255, 0, 110, 0.6);
+  animation: badge-pulse 0.5s ease;
+}
+
+@keyframes badge-pulse {
+
+  0%,
+  100% {
+    transform: translateY(-50%) scale(1);
+  }
+
+  50% {
+    transform: translateY(-50%) scale(1.1);
+  }
+}
+
+.timeline-text {
+  font-family: 'Perfect DOS VGA 432 Win', monospace;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--global-text-color);
+}
+
+.timeline-text p {
+  margin: 0;
+}
+
+.timeline-text a {
+  color: var(--retro-primary);
+  border-bottom: 2px dotted var(--retro-primary);
+  text-decoration: none;
+}
+
+.timeline-text a:hover {
+  color: var(--retro-secondary);
+  border-bottom-style: solid;
+}
+
+/* Badge colors by icon */
+.timeline-item .timeline-badge[data-icon="📄"],
+.timeline-item .timeline-badge:contains("📄") {
+  border-color: var(--rpg-skills);
+  box-shadow: 0 0 10px rgba(6, 255, 165, 0.5);
+}
+
+.timeline-item .timeline-badge[data-icon="🏆"],
+.timeline-item .timeline-badge:contains("🏆") {
+  border-color: var(--rpg-achievements);
+  box-shadow: 0 0 10px rgba(255, 190, 11, 0.5);
+}
+
+.timeline-item .timeline-badge[data-icon="🎤"],
+.timeline-item .timeline-badge:contains("🎤") {
+  border-color: var(--retro-secondary);
+  box-shadow: 0 0 10px rgba(255, 0, 110, 0.5);
+}
+
+.timeline-item .timeline-badge[data-icon="🎪"],
+.timeline-item .timeline-badge:contains("🎪") {
+  border-color: var(--retro-accent);
+  box-shadow: 0 0 10px rgba(131, 56, 236, 0.5);
+}
+
+.timeline-item .timeline-badge[data-icon="🎓"],
+.timeline-item .timeline-badge:contains("🎓") {
+  border-color: var(--retro-primary);
+  box-shadow: 0 0 10px rgba(0, 180, 216, 0.5);
+}
+
+.timeline-item .timeline-badge[data-icon="⚔"],
+.timeline-item .timeline-badge:contains("⚔") {
+  border-color: var(--retro-primary);
+  box-shadow: 0 0 10px rgba(0, 180, 216, 0.5);
+}
+
+/* Dark mode */
+html[data-theme='dark'] .news-timeline::before {
+  box-shadow: 0 0 15px rgba(0, 217, 255, 0.7);
+}
+
+html[data-theme='dark'] .timeline-date {
+  text-shadow: 0 0 8px rgba(0, 217, 255, 0.8);
+}
+
+html[data-theme='dark'] .timeline-content {
+  background: linear-gradient(135deg,
+      rgba(0, 217, 255, 0.08) 0%,
+      rgba(131, 56, 236, 0.08) 100%);
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
+}
+
+html[data-theme='dark'] .timeline-content:hover {
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.5);
+}
+
+/* Mobile responsive */
+@media (max-width: 576px) {
+  .news-timeline::before {
+    left: 1.5rem;
+  }
+
+  .timeline-item {
+    padding-left: 3.5rem;
+  }
+
+  .timeline-marker {
+    width: 3rem;
+    padding-right: 0.5rem;
+  }
+
+  .timeline-date {
+    font-size: 0.4rem;
+    padding: 0.2rem 0.35rem;
+  }
+
+  .timeline-badge {
+    left: -2rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    font-size: 0.75rem;
+  }
+
+  .timeline-content {
+    padding: 0.75rem 1rem;
+  }
+
+  .timeline-text {
+    font-size: 0.85rem;
+  }
+}
+
+/* ========================================
+   MISC Page - EXTREME Compact Sections
+   ======================================== */
+
+/* Force compact with !important */
+.cv .card {
+  padding: 0.4rem !important;
+  margin-top: 0.4rem !important;
+  margin-bottom: 0.4rem !important;
+}
+
+.cv .card .card-title {
+  font-size: 0.5rem !important;
+  margin-bottom: 0.25rem !important;
+  padding-bottom: 0.2rem !important;
+}
+
+/* Time table - EXTREME compact */
+.cv .time-table {
+  margin-bottom: 0 !important;
+}
+
+.cv .time-table .table-cv {
+  margin-bottom: 0 !important;
+}
+
+.cv .time-table .table-cv tr {
+  margin-bottom: 0.1rem !important;
+  padding-bottom: 0.1rem !important;
+}
+
+.cv .time-table .table-cv td {
+  padding: 0.05rem 0 !important;
+  line-height: 1.1 !important;
+  font-size: 0.7rem !important;
+}
+
+.cv .time-table .table-cv .year {
+  font-size: 0.65rem !important;
+  margin-bottom: 0 !important;
+}
+
+.cv .time-table .table-cv .institution {
+  font-size: 0.7rem !important;
+}
+
+.cv .time-table .table-cv .description {
+  font-size: 0.65rem !important;
+}
+
+.cv .time-table .table-cv .advisor,
+.cv .time-table .table-cv .group {
+  font-size: 0.65rem !important;
+}
+
+/* Paragraphs and lists - EXTREME compact */
+.cv .card p {
+  margin-bottom: 0.15rem !important;
+  font-size: 0.75rem !important;
+  line-height: 1.15 !important;
+}
+
+.cv .card ul {
+  margin: 0.1rem 0 !important;
+  padding-left: 0.9rem !important;
+}
+
+.cv .card li {
+  margin-bottom: 0.1rem !important;
+  font-size: 0.7rem !important;
+  line-height: 1.1 !important;
+}
+
+/* Nested lists - EXTREME compact */
+.cv .card .nested-list {
+  margin-bottom: 0.15rem !important;
+}
+
+.cv .card .nested-list .list-category {
+  font-size: 0.6rem !important;
+  margin-bottom: 0.1rem !important;
+}
+
+.cv .card .nested-list ul {
+  margin: 0.1rem 0 !important;
+}
+
+.cv .card .nested-list li {
+  margin-bottom: 0.05rem !important;
+  font-size: 0.65rem !important;
+  line-height: 1.05 !important;
+}
+
+/* Mobile - EXTREME compact */
+@media (max-width: 576px) {
+  .cv .card {
+    padding: 0.3rem !important;
+  }
+
+  .cv .card .card-title {
+    font-size: 0.45rem !important;
+  }
+
+  .cv .time-table .table-cv td {
+    font-size: 0.6rem !important;
+    padding: 0.02rem 0 !important;
+  }
+
+  .cv .card li {
+    font-size: 0.6rem !important;
+  }
+}
+
+/* ========================================
+   MISC Page - TIME TABLE COMPACT
+   ======================================== */
+
+/* Target the actual time_table structure */
+.cv ul.card-text {
+  margin-bottom: 0.3rem !important;
+}
+
+.cv ul.card-text li.list-group-item {
+  padding: 0.3rem 0 !important;
+  margin-bottom: 0.3rem !important;
+  border-bottom: 1px dashed rgba(128, 128, 128, 0.3) !important;
+}
+
+.cv ul.card-text li.list-group-item:last-child {
+  margin-bottom: 0 !important;
+  border-bottom: none !important;
+}
+
+/* Year badge - compact */
+.cv ul.card-text .badge {
+  font-size: 0.6rem !important;
+  padding: 0.25rem 0.4rem !important;
+  margin-bottom: 0.2rem !important;
+}
+
+/* Title - compact */
+.cv ul.card-text .title {
+  font-size: 0.85rem !important;
+  margin-bottom: 0.2rem !important;
+  margin-top: 0.1rem !important;
+}
+
+/* Institution - compact */
+.cv ul.card-text .institution,
+.cv ul.card-text .institution td {
+  font-size: 0.75rem !important;
+  padding: 0.1rem 0 !important;
+  margin-bottom: 0.1rem !important;
+}
+
+.cv ul.card-text .iconinstitution {
+  font-size: 0.7rem !important;
+}
+
+/* Department - compact */
+.cv ul.card-text .department,
+.cv ul.card-text .department td {
+  font-size: 0.7rem !important;
+  padding: 0.05rem 0 !important;
+}
+
+.cv ul.card-text .icondepartment {
+  font-size: 0.5rem !important;
+}
+
+/* Location - compact */
+.cv ul.card-text .location,
+.cv ul.card-text .location td {
+  font-size: 0.7rem !important;
+  padding: 0.05rem 0 !important;
+  margin-bottom: 0.1rem !important;
+}
+
+.cv ul.card-text .iconlocation {
+  font-size: 0.7rem !important;
+}
+
+/* Description lists - compact */
+.cv ul.card-text ul.items {
+  margin: 0.15rem 0 !important;
+  padding-left: 1rem !important;
+}
+
+.cv ul.card-text ul.items li {
+  margin-bottom: 0.1rem !important;
+  font-size: 0.75rem !important;
+  line-height: 1.15 !important;
+}
+
+.cv ul.card-text .item-title {
+  font-size: 0.75rem !important;
+  margin-bottom: 0.1rem !important;
+}
+
+.cv ul.card-text .subitem {
+  font-size: 0.7rem !important;
+}
+
+.cv ul.card-text ul.subitems {
+  margin: 0.1rem 0 !important;
+  padding-left: 0.8rem !important;
+}
+
+.cv ul.card-text ul.subitems li {
+  margin-bottom: 0.05rem !important;
+}
+
+/* Main description - compact */
+.cv ul.card-text .maindescription {
+  font-size: 0.75rem !important;
+  margin: 0.15rem 0 !important;
+  line-height: 1.2 !important;
+}
+
+/* Link buttons - compact */
+.cv ul.card-text .container-links {
+  margin: 0.15rem 0 !important;
+}
+
+.cv ul.card-text .btncv {
+  font-size: 0.65rem !important;
+  padding: 0.2rem 0.5rem !important;
+  margin-right: 0.2rem !important;
+}
+
+/* Card title (Education, Experience headers) */
+.cv .card .card-title {
+  font-size: 0.55rem !important;
+  margin-bottom: 0.4rem !important;
+  padding-bottom: 0.3rem !important;
+}
+
+/* Card padding */
+.cv .card {
+  padding: 0.6rem !important;
+  margin-top: 0.6rem !important;
+  margin-bottom: 0.6rem !important;
+}
+
+/* Mobile - even more compact */
+@media (max-width: 576px) {
+  .cv ul.card-text li.list-group-item {
+    padding: 0.2rem 0 !important;
+  }
+
+  .cv ul.card-text .badge {
+    font-size: 0.55rem !important;
+    padding: 0.2rem 0.3rem !important;
+  }
+
+  .cv ul.card-text .title {
+    font-size: 0.8rem !important;
+  }
+
+  .cv ul.card-text .institution,
+  .cv ul.card-text .department,
+  .cv ul.card-text .location {
+    font-size: 0.65rem !important;
+  }
+
+  .cv ul.card-text ul.items li {
+    font-size: 0.7rem !important;
+  }
+}
+
+/* ========================================
+   Homepage - Quote Single Line (Console Vibe)
+   ======================================== */
+
+.quote-simple {
+  display: inline-block;
+  background: linear-gradient(135deg,
+      rgba(0, 180, 216, 0.05) 0%,
+      rgba(131, 56, 236, 0.05) 100%);
+  border: 1px solid var(--retro-primary);
+  border-left: 3px solid var(--retro-secondary);
+  padding: 0.75rem 1rem;
+  border-radius: 0;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
+  font-family: 'Perfect DOS VGA 432 Win', monospace;
+  position: relative;
+}
+
+.quote-simple::before {
+  content: '> ';
+  color: var(--retro-secondary);
+  font-weight: bold;
+  margin-right: 0.25rem;
+}
+
+.quote-simple .quote-text {
+  display: inline;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--global-text-color);
+  font-style: normal;
+  font-family: 'Perfect DOS VGA 432 Win', monospace;
+}
+
+.quote-simple .quote-attribution {
+  display: inline;
+  font-size: 0.85rem;
+  color: var(--retro-primary);
+  font-weight: bold;
+  margin-left: 0.5rem;
+}
+
+.quote-simple .quote-attribution::before {
+  content: '— ';
+}
+
+.quote-simple .blinking-cursor {
+  display: inline-block;
+  width: 8px;
+  height: 16px;
+  background: var(--retro-secondary);
+  font-size: 0;
+  margin-left: 4px;
+  animation: blink-cursor 1s infinite;
+  vertical-align: middle;
+  box-shadow: 0 0 5px var(--retro-secondary);
+}
+
+/* Dark mode console quote */
+html[data-theme='dark'] .quote-simple {
+  background: linear-gradient(135deg,
+      rgba(0, 217, 255, 0.08) 0%,
+      rgba(131, 56, 236, 0.08) 100%);
+  border-color: var(--retro-primary);
+  border-left-color: var(--retro-secondary);
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
+}
+
+html[data-theme='dark'] .quote-simple .quote-text {
+  color: var(--global-text-color);
+}
+
+html[data-theme='dark'] .quote-simple .quote-attribution {
+  color: var(--retro-primary);
+}
+
+html[data-theme='dark'] .quote-simple .blinking-cursor {
+  background: var(--retro-secondary);
+  box-shadow: 0 0 8px var(--retro-secondary);
+}
+
+/* ========================================
+   MISC Page - Retro Game Fun Sections
+   ======================================== */
+
+/* Leadership & Service - Quest Board Style */
+.cv .card .card-title:contains("Leadership"),
+.cv .card .card-title:contains("Service") {
+  background: linear-gradient(90deg, rgba(131, 56, 236, 0.2) 0%, rgba(0, 180, 216, 0.2) 100%);
+  padding: 0.4rem 0.6rem;
+  border: 2px solid var(--retro-accent);
+  border-left: 4px solid var(--retro-accent);
+  box-shadow: 0 2px 8px rgba(131, 56, 236, 0.3);
+  text-shadow: 0 0 5px rgba(131, 56, 236, 0.4);
+}
+
+/* ========================================
+   MISC Page - UNIFORM CARD DESIGN
+   All cards use same blue/purple gradient
+   ======================================== */
+
+/* All cards - same uniform gradient background */
+.cv .card {
+  background: linear-gradient(135deg,
+      rgba(131, 56, 236, 0.08) 0%,
+      rgba(0, 180, 216, 0.05) 100%) !important;
+  border: 2px solid var(--retro-primary) !important;
+  border-left: 4px solid var(--retro-primary) !important;
+  box-shadow: var(--pixel-shadow) !important;
+  transition: all 0.3s ease !important;
+}
+
+.cv .card:hover {
+  box-shadow: var(--pixel-shadow-hover) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* All card titles - consistent styling */
+.cv .card .card-title {
+  color: var(--retro-primary) !important;
+  border-bottom: 2px solid var(--retro-secondary) !important;
+  font-family: 'Press Start 2P', cursive !important;
+  font-size: 0.7rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+  padding-bottom: 0.5rem !important;
+  margin-bottom: 1rem !important;
+}
+
+/* Research Interests - keep simple nested list */
+.cv .card:nth-of-type(1) .research-category {
+  margin-bottom: 0.5rem !important;
+}
+
+.cv .card:nth-of-type(1) .research-category-title {
+  font-family: 'VT323', monospace !important;
+  font-size: 0.85rem !important;
+  color: var(--retro-primary) !important;
+  font-weight: bold !important;
+  margin-bottom: 0.3rem !important;
+}
+
+.cv .card:nth-of-type(1) .research-tag {
+  font-size: 0.75rem !important;
+  padding: 0.2rem 0.5rem !important;
+  background: rgba(0, 180, 216, 0.15) !important;
+  border: 1px solid var(--retro-primary) !important;
+  margin: 0.1rem !important;
+}
+
+/* Skills - 2x2 Grid Layout */
+.cv .card:nth-of-type(3) .skills-container {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 0.75rem !important;
+}
+
+.cv .card:nth-of-type(3) .skill-category {
+  background: rgba(0, 180, 216, 0.08) !important;
+  border: 2px solid var(--retro-primary) !important;
+  padding: 0.75rem !important;
+  margin: 0 !important;
+}
+
+.cv .card:nth-of-type(3) .skill-category-title {
+  font-family: 'Press Start 2P', cursive !important;
+  font-size: 0.6rem !important;
+  color: var(--global-bg-color) !important;
+  background: var(--retro-primary) !important;
+  padding: 0.4rem 0.5rem !important;
+  margin: -0.75rem -0.75rem 0.5rem -0.75rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+}
+
+.cv .card:nth-of-type(3) .skill-tags {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 0.35rem !important;
+}
+
+.cv .card:nth-of-type(3) .skill-tag {
+  font-size: 0.7rem !important;
+  padding: 0.2rem 0.45rem !important;
+  background: rgba(0, 180, 216, 0.15) !important;
+  border: 1px solid var(--retro-primary) !important;
+  margin: 0 !important;
+  font-family: 'VT323', monospace !important;
+}
+
+/* Leadership - simple nested list */
+.cv .card:nth-of-type(4) .font-italic {
+  font-family: 'VT323', monospace !important;
+  font-size: 1.15rem !important;
+  font-style: normal !important;
+  color: var(--retro-primary) !important;
+  font-weight: bold !important;
+  margin-bottom: 0.3rem !important;
+}
+
+.cv .card:nth-of-type(4) .subitem {
+  font-size: 1rem !important;
+  font-family: 'VT323', monospace !important;
+}
+
+/* Accolades - same blue/purple gradient */
+.cv .card:nth-of-type(5) {
+  background: linear-gradient(135deg,
+      rgba(131, 56, 236, 0.08) 0%,
+      rgba(0, 180, 216, 0.05) 100%) !important;
+  border: 2px solid var(--retro-primary) !important;
+  border-left: 4px solid var(--retro-primary) !important;
+}
+
+.cv .card:nth-of-type(5) .card-title {
+  color: var(--retro-primary) !important;
+  border-bottom-color: var(--retro-secondary) !important;
+}
+
+.cv .card:nth-of-type(5) ul.card-text li.list-group-item {
+  background: transparent !important;
+  border: none !important;
+  margin-bottom: 0.5rem !important;
+  padding: 0.5rem 0.5rem !important;
+  font-family: 'VT323', monospace !important;
+  font-size: 1rem !important;
+  transition: all 0.2s ease !important;
+}
+
+.cv .card:nth-of-type(5) ul.card-text li.list-group-item:hover {
+  background: rgba(0, 180, 216, 0.1) !important;
+  padding-left: 0.8rem !important;
+}
+
+/* ========================================
+   Dark Mode - Enhanced Glow Effects
+   ======================================== */
+
+html[data-theme='dark'] .cv .card {
+  box-shadow: 0 4px 15px rgba(0, 217, 255, 0.3) !important;
+}
+
+html[data-theme='dark'] .cv .card:hover {
+  box-shadow: 0 6px 20px rgba(0, 217, 255, 0.5) !important;
+}
+
+html[data-theme='dark'] .cv .card:nth-of-type(5) {
+  box-shadow: 0 4px 15px rgba(0, 217, 255, 0.3) !important;
+}
+
+/* ========================================
+   Flip Card Effect - Publications "Inspect"
+   RPG Item Card Style
+   ======================================== */
+
+.publications-flip .flip-card {
+  perspective: 1000px;
+  margin-bottom: 1rem;
+}
+
+.publications-flip .flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: left;
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+
+.publications-flip .flip-card.flipped .flip-card-inner {
+  transform: rotateY(180deg);
+  transition: none;
+}
+
+.publications-flip .flip-card-front,
+.publications-flip .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border: 2px solid var(--global-divider-color);
+  border-left: 4px solid var(--retro-primary);
+  border-radius: 0;
+  padding: 1rem;
+  background: var(--global-card-bg-color);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.publications-flip .flip-card-front {
+  position: relative;
+}
+
+.publications-flip .flip-card-front::after {
+  content: '🔍 INSPECT';
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.4rem;
+  color: var(--retro-primary);
+  background: rgba(0, 180, 216, 0.1);
+  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--retro-primary);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.publications-flip .flip-card:hover .flip-card-front::after {
+  opacity: 1;
+}
+
+.publications-flip .flip-card-back {
+  background: linear-gradient(135deg,
+      rgba(0, 180, 216, 0.05) 0%,
+      rgba(131, 56, 236, 0.05) 100%);
+  transform: rotateY(180deg);
+  overflow-y: auto;
+  max-height: 400px;
+}
+
+.publications-flip .flip-card-back .abstract-content {
+  display: block !important;
+  margin: 0;
+  padding: 0.5rem;
+  background: rgba(0, 0, 0, 0.03);
+  border: 1px dashed var(--retro-primary);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.publications-flip .flip-card-back .bib-details {
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 2px dashed var(--global-divider-color);
+}
+
+.publications-flip .flip-card-back .bib-details dt {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.5rem;
+  color: var(--retro-accent);
+  margin-top: 0.75rem;
+  margin-bottom: 0.25rem;
+}
+
+.publications-flip .flip-card-back .bib-details dd {
+  font-family: 'VT323', monospace;
+  font-size: 0.85rem;
+  margin-left: 0.5rem;
+  color: var(--global-text-color);
+}
+
+/* RPG item rarity colors for publication types */
+.publications-flip .flip-card.journal .flip-card-front {
+  border-left-color: var(--rpg-achievements);
+  /* Gold - legendary */
+}
+
+.publications-flip .flip-card.conference .flip-card-front {
+  border-left-color: var(--rpg-skills);
+  /* Green - rare */
+}
+
+.publications-flip .flip-card.workshop .flip-card-front {
+  border-left-color: var(--rpg-guild);
+  /* Purple - uncommon */
+}
+
+.publications-flip .flip-card.preprint .flip-card-front {
+  border-left-color: var(--global-divider-color);
+  /* Gray - common */
+}
+
+/* Dark mode adjustments */
+html[data-theme='dark'] .publications-flip .flip-card-front,
+html[data-theme='dark'] .publications-flip .flip-card-back {
+  box-shadow: 0 2px 12px rgba(0, 217, 255, 0.2);
+}
+
+html[data-theme='dark'] .publications-flip .flip-card-back {
+  background: linear-gradient(135deg,
+      rgba(0, 217, 255, 0.08) 0%,
+      rgba(131, 56, 236, 0.08) 100%);
 }

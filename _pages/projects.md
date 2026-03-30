@@ -1,8 +1,7 @@
 ---
 layout: page
-title: projects
+title: 🏺 ARTIFACTS
 permalink: /projects/
-# description: Projects built for research and fun.
 nav: true
 nav_order: 3
 display_categories: [research, development]
@@ -13,10 +12,10 @@ horizontal: false
   {%- assign categorized_projects = site.projects %}
     {%- assign sorted_projects = categorized_projects | sort: "importance" %}
     {% for project in sorted_projects %}
-    
-      <div class="project-card">
+
+      <div class="project-card" onclick="toggleProjectCard(this)">
         <div class="project-card-content">
-          <h3><a href="{{ project.url | relative_url }}">{{ project.title }}</a></h3>
+          <h3 class="project-title-clickable">{{ project.title }}</h3>
           <div class="project-tags">
             {% for tag in project.tags %}
               <span class="project-tag">{{ tag }}</span>
@@ -36,3 +35,24 @@ horizontal: false
     {% endfor %}
   </div>
 </div>
+
+<script>
+function toggleProjectCard(card) {
+  const allCards = document.querySelectorAll('.project-card');
+  const isExpanded = card.classList.contains('expanded');
+  
+  // Close all cards first
+  allCards.forEach(function(c) {
+    c.classList.remove('expanded');
+  });
+  
+  // Open clicked card if it wasn't already open
+  if (!isExpanded) {
+    card.classList.add('expanded');
+    // Scroll smoothly to card with offset
+    const cardRect = card.getBoundingClientRect();
+    const scrollTop = window.pageYOffset + cardRect.top - 100;
+    window.scrollTo({ top: scrollTop, behavior: 'smooth' });
+  }
+}
+</script>

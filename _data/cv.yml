@@ -1,7 +1,7 @@
 - title: 🎓 Education
   type: time_table
   contents:
-    - title: PhD
+    - title: PhD in Computer Science
       institution: Boston University, Boston, MA, USA
       year: 2023 - present
       Advisor: Prof. Bryan Plummer
@@ -23,11 +23,11 @@
 
     - title: Research Assistant
       institution: BRAC University, Dhaka, Bangladesh
-      year: 2022
+      year: 2022 - 2023
 
     - title: Research Affiliate
       institution: Bengali.AI, Dhaka, Bangladesh
-      year: 2021 - present
+      year: 2021 - 2023
 
 # - title: Honors and Awards
 #   type: time_table
@@ -52,7 +52,7 @@
 #         - Champion in BRACATHON 3.0 - Healthcare
 #         - Champion in SUST Tech Fest - Hackathon
 
-- title:  🤖 Research Interests
+- title: 🤖 Research Interests
   type: nested_list
   contents:
     - title: Primary
@@ -68,38 +68,39 @@
 #   contents:
 #     - <u>Hobbies:</u> Hobby 1, Hobby 2, etc.
 
-- title:  🛠️ Skills
+# - title:  🛠️ Skills
+#   type: nested_list
+#   contents:
+#     - title: Programming Languages
+#       items:
+#         - Python, C++, Java, JavaScript, SQL, SPARQL
+
+#     - title: Machine Learning Frameworks
+#       items:
+#         - PyTorch
+#         - Keras
+#         - OpenCV
+#         - pySpark
+#     - title: Frameworks
+#       items:
+#         - Flask, Django, Android
+#     - title: Tools and Misc.
+#       items:
+#         - Git, Docker, Linux, Bash, LaTeX, Markdown, HTML, CSS, Firebase
+
+- title: 🧭 Service and Leadership
   type: nested_list
   contents:
-    - title: Programming Languages
+    - title: Service
       items:
-        - Python, C++, Java, JavaScript, SQL, SPARQL
-
-    - title: Machine Learning Frameworks
-      items:
-        - PyTorch
-        - Keras
-        - OpenCV
-        - pySpark
-    - title: Frameworks
-      items:
-        - Flask, Django, Android
-    - title: Tools and Misc.
-      items:
-        - Git, Docker, Linux, Bash, LaTeX, Markdown, HTML, CSS, Firebase
-
-- title: 🧭 Leadership & Service
-  type: nested_list
-  contents:
+        - Reviewer - NeurIPS, ICML, ICLR, CVPR, ECCV, ACL-ARR, IJCV
+        - Mentor - HSA , Intl. ML Olympiad
+        - Volunteer - Outreachy, BDOSN Ada Lovelace Celebration,
     - title: Leadership
       items:
         - Founding Member | SUST ACM Student Chapter
         - Judge | SUST Tech Fest DL Enigma, BDOSN NLP Hackathon
         - Organizing Committee | IEEE ICBSLP, 2019. SUST Tech Fest, 2020
-    - title: Service
-      items:
-        - Mentor - HSA , Intl. ML Olympiad
-        - Volunteer - Outreacy, BDOSN Ada Lovelace Celebration,
 
 - title: 🏅 Accolades
   type: nested_list

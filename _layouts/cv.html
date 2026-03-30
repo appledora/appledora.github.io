@@ -11,40 +11,93 @@ layout: default
         class="float-right"><i class="fa-solid fa-file-pdf"></i></a>{% endif %}</h1>
     {% if page.description %}<p class="post-description">{{ page.description }}</p>{% endif %}
   </header>
-  <h3> Research Motivation </h3>
-  I am skeptical of AI progress that scales everything
-  except accountability.
 
-  <br><br>
-  My research sits at the intersection of three questions:
-  how do we adapt powerful models without requiring
-  unlimited resources? How do we evaluate them honestly,
-  beyond what aggregate metrics are designed to hide? And
-  who are we building them for? These questions have taken
-  me from parameter-efficient fine-tuning to adversarial
-  benchmarking to low-resource NLP — and increasingly
-  toward mechanistic interpretability, where the goal is
-  understanding not just what models output, but what they
-  actually represent.
-  <br><br>
-  Efficiency, interpretability, and inclusion are not
-  separate research agendas for me. They are the same
-  argument at different levels of abstraction.
+  <div class="research-motivation-crt">
+    <div class="crt-frame">
+      <div class="crt-screen-research">
+        <div class="crt-content-research">
+          <div class="motivation-text">
+            <p class="motivation-statement">🎀 I am skeptical of AI progress that scales everything except
+              accountability. 🎀
+            </p>
+            <p>My research sits at the intersection of three questions: how do we adapt powerful models without
+              requiring unlimited resources? How do we evaluate them honestly, beyond what aggregate metrics are
+              designed to hide? And who are we building them for? These questions have taken me from parameter-efficient
+              fine-tuning to adversarial benchmarking to low-resource NLP — and increasingly toward mechanistic
+              interpretability, where the goal is understanding not just what models output, but what they actually
+              represent.</p>
+            <p>Efficiency, interpretability, and inclusion are not separate research agendas for me. They are the same
+              argument at different levels of abstraction.</p>
+          </div>
+        </div>
+        <div class="crt-scanline-research"></div>
+      </div>
+    </div>
+  </div>
+
   <article>
     <div class="cv">
       {% for entry in site.data.cv %}
       <a class="anchor" id="{{ entry.title }}"></a>
 
-      <div class="card mt-3 p-3">
+      {% if forloop.first != true %}
+      <hr class="pixel-divider sword">
+      {% endif %}
+
+      <div class="card mt-3 p-3 cv-category-card">
         <h3 class="card-title font-weight-medium">{{ entry.title }}</h3>
 
         <div>
-          {% if entry.type == "list" %}
+          {% if entry.type == "nested_list" %}
+          {% if entry.title contains 'Research' %}
+          <div class="research-interests-tags">
+            {% for research_group in entry.contents %}
+            <div class="research-category">
+              <div class="research-category-title">{{ research_group.title }}</div>
+              <div class="research-tags">
+                {% for research in research_group.items %}
+                {% assign research_list = research | split: ', ' %}
+                {% for individual_research in research_list %}
+                <span class="research-tag">{{ individual_research | strip }}</span>
+                {% endfor %}
+                {% endfor %}
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+          {% elsif entry.title contains 'Skills' %}
+          <div class="skills-container">
+            {% for skill_group in entry.contents %}
+            <div class="skill-category">
+              <div class="skill-category-title">{{ skill_group.title }}</div>
+              <div class="skill-tags">
+                {% for skill in skill_group.items %}
+                {% assign skill_list = skill | split: ', ' %}
+                {% for individual_skill in skill_list %}
+                <span class="skill-tag">{{ individual_skill | strip }}</span>
+                {% endfor %}
+                {% endfor %}
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+          {% elsif entry.title contains 'Non-academic' %}
+          <div class="non-academic-tags">
+            {% for interest_group in entry.contents %}
+            <div class="interest-tags-container">
+              {% for interest in interest_group.items %}
+              <span class="interest-tag">{{ interest }}</span>
+              {% endfor %}
+            </div>
+            {% endfor %}
+          </div>
+          {% else %}
+          {% include cv/nested_list.html %}
+          {% endif %}
+          {% elsif entry.type == "list" %}
           {% include cv/list.html %}
           {% elsif entry.type == "map" %}
           {% include cv/map.html %}
-          {% elsif entry.type == "nested_list" %}
-          {% include cv/nested_list.html %}
           {% elsif entry.type == "time_table" %}
           {% include cv/time_table.html %}
           {% elsif entry.type == "list_groups" %}
@@ -57,6 +110,16 @@ layout: default
       {% endfor %}
     </div>
   </article>
+
+  <!-- Retro Quote at the end -->
+  <div class="quote-simple-wrapper">
+    <div class="quote-simple">
+      <span class="quote-text">"I, for one, welcome our interpretable and computationally modest overlords."
+        <!-- <span
+          class="quote-attribution">me</span> -->
+        <span class="blinking-cursor">▋</span></span>
+    </div>
+  </div>
 
 </div>
 {% else %}
