@@ -1,3 +1,11 @@
+- date: 2026-03-31
+  inline: true
+  icon: 🔎️
+  content: "Reviewed for ICML, ACL-ARR, and CVPR"
+  related_posts: true
+  related_post: "Review-2026"
+  link: ""
+
 - date: 2026-02-21
   inline: true
   icon: 🎉
@@ -23,6 +31,13 @@
   icon: ⚔️
   content: "Joined as an Instructor for the NSF REU program at Boston University"
   related_posts: false
+- date: 2025-06-30
+  inline: true
+  icon: 🔎️
+  content: "Reviewed for IJCV & ECCV "
+  related_posts: true
+  related_post: "Review-2026"
+  link: ""
 - date: 2025-06-22
   inline: true
   icon: 🎪
