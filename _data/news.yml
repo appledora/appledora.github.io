@@ -13,6 +13,20 @@
   related_posts: true
   related_post: "CVPR-2026"
   link: ""
+- date: 2026-01-15
+  inline: true
+  icon: 🚨
+  content: "New preprint on permanent knowledge erasure in LLMs is online! Read it on : <a href='https://arxiv.org/abs/2601.10566' target='_blank' rel='noopener'>[arXiv]</a>"
+  related_posts: true
+  related_post: "TF"
+  link: ""
+- date: 2026-01-11
+  inline: true
+  icon: 🖍️
+  content: "TF-ing for a new graduate-level course on AI, Security and Entrepreneurship"
+  related_posts: true
+  related_post: "TF"
+  link: ""
 - date: 2025-10-25
   inline: true
   icon: 🚨
