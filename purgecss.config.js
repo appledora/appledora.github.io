@@ -1,1 +1,1 @@
-module.exports={content:["_site/**/*.html","_site/**/*.js"],css:["_site/assets/css/*.css"],output:"_site/assets/css/",skippedContentGlobs:["_site/assets/**/*.html"]};
+module.exports={content:["_site/**/*.html","_site/**/*.js"],css:["_site/assets/css/*.css"],output:"_site/assets/css/",keyframes:!1,variables:!1,rejected:!1,fontFace:!1};
