@@ -1,3 +1,18 @@
+- date: 2026-08-21
+  inline: true
+  icon: 🎉
+  content: "A paper I co-supervised has been accepted at EMNLP'26 (Findings)!"
+  related_posts: true
+  related_post: "Review-2026"
+  link: ""
+- date: 2026-07-23
+  inline: true
+  icon: 🎉
+  content: " Third first-author paper accepted at ECCV'26 (Main Track)!"
+  related_posts: true
+  related_post: "Review-2026"
+  link: ""
+
 - date: 2026-03-31
   inline: true
   icon: 🔎️
