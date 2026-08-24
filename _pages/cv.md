@@ -5,7 +5,7 @@ title: 🏆 BONUS
 nav: True
 nav_order: 4
 cv_pdf: cv.pdf
-description: "🎮 Research Philosophy & Character Stats"
+description: 
 # toc:
 #   sidebar: left
 ---
