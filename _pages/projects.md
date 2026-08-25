@@ -13,8 +13,7 @@ horizontal: false
     <ol class="artifacts-list">
     {%- assign sorted_datasets = site.data.projects | where_exp: "p", "p.category == 'dataset'" %}
     {% for dataset in sorted_datasets %}
-      <li class="artifact-entry comic-callout-trigger">
-        <span class="comic-callout">Placeholder callout text</span>
+      <li class="artifact-entry">
         <div class="artifact-line">
           <span class="artifact-prompt">$</span>
           <span class="artifact-title">{{ dataset.title }}</span>
@@ -44,8 +43,7 @@ horizontal: false
     <ol class="artifacts-list">
     {%- assign sorted_projects = site.data.projects | where_exp: "p", "p.category != 'dataset'" %}
     {% for project in sorted_projects %}
-      <li class="artifact-entry comic-callout-trigger">
-        <span class="comic-callout">Placeholder callout text</span>
+      <li class="artifact-entry">
         <div class="artifact-line">
           <span class="artifact-prompt">$</span>
           <span class="artifact-title">{{ project.title }}</span>
