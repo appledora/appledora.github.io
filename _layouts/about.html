@@ -79,9 +79,10 @@ layout: default
                 {% endif %}
               </div>
               {% if page.cv_pdf %}
-              <a class="cv-download-link" href="{{ page.cv_pdf | prepend: 'assets/pdf/' | relative_url }}"
+              <a class="cv-download-link comic-callout-trigger" href="{{ page.cv_pdf | prepend: 'assets/pdf/' | relative_url }}"
                 target="_blank" rel="noopener noreferrer">
                 <i class="fa-solid fa-file-pdf"></i> Download CV
+                <span class="comic-callout">Warning: contains more acronyms than content.</span>
               </a>
               {% endif %}
               {% endif %}
@@ -93,19 +94,24 @@ layout: default
               {%- assign profile_image_class = "img-fluid" -%}
               {% capture sizes %}(min-width: {{site.max_width}}) {{ site.max_width | minus: 30 | times: 0.35}}px,
               (min-width: 576px) 35vw, 95vw"{% endcapture %}
-              {% include figure.html
-              path = profile_image_path
-              class = profile_image_class
-              sizes = sizes
-              alt = page.profile.image
-              cache_bust = true
-              %}
+              <div class="comic-callout-trigger profile-photo-wrap">
+                {% include figure.html
+                path = profile_image_path
+                class = profile_image_class
+                sizes = sizes
+                alt = page.profile.image
+                cache_bust = true
+                %}
+                {%- if page.profile.photo_callout %}
+                <span class="comic-callout">{{ page.profile.photo_callout }}</span>
+                {%- endif %}
+              </div>
               {% endif -%}
-              {%- if page.profile.more_info or page.profile.email or page.profile.location %}
+              {%- if page.profile.role or page.profile.email or page.profile.location %}
               <div class="terminal-panel">
                 <span class="mono-label">$ whoami</span>
                 <div class="terminal-panel-body">
-                  {%- if page.profile.more_info %}<div class="whoami-info">{{ page.profile.more_info }}</div>{%- endif
+                  {%- if page.profile.role %}<div class="whoami-info">{{ page.profile.role }}</div>{%- endif
                   %}
                   {%- if page.profile.email %}<div class="whoami-email">{{ page.profile.email }}</div>{%- endif %}
                   {%- if page.profile.location %}<div class="whoami-location"><i class="fa-solid fa-location-dot"></i>

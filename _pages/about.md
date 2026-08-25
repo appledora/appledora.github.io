@@ -10,7 +10,8 @@ profile:
   align: right
   image: nazia_dp.jpg
   image_circular: false # crops the image to make it circular
-  more_info: Here's me being Pochita at the Newbury Comics!
+  role: PhD Student, Researcher
+  photo_callout: "Here's me being Pochita at the Newbury Comics!"
   email: 📮 nimzia [at] bu [dot] edu
   location: BUCDS, Boston, MA, USA
 
