@@ -344,8 +344,9 @@ hr.pixel-divider.sword {
   }
 }
 
-/* Research Interests (card 4) — .research-tag markup — grouped clusters
-   (Primary/Secondary) as tag pills. */
+/* Research Interests card is currently commented out in cv.yml — its
+   markup (.research-tag etc.) doesn't render, so these rules are dormant.
+   Kept here (not deleted) in case the card comes back.
 .cv .card.cv-category-card:nth-of-type(4) {
   .research-category {
     margin-bottom: 1rem !important;
@@ -393,13 +394,14 @@ hr.pixel-divider.sword {
     }
   }
 }
+*/
 
-/* Service & Leadership (card 5) — cv/nested_list.html markup — compact
+/* Service & Leadership (card 4) — cv/nested_list.html markup — compact
    chip groups. These are short, one-line credentials (reviewer venues,
    committee roles), not achievements with an outcome to sell — a dense
    tag layout reads as "standard CV service list" instead of oversized
    list rows trying to claim more importance than the content has. */
-.cv .card.cv-category-card:nth-of-type(5) {
+.cv .card.cv-category-card:nth-of-type(4) {
   h5.font-italic {
     font-family: 'Press Start 2P', cursive !important;
     font-size: 0.7rem !important;
@@ -450,9 +452,9 @@ hr.pixel-divider.sword {
   }
 }
 
-/* Accolades (card 6) — cv/nested_list.html markup — achievement badges:
+/* Accolades (card 5) — cv/nested_list.html markup — achievement badges:
    icon + title in a grid, instead of a bulleted tag list. */
-.cv .card.cv-category-card:nth-of-type(6) {
+.cv .card.cv-category-card:nth-of-type(5) {
   h5.font-italic {
     display: none;
   }
@@ -491,13 +493,16 @@ hr.pixel-divider.sword {
   }
 }
 
-/* Non-academic Interests (card 7) — .interest-tag markup — dashed inventory
-   mini-cards, most playful section since it's the lowest-stakes content. */
-.cv .card.cv-category-card:nth-of-type(7) {
+/* Non-academic Interests (card 6) — .interest-tag markup — scattered sticker
+   cards, most playful section since it's the lowest-stakes content. Each tag
+   gets a slight alternating tilt + a rotating accent color so the grid reads
+   as a pinned collection rather than a uniform list. */
+.cv .card.cv-category-card:nth-of-type(6) {
   .interest-tags-container {
     display: grid !important;
     grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)) !important;
-    gap: 0.6rem !important;
+    gap: 0.75rem !important;
+    padding: 0.25rem !important;
   }
 
   .interest-tag {
@@ -505,27 +510,38 @@ hr.pixel-divider.sword {
     align-items: center !important;
     justify-content: center;
     text-align: center;
-    font-size: 0.95rem !important;
+    font-size: 1.05rem !important;
     font-family: 'VT323', 'Courier New', monospace !important;
     background: #ffffff !important;
     border: 2px dashed $quest-ink !important;
     border-radius: 10px !important;
-    padding: 0.6rem 0.5rem !important;
+    padding: 0.7rem 0.6rem !important;
     color: $quest-ink !important;
     text-shadow: none !important;
-    box-shadow: none !important;
-    transform: none !important;
+    box-shadow: 2px 2px 0px rgba(17, 17, 17, 0.15) !important;
     max-width: 100% !important;
     white-space: normal !important;
     overflow-wrap: break-word !important;
     box-sizing: border-box !important;
-    transition: transform 0.15s ease, box-shadow 0.15s ease !important;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease !important;
+    cursor: default !important;
+
+    // Alternate a gentle tilt per item, like loosely-pinned stickers.
+    &:nth-child(4n+1) { transform: rotate(-1.5deg) !important; }
+    &:nth-child(4n+2) { transform: rotate(1.5deg) !important; }
+    &:nth-child(4n+3) { transform: rotate(-1deg) !important; border-color: $quest-purple !important; }
+    &:nth-child(4n+4) { transform: rotate(1deg) !important; }
+
+    // Rotate a light accent wash through the cards so it's not monochrome.
+    &:nth-child(3n+1) { background: #fdf5ff !important; }
+    &:nth-child(3n+2) { background: #fffaf0 !important; }
 
     &:hover {
-      transform: translate(-2px, -2px) !important;
-      box-shadow: 3px 3px 0px $quest-gold !important;
-      border-color: $quest-ink !important;
+      transform: translate(-2px, -3px) rotate(0deg) scale(1.04) !important;
+      box-shadow: 3px 4px 0px $quest-gold !important;
+      border-color: $quest-purple !important;
       background: #ffffff !important;
+      z-index: 1;
     }
   }
 }
@@ -620,20 +636,15 @@ hr.pixel-divider.sword {
     font-size: 1.05rem !important;
   }
 
-  // Research Interests / Accolades / Non-academic Interests grids: fixed
-  // minmax() tracks (220px / 160px) don't fit a narrow phone screen once
-  // card padding is subtracted — drop to a single column.
-  .cv .card.cv-category-card:nth-of-type(6) ul.subitems,
-  .cv .card.cv-category-card:nth-of-type(7) .interest-tags-container {
+  // Accolades / Non-academic Interests grids: fixed minmax() tracks
+  // (220px / 160px) don't fit a narrow phone screen once card padding is
+  // subtracted — drop to a single column.
+  .cv .card.cv-category-card:nth-of-type(5) ul.subitems,
+  .cv .card.cv-category-card:nth-of-type(6) .interest-tags-container {
     grid-template-columns: 1fr !important;
   }
 
-  .cv .card.cv-category-card:nth-of-type(4) .research-tags {
-    gap: 0.4rem !important;
-  }
-
-  .cv .card.cv-category-card:nth-of-type(4) .research-tag,
-  .cv .card.cv-category-card:nth-of-type(7) .interest-tag {
+  .cv .card.cv-category-card:nth-of-type(6) .interest-tag {
     font-size: 0.85rem !important;
     padding: 0.35rem 0.7rem !important;
   }

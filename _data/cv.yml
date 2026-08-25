@@ -81,21 +81,21 @@
 #         - Champion in BRACATHON 3.0 - Healthcare
 #         - Champion in SUST Tech Fest - Hackathon
 
-- title: 🤖 Research Interests
-  type: nested_list
-  contents:
-    - title: Primary
-      items:
-        - Parameter-efficient Finetuning
-        - Mechanistic Interpretability
-        - Adversarial Attacks
-        - Machine Unlearning
-    - title: Secondary
-      items:
-        - Bias Mitigation & Fair Representations
-        - Robust Domain Adaptation
-        - Knowledge Infusion
-        - AI For Social Good & Scientific Discovery
+# - title: 🤖 Research Interests
+#   type: nested_list
+#   contents:
+#     - title: Primary
+#       items:
+#         - Parameter-efficient Finetuning
+#         - Mechanistic Interpretability
+#         - Adversarial Attacks
+#         - Machine Unlearning
+#     - title: Secondary
+#       items:
+#         - Bias Mitigation & Fair Representations
+#         - Robust Domain Adaptation
+#         - Knowledge Infusion
+#         - AI For Social Good & Scientific Discovery
 
 # - title: Other Interests
 #   type: list
