@@ -1,74 +1,74 @@
 /*******************************************************************************
- * Terminal Theme - Clean Black & Green/White Hacker Aesthetic
+ * Clean Theme - White background, black text, mac-window style cards
  * Applied to main pages (about, cv, projects, publications)
  ******************************************************************************/
 
-// Terminal theme color palette
-.terminal-theme {
-  --terminal-bg: #000000;
-  --terminal-text: #00ff00;
-  --terminal-text-alt: #ffffff;
-  --terminal-border: #00ff00;
-  --terminal-dim: #666666;
-  --terminal-accent: #00ff00;
-  --terminal-highlight: #ffff00;
-  --terminal-prompt: #00ff00;
-  --terminal-error: #ff0000;
-  --terminal-success: #00ff00;
-  --terminal-info: #00ffff;
+body.terminal-theme {
+  --terminal-bg: #ffffff;
+  --terminal-text: #111111;
+  --terminal-text-light: #6e6e6e;
+  --terminal-border: #e2e2e2;
+  --terminal-border-strong: #d0d0d0;
+  --terminal-accent: #111111;
+  --terminal-tag-bg: #f5f5f5;
+  --terminal-tag-text: #444444;
+  --terminal-dot-red: #ff5f56;
+  --terminal-dot-yellow: #ffbd2e;
+  --terminal-dot-green: #27c93f;
 }
 
-/* Terminal background */
-.terminal-theme {
-  background-color: var(--terminal-bg) !important;
-  color: var(--terminal-text);
+// Navbar variables live on :root (not scoped to body.terminal-theme) so the
+// navbar keeps the same black & white look on every page, including /misc,
+// which intentionally opts out of the terminal theme for its own content.
+:root {
+  --terminal-bg: #ffffff;
+  --terminal-text: #111111;
+  --terminal-text-light: #6e6e6e;
+  --terminal-border: #e2e2e2;
+  --terminal-border-strong: #d0d0d0;
+  --terminal-tag-bg: #f5f5f5;
 }
 
-.terminal-theme body {
+body.terminal-theme {
   background-color: var(--terminal-bg);
   color: var(--terminal-text);
-  font-family: 'VT323', 'Courier New', monospace;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
   font-size: 16px;
-  line-height: 1.8;
+  line-height: 1.65;
 }
 
-/* Terminal typography */
-.terminal-theme h1 {
-  font-family: 'VT323', monospace;
-  font-size: 2rem;
-  letter-spacing: 2px;
-  color: var(--terminal-text);
-  text-shadow: 0 0 10px var(--terminal-accent), 0 0 20px rgba(0, 255, 0, 0.3);
-  margin-bottom: 1.5rem;
+/* Small-caps monospace only for labels/eyebrows, never body copy */
+.terminal-theme .mono-label {
+  font-family: 'VT323', 'Courier New', monospace;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  border-bottom: 2px solid var(--terminal-border);
-  padding-bottom: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--terminal-text-light);
+}
+
+.terminal-theme h1 {
+  font-size: 2.1rem;
+  font-weight: 700;
+  color: var(--terminal-text);
+  margin-bottom: 0.5rem;
 }
 
 .terminal-theme h2 {
-  font-family: 'VT323', monospace;
-  font-size: 1.5rem;
-  letter-spacing: 1px;
-  color: var(--terminal-text);
-  margin-top: 1.5rem;
-  margin-bottom: 0.75rem;
+  font-family: 'VT323', 'Courier New', monospace;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-
-  &::before {
-    content: '> ';
-    color: var(--terminal-prompt);
-    margin-right: 0.5rem;
-  }
+  font-size: 1.1rem;
+  color: var(--terminal-text-light);
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
 }
 
 .terminal-theme h3,
 .terminal-theme h4,
 .terminal-theme h5,
 .terminal-theme h6 {
-  font-family: 'VT323', monospace;
   color: var(--terminal-text);
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  font-weight: 600;
   margin-top: 1rem;
   margin-bottom: 0.5rem;
 }
@@ -76,330 +76,476 @@
 .terminal-theme p,
 .terminal-theme li,
 .terminal-theme span,
-.terminal-theme a {
+.terminal-theme div {
   color: var(--terminal-text);
-  font-family: 'VT323', 'Courier New', monospace;
-  line-height: 1.8;
 }
 
 .terminal-theme a {
-  color: var(--terminal-text-alt);
+  color: var(--terminal-text);
   text-decoration: underline;
+  text-decoration-color: var(--terminal-border-strong);
+  text-underline-offset: 2px;
   cursor: pointer;
 
   &:hover {
-    color: var(--terminal-highlight);
-    text-shadow: 0 0 5px var(--terminal-highlight);
-    background-color: var(--terminal-text);
+    text-decoration-color: var(--terminal-text);
   }
 }
 
-/* Terminal dividers */
 .terminal-theme hr {
   border: none;
-  border-top: 2px solid var(--terminal-border);
+  border-top: 1px solid var(--terminal-border);
   margin: 2rem 0;
-  opacity: 0.7;
-
-  &::before {
-    content: '---';
-    display: block;
-    color: var(--terminal-dim);
-    text-align: center;
-    margin-top: -1.5rem;
-  }
 }
 
-/* Terminal command prompt style */
-.terminal-theme .terminal-prompt {
-  color: var(--terminal-prompt);
-  font-weight: bold;
-
-  &::before {
-    content: '$ ';
-    color: var(--terminal-prompt);
-  }
-}
-
-/* Terminal command output */
-.terminal-theme .terminal-output {
-  background-color: rgba(0, 0, 0, 0.8);
-  border: 1px solid var(--terminal-border);
-  border-radius: 0;
-  padding: 1rem;
-  margin: 1rem 0;
-  color: var(--terminal-text);
-  font-family: 'VT323', monospace;
-  overflow-x: auto;
-  box-shadow: inset 0 0 10px rgba(0, 255, 0, 0.1);
-
-  &::before {
-    content: '┌─────────────────────────────┐';
-    display: block;
-    color: var(--terminal-border);
-    font-size: 0.8em;
-    margin-bottom: 0.5rem;
-  }
-
-  &::after {
-    content: '└─────────────────────────────┘';
-    display: block;
-    color: var(--terminal-border);
-    font-size: 0.8em;
-    margin-top: 0.5rem;
-  }
-}
-
-/* Terminal status box */
+/* Mac-window card: rounded, thin gray border, traffic-light dots */
 .terminal-theme .terminal-status {
-  border: 2px solid var(--terminal-border);
-  border-radius: 0;
-  padding: 1rem;
+  border: 1px solid var(--terminal-border);
+  border-radius: 14px;
+  background-color: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
   margin: 1.5rem 0;
-  background-color: rgba(0, 255, 0, 0.05);
+  overflow: hidden;
 
   .status-header {
-    color: var(--terminal-text);
-    font-weight: bold;
-    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.85rem 1.1rem;
+    border-bottom: 1px solid var(--terminal-border);
+    background-color: #fafafa;
+    font-family: 'VT323', 'Courier New', monospace;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    font-size: 0.85rem;
+    color: var(--terminal-text-light);
 
     &::before {
-      content: '[';
-      color: var(--terminal-border);
+      content: '';
+      display: inline-block;
+      flex-shrink: 0;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--terminal-dot-red);
+      box-shadow: 16px 0 0 var(--terminal-dot-yellow), 32px 0 0 var(--terminal-dot-green);
+      margin-right: 40px;
     }
 
     &::after {
-      content: ']';
-      color: var(--terminal-border);
+      content: none;
     }
   }
 
   .status-content {
-    color: var(--terminal-text);
-    padding-left: 1rem;
-    border-left: 2px solid var(--terminal-border);
+    padding: 1.25rem 1.5rem;
+    border-left: none;
   }
 }
 
-/* Terminal list styles */
+/* About window — retro game intro / character-select panel, strictly black & white */
+.terminal-theme .about-terminal {
+  .status-content {
+    background-color: #ffffff;
+    color: #111111;
+    font-family: 'VT323', 'Courier New', monospace;
+    font-size: 1.05rem;
+    padding: 1.5rem;
+  }
+
+  .mono-label {
+    display: block;
+    font-family: 'VT323', 'Courier New', monospace;
+    color: #111111;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 2px solid #111111;
+
+    &::before {
+      content: '▸ ';
+    }
+  }
+
+  .terminal-bio {
+    p, li, span, div {
+      color: #111111;
+    }
+
+    strong, b {
+      color: #000000;
+      background-color: #f0f0f0;
+      padding: 0 0.15em;
+    }
+
+    a {
+      color: #111111;
+      text-decoration-color: #111111;
+
+      &:hover {
+        background-color: #111111;
+        color: #ffffff;
+        text-decoration: none;
+      }
+    }
+  }
+
+  .profile-floated-homepage img,
+  img.img-fluid {
+    border: 2px solid #111111;
+    border-radius: 0;
+    filter: grayscale(100%) contrast(1.1);
+    transition: filter 0.3s ease;
+
+    &:hover {
+      filter: grayscale(0%) contrast(1);
+    }
+  }
+
+  .terminal-panel {
+    margin-top: 1.25rem;
+    padding: 1rem;
+    border: 1px solid #111111;
+
+    &:first-of-type {
+      margin-top: 1.5rem;
+    }
+  }
+
+  .terminal-panel-body {
+    color: #111111;
+    line-height: 1.6;
+  }
+
+  .blinking-cursor::after {
+    content: '▋';
+    display: inline-block;
+    margin-left: 0.3rem;
+    color: #111111;
+    animation: terminal-blink 1s steps(1) infinite;
+  }
+}
+
+.terminal-theme .terminal-output {
+  border: 1px solid var(--terminal-border);
+  border-radius: 14px;
+  background-color: #fafafa;
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+  color: var(--terminal-text-light);
+  font-style: italic;
+}
+
+/* Pill tags */
+.terminal-theme .pill-tag {
+  display: inline-block;
+  font-family: 'VT323', 'Courier New', monospace;
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid var(--terminal-border-strong);
+  background: var(--terminal-tag-bg);
+  color: var(--terminal-tag-text);
+  margin: 0 0.4rem 0.4rem 0;
+
+  &.pill-tag--active {
+    background: #111111;
+    color: #ffffff;
+    border-color: #111111;
+  }
+}
+
+/* News — printed as terminal log lines */
+.terminal-theme .news-terminal .status-content {
+  padding: 1rem 1.5rem;
+}
+
+.terminal-theme .news-terminal .news table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.terminal-theme .news-terminal .news tr.news-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem 1rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--terminal-border);
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &::before {
+    content: '$';
+    font-family: 'VT323', 'Courier New', monospace;
+    color: var(--terminal-text-light);
+    font-size: 1.1rem;
+  }
+}
+
+.terminal-theme .news-terminal .news td {
+  display: inline;
+  padding: 0;
+  border: none;
+}
+
+.terminal-theme .news-terminal .news td.news-date {
+  font-family: 'VT323', 'Courier New', monospace;
+  color: var(--terminal-text-light);
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.terminal-theme .news-terminal .news td.news-content {
+  color: var(--terminal-text);
+
+  a.news-link {
+    margin-left: 0.4rem;
+    color: var(--terminal-text-light);
+    text-decoration: underline;
+
+    &:hover {
+      color: var(--terminal-text);
+    }
+  }
+}
+
+/* Artifacts list — projects printed as terminal log lines */
+.terminal-theme .artifacts-terminal .status-content {
+  padding: 1rem 1.5rem;
+}
+
+.terminal-theme .artifacts-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  counter-reset: artifact;
+}
+
+.terminal-theme .artifact-entry {
+  margin: 0;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--terminal-border);
+
+  &:first-child {
+    padding-top: 0.25rem;
+  }
+
+  &:last-child {
+    border-bottom: none;
+    padding-bottom: 0.25rem;
+  }
+}
+
+.terminal-theme .artifact-line {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.terminal-theme .artifact-prompt {
+  font-family: 'VT323', 'Courier New', monospace;
+  color: var(--terminal-text-light);
+  font-size: 1.1rem;
+}
+
+.terminal-theme .artifact-title {
+  font-weight: 600;
+  color: var(--terminal-text);
+}
+
+.terminal-theme .artifact-github {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: 'VT323', 'Courier New', monospace;
+  font-size: 0.9rem;
+  color: var(--terminal-text-light);
+  text-decoration: none;
+  border: 1px solid var(--terminal-border-strong);
+  border-radius: 999px;
+  padding: 0.15rem 0.75rem;
+  transition: all 0.15s ease;
+
+  &:hover {
+    color: #ffffff;
+    background-color: var(--terminal-text);
+    border-color: var(--terminal-text);
+  }
+}
+
+.terminal-theme .artifact-description {
+  margin: 0.4rem 0 0.6rem;
+  color: var(--terminal-text-light);
+  font-size: 0.95rem;
+}
+
+.terminal-theme .artifact-tags {
+  display: flex;
+  flex-wrap: wrap;
+
+  .pill-tag {
+    font-size: 0.75rem;
+    padding: 0.2rem 0.7rem;
+    margin: 0 0.35rem 0.35rem 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .terminal-theme .artifact-github {
+    margin-left: 0;
+  }
+}
+
 .terminal-theme ul,
 .terminal-theme ol {
-  margin-left: 2rem;
+  margin-left: 1.4rem;
 
   li {
-    color: var(--terminal-text);
     margin-bottom: 0.5rem;
-
-    &::before {
-      color: var(--terminal-prompt);
-      margin-right: 0.5rem;
-    }
   }
 }
 
-.terminal-theme ul li::before {
-  content: '▸ ';
+.terminal-theme ul li::marker {
+  color: var(--terminal-text-light);
 }
 
-.terminal-theme ol {
-  counter-reset: item;
-
-  li {
-    counter-increment: item;
-
-    &::before {
-      content: '[' counter(item) '] ';
-      color: var(--terminal-prompt);
-      margin-right: 0.5rem;
-    }
-  }
-}
-
-/* Terminal navbar */
-.terminal-theme .navbar {
+/* Navbar — slim black & white top bar, consistent across every page
+   (unscoped from .terminal-theme so /misc keeps the same navbar too) */
+#navbar.navbar {
   background-color: var(--terminal-bg) !important;
-  border-bottom: 2px solid var(--terminal-border);
+  border-bottom: 1px solid var(--terminal-border);
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+  min-height: unset;
 
   .navbar-brand {
     color: var(--terminal-text) !important;
-    font-family: 'VT323', monospace;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    text-shadow: 0 0 10px var(--terminal-accent);
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 0;
 
-    &::before {
-      content: '> ';
-      color: var(--terminal-prompt);
+    .brand-first-name,
+    .brand-middle-name,
+    .brand-last-name {
+      display: inline;
+    }
+
+    .brand-last-name {
+      text-transform: none;
     }
   }
 
   .nav-link {
     color: var(--terminal-text) !important;
-    font-family: 'VT323', monospace;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    border: 1px solid transparent;
-    padding: 0.5rem 1rem !important;
-    transition: all 0.2s ease;
+    font-size: 0.9rem;
+    padding: 0.4rem 0.75rem !important;
+    border-radius: 8px;
+    transition: background-color 0.15s ease;
 
     &:hover {
-      border: 1px solid var(--terminal-border);
-      background-color: rgba(0, 255, 0, 0.1);
-      text-shadow: 0 0 5px var(--terminal-accent);
+      background-color: var(--terminal-tag-bg);
     }
 
     &.active {
-      border: 1px solid var(--terminal-border);
-      background-color: rgba(0, 255, 0, 0.2);
-      text-shadow: 0 0 5px var(--terminal-accent);
-    }
-
-    &.bonus-nav-link {
-      color: #ffff00 !important;
-      border: 1px solid #ffff00;
-      animation: terminal-bonus-blink 1s infinite;
-
-      &:hover {
-        background-color: #ffff00;
-        color: var(--terminal-bg) !important;
-        text-shadow: none;
-      }
+      background-color: var(--terminal-tag-bg);
+      font-weight: 600;
     }
   }
 }
 
-/* Terminal profile section */
+/* Profile section image */
 .terminal-theme .profile-floated-homepage {
-  border: 2px solid var(--terminal-border);
-  border-radius: 0;
-  padding: 1.5rem;
-  background-color: rgba(0, 255, 0, 0.03);
-  margin-bottom: 2rem;
-
   img {
-    border: 2px solid var(--terminal-border);
-    filter: grayscale(100%) contrast(1.2);
+    border-radius: 14px;
+    border: 1px solid var(--terminal-border);
   }
 }
 
-/* Terminal card styles */
+/* Generic cards (kept minimal; publications handled separately) */
 .terminal-theme .card {
-  background-color: rgba(0, 0, 0, 0.8) !important;
+  background-color: #ffffff !important;
   border: 1px solid var(--terminal-border) !important;
-  border-radius: 0;
+  border-radius: 14px;
   color: var(--terminal-text);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 
   .card-header {
-    background-color: transparent !important;
+    background-color: #fafafa !important;
     border-bottom: 1px solid var(--terminal-border);
     color: var(--terminal-text);
-    font-weight: bold;
-    text-transform: uppercase;
-    padding: 1rem;
+    font-weight: 600;
+    padding: 1rem 1.25rem;
   }
 
   .card-body {
     color: var(--terminal-text);
-    padding: 1rem;
+    padding: 1.25rem;
   }
 
   .card-footer {
-    background-color: transparent !important;
+    background-color: #fafafa !important;
     border-top: 1px solid var(--terminal-border);
-    color: var(--terminal-dim);
+    color: var(--terminal-text-light);
   }
 }
 
-/* Terminal publication/paper styles */
-.terminal-theme .paper-entry {
-  border-left: 2px solid var(--terminal-border);
-  padding-left: 1rem;
-  margin-bottom: 1.5rem;
-
-  .paper-title {
-    color: var(--terminal-text-alt);
-    font-weight: bold;
-    margin-bottom: 0.3rem;
-  }
-
-  .paper-authors {
-    color: var(--terminal-dim);
-    font-size: 0.9rem;
-    margin-bottom: 0.3rem;
-  }
-
-  .paper-venue {
-    color: var(--terminal-accent);
-    font-weight: bold;
-    text-transform: uppercase;
-    font-size: 0.8rem;
-  }
-}
-
-/* Terminal button styles */
 .terminal-theme .btn {
-  border: 1px solid var(--terminal-border);
-  border-radius: 0;
-  background-color: transparent;
+  border: 1px solid var(--terminal-border-strong);
+  border-radius: 8px;
+  background-color: #ffffff;
   color: var(--terminal-text);
-  font-family: 'VT323', monospace;
-  text-transform: uppercase;
-  padding: 0.5rem 1rem;
-  transition: all 0.2s ease;
+  padding: 0.5rem 1.1rem;
+  transition: all 0.15s ease;
 
   &:hover {
     background-color: var(--terminal-text);
-    color: var(--terminal-bg);
-    text-shadow: none;
-    box-shadow: 0 0 10px var(--terminal-accent);
-  }
-
-  &.btn-primary {
-    border-color: var(--terminal-accent);
-    color: var(--terminal-accent);
+    color: #ffffff;
+    border-color: var(--terminal-text);
   }
 }
 
-/* Terminal code blocks */
 .terminal-theme code,
 .terminal-theme pre {
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: #f5f5f5;
   border: 1px solid var(--terminal-border);
-  color: var(--terminal-accent);
-  font-family: 'VT323', 'Courier New', monospace;
-  padding: 1rem;
+  border-radius: 8px;
+  color: var(--terminal-text);
+  font-family: 'Courier New', monospace;
+  padding: 0.9rem 1.1rem;
   overflow-x: auto;
-  border-radius: 0;
 }
 
-/* Terminal blockquotes */
 .terminal-theme blockquote {
-  border-left: 3px solid var(--terminal-border);
+  border-left: 3px solid var(--terminal-border-strong);
   padding-left: 1rem;
   margin-left: 0;
-  color: var(--terminal-dim);
+  color: var(--terminal-text-light);
   font-style: italic;
 }
 
-/* Terminal footer */
 .terminal-theme .footer {
   background-color: var(--terminal-bg);
-  border-top: 2px solid var(--terminal-border);
-  color: var(--terminal-dim);
+  border-top: 1px solid var(--terminal-border);
+  color: var(--terminal-text-light);
 
   a {
     color: var(--terminal-text);
 
     &:hover {
-      color: var(--terminal-accent);
-      text-shadow: 0 0 5px var(--terminal-accent);
+      color: var(--terminal-text-light);
     }
   }
 }
 
-/* Scrollbar styling for terminal theme */
 .terminal-theme ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
@@ -407,81 +553,503 @@
 
 .terminal-theme ::-webkit-scrollbar-track {
   background-color: var(--terminal-bg);
-  border: 1px solid var(--terminal-border);
 }
 
 .terminal-theme ::-webkit-scrollbar-thumb {
-  background-color: var(--terminal-accent);
-  border-radius: 0;
+  background-color: var(--terminal-border-strong);
+  border-radius: 6px;
 
   &:hover {
-    background-color: var(--terminal-highlight);
+    background-color: var(--terminal-text-light);
   }
 }
 
-/* Animation for blinking cursor effect */
 @keyframes terminal-blink {
   0%, 49% { opacity: 1; }
   50%, 100% { opacity: 0; }
 }
 
-/* Animation for bonus nav link */
-@keyframes terminal-bonus-blink {
-  0%, 49% {
-    color: #ffff00;
-    text-shadow: 0 0 5px #ffff00;
+/* -----------------------------------------------------------------------
+ * Publications — mac-window card override
+ * Overrides the pre-existing colorful "retro" bibliography styling
+ * (_base.scss .publications) to match the clean white theme.
+ * ----------------------------------------------------------------------- */
+body.terminal-theme {
+  --global-bg-color: var(--terminal-bg);
+  --global-text-color: var(--terminal-text);
+  --global-text-color-light: var(--terminal-text-light);
+  --global-card-bg-color: #ffffff;
+  --global-divider-color: var(--terminal-border);
+  --retro-primary: #111111;
+  --retro-secondary: #444444;
+  --retro-accent: #444444;
+  --retro-warning: #d97706;
+}
+
+.terminal-theme .publications {
+  h1 {
+    color: var(--terminal-text);
+    text-shadow: none;
   }
-  50%, 100% {
-    color: #ff0000;
-    text-shadow: 0 0 5px #ff0000;
+
+  h2.bibliography {
+    font-family: 'VT323', 'Courier New', monospace;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+    color: var(--terminal-text-light);
+    border-top: none;
+    border-bottom: 1px solid var(--terminal-border);
+    background: transparent;
+    box-shadow: none;
+    text-align: left;
+  }
+
+  // Selected Publications on the About page — styled as artifact-list rows:
+  // no per-item card/border, just a title line with tags/venue/PDF beneath,
+  // divided from the next entry by a thin bottom border.
+  ol.bibliography {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  ol.bibliography li {
+    border: none;
+    border-top: 1px solid var(--terminal-border);
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    margin-bottom: 0 !important;
+    padding: 1rem 0;
+    cursor: pointer;
+    position: relative;
+
+    &:first-child {
+      border-top: none;
+      padding-top: 0.25rem;
+    }
+
+    &:last-child {
+      padding-bottom: 0.25rem;
+    }
+
+    &::after {
+      content: none !important;
+      display: none !important;
+    }
+
+    &::before {
+      content: '⤢ click to view abstract';
+      display: block;
+      font-family: 'VT323', 'Courier New', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--terminal-text-light);
+      opacity: 0;
+      transform: translateY(-4px);
+      transition: opacity 0.15s ease, transform 0.15s ease;
+      margin-bottom: 0.4rem;
+    }
+
+    &:hover::before {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    &.expanded::before {
+      content: '⤢ click to close';
+    }
+
+    &:hover {
+      transform: none;
+      background: transparent;
+      box-shadow: none;
+    }
+
+    // The actual title/tags/author/pdf elements are nested inside
+    // .flip-card > .flip-card-inner > .flip-card-front — make that the
+    // flex column so the `order` overrides below can resequence them.
+    .flip-card-front {
+      display: flex;
+      flex-direction: column;
+    }
+
+    // Preview images stay hidden to match the plain artifact-list look,
+    // but the abstract (flip-card-back) is restored on click.
+    .preview {
+      display: none !important;
+    }
+
+    .flip-card-back {
+      display: none;
+    }
+
+    &.expanded .flip-card-back {
+      display: block;
+      margin-top: 0.75rem;
+    }
+
+    .abstract-content {
+      background: #fafafa;
+      border: 1px solid var(--terminal-border);
+      border-left: 3px solid var(--terminal-border-strong);
+      border-radius: 8px;
+      color: var(--terminal-text);
+      padding: 0.85rem;
+    }
+
+    // Visual order: title → tags/venue row → author → pdf link
+    .title-wrapper {
+      order: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin: 0 0 0.5rem !important;
+    }
+
+    .publication-header {
+      display: flex !important;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      order: 1;
+      margin: 0 0 0.4rem !important;
+    }
+
+    .title {
+      order: 0;
+      display: block;
+      font-weight: 600;
+      color: var(--terminal-text);
+      font-family: inherit;
+      margin: 0 !important;
+      cursor: pointer;
+
+      &:hover {
+        color: var(--terminal-text);
+      }
+    }
+
+    .abbr {
+      order: 1;
+    }
+
+    .abbr abbr {
+      background-color: #111111 !important;
+      color: #ffffff !important;
+      border-radius: 999px !important;
+      padding: 0.25rem 0.8rem !important;
+      font-family: 'VT323', 'Courier New', monospace !important;
+      font-size: 0.8rem !important;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      text-decoration: none !important;
+      border: none !important;
+      margin: 0 !important;
+
+      a {
+        color: #ffffff !important;
+        text-decoration: none !important;
+      }
+    }
+
+    .abbr .award {
+      background-color: #fff7ed !important;
+      color: #d97706 !important;
+    }
+
+    .venue-badge {
+      order: 2;
+      margin-left: auto !important;
+      display: inline-flex !important;
+      align-items: center;
+      color: #ffffff !important;
+      background-color: #111111 !important;
+      font-weight: 700 !important;
+      font-family: 'VT323', 'Courier New', monospace !important;
+      font-size: 0.9rem !important;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      border: none !important;
+      border-radius: 0 !important;
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 8px 100%, 0 50%);
+      padding: 0.25rem 0.85rem 0.25rem 1rem !important;
+      max-width: none !important;
+      text-align: center !important;
+      line-height: 1.4 !important;
+    }
+
+    .author {
+      order: 2;
+      margin: 0 0 0.5rem !important;
+      color: var(--terminal-text-light);
+      font-size: 0.95rem;
+    }
+
+    .author a {
+      border-bottom: 1px dashed var(--terminal-border-strong);
+    }
+
+    .btn-pdf {
+      order: 1;
+      margin-top: 0.5rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-family: 'VT323', 'Courier New', monospace !important;
+      font-size: 0.9rem !important;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      text-transform: none;
+      color: var(--terminal-text) !important;
+      background-color: transparent !important;
+      border: 1px solid #111111 !important;
+      border-radius: 999px !important;
+      padding: 0.15rem 0.75rem !important;
+
+      &:hover {
+        color: #ffffff !important;
+        background-color: var(--terminal-text) !important;
+        border-color: var(--terminal-text) !important;
+      }
+    }
+
+    .links {
+      order: 3;
+      margin-top: 0.4rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+
+      a.btn {
+        font-family: 'VT323', 'Courier New', monospace;
+        font-size: 0.9rem;
+        color: var(--terminal-text-light);
+        background: transparent;
+        border: 1px solid var(--terminal-border-strong);
+        border-radius: 999px;
+        padding: 0.15rem 0.75rem;
+
+        &:hover {
+          color: #ffffff;
+          background: var(--terminal-text);
+          border-color: var(--terminal-text);
+        }
+      }
+    }
   }
 }
 
-.terminal-theme .blinking-cursor::after {
-  content: '▋';
-  animation: terminal-blink 1s infinite;
-  color: var(--terminal-accent);
-  margin-left: 0.2rem;
+/* -----------------------------------------------------------------------
+ * Publications page (/publications) — .publications-compact override
+ * Overrides the pre-existing colorful "retro" pixel styling to match
+ * the clean black & white theme, with the same tag/badge/PDF treatment
+ * used on the About page's Selected Publications section.
+ * ----------------------------------------------------------------------- */
+.terminal-theme .publications-compact {
+  h1 {
+    font-family: inherit;
+    color: var(--terminal-text);
+  }
+
+  .year-badge {
+    background: #111111;
+    color: #ffffff;
+    font-family: 'VT323', 'Courier New', monospace;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    border-radius: 999px;
+    box-shadow: none;
+  }
+
+  ol.bibliography li {
+    border: none;
+    border-top: 1px solid var(--terminal-border);
+    border-left: 3px solid #111111;
+    border-radius: 0;
+    background: #ffffff;
+    box-shadow: none;
+    cursor: pointer;
+    position: relative;
+    padding: 1rem 1.1rem 1rem 1.35rem;
+    margin-bottom: 0 !important;
+
+    &:first-child {
+      border-top: none;
+    }
+
+    &::before {
+      content: '⤢ click to view abstract';
+      display: block;
+      font-family: 'VT323', 'Courier New', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--terminal-text-light);
+      opacity: 0;
+      transform: translateY(-4px);
+      transition: opacity 0.15s ease, transform 0.15s ease;
+      margin-bottom: 0.5rem;
+    }
+
+    &:hover::before {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    &.expanded::before {
+      content: '⤢ click to close';
+    }
+  }
+
+  .publication-header {
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.5rem;
+  }
+
+  .abbr abbr {
+    background-color: var(--terminal-tag-bg) !important;
+    color: var(--terminal-tag-text) !important;
+    border-radius: 999px !important;
+    padding: 7px 16px !important;
+    font-family: 'VT323', monospace !important;
+    font-size: 1.05rem !important;
+    display: inline-block;
+    margin-bottom: 0;
+  }
+
+  .preview {
+    margin: 0.5rem auto !important;
+  }
+
+  .title {
+    font-family: inherit !important;
+    color: var(--terminal-text) !important;
+    font-weight: 700;
+    font-size: 1.15rem !important;
+    display: block !important;
+    margin: 0.4rem 0 !important;
+
+    &:hover {
+      color: var(--terminal-text-light) !important;
+    }
+  }
+
+  .title-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    margin: 0.4rem 0 !important;
+  }
+
+  .btn-pdf {
+    order: 2;
+    margin-top: 0.5rem;
+    font-family: 'VT323', 'Courier New', monospace !important;
+    font-size: 1rem !important;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #ffffff !important;
+    background-color: #111111 !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 999px !important;
+    padding: 6px 18px !important;
+
+    &:hover {
+      background-color: var(--terminal-text-light) !important;
+      color: #ffffff !important;
+      box-shadow: none !important;
+    }
+  }
+
+  .author {
+    color: var(--terminal-text);
+    font-family: inherit;
+    margin: 0.2rem 0 !important;
+  }
+
+  .venue-badge {
+    display: inline-block !important;
+    color: #ffffff !important;
+    background-color: #111111 !important;
+    font-weight: 700 !important;
+    font-family: 'VT323', 'Courier New', monospace !important;
+    font-size: 1.1rem !important;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    border-left: none !important;
+    border-radius: 0 !important;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 10px 100%, 0 50%);
+    padding: 7px 18px 7px 22px !important;
+    margin-top: 0 !important;
+    flex-shrink: 0;
+  }
+
+  .links a.btn {
+    font-family: 'VT323', 'Courier New', monospace;
+    color: var(--terminal-text);
+    background: transparent;
+    border: 1px solid var(--terminal-border-strong);
+    border-radius: 999px;
+
+    &:hover {
+      background: var(--terminal-text);
+      color: #ffffff;
+    }
+  }
+
+  .abstract-content {
+    background: #fafafa;
+    border: 1px solid var(--terminal-border);
+    color: var(--terminal-text);
+  }
+
+  // Same stray empty <p> issue as the About page's publications block.
+  .flip-card-back {
+    display: none;
+  }
+
+  ol.bibliography li.expanded .flip-card-back {
+    display: block;
+    margin-top: 0.75rem;
+  }
 }
 
-/* Glitch effect (optional enhancement) */
-@keyframes terminal-glitch {
-  0% {
-    text-shadow: -2px 0 var(--terminal-error), 2px 0 var(--terminal-info);
+/* Quest Log (/misc) — highlight institution/conference names in Education & Experience */
+.terminal-theme .quest-log-terminal {
+  .institution {
+    color: var(--terminal-text) !important;
+    font-weight: 700 !important;
   }
-  20% {
-    text-shadow: -2px 0 var(--terminal-error), 2px 0 var(--terminal-info);
-  }
-  40% {
-    text-shadow: -2px 0 var(--terminal-info), 2px 0 var(--terminal-error);
-  }
-  60% {
-    text-shadow: -2px 0 var(--terminal-info), 2px 0 var(--terminal-error);
-  }
-  80% {
-    text-shadow: -2px 0 var(--terminal-error), 2px 0 var(--terminal-info);
-  }
-  100% {
-    text-shadow: -2px 0 var(--terminal-error), 2px 0 var(--terminal-info);
+
+  .department {
+    color: var(--terminal-text-light);
   }
 }
 
-.terminal-theme .glitch {
-  animation: terminal-glitch 0.3s infinite;
-}
-
-/* Responsive adjustments */
+/* Responsive */
 @media (max-width: 768px) {
   .terminal-theme h1 {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
   }
 
   .terminal-theme h2 {
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
 
-  .terminal-theme body {
-    font-size: 14px;
+  body.terminal-theme {
+    font-size: 15px;
   }
 
   .terminal-theme .profile-floated-homepage {

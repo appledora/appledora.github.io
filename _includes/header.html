@@ -8,13 +8,13 @@
       <a class="navbar-brand title font-weight-lighter" href="{{ site.baseurl }}/">
         {%- if site.title == "blank" -%}
         {%- if site.first_name -%}
-        <span class="font-weight-bold">{{- site.first_name -}}&nbsp;</span>
+        <span class="brand-first-name font-weight-bold">{{- site.first_name -}}</span>
         {%- endif -%}
         {%- if site.middle_name -%}
-        {{- site.middle_name -}}&nbsp;
+        <span class="brand-middle-name">{{- site.middle_name -}}</span>
         {%- endif -%}
         {%- if site.last_name -%}
-        {{- site.last_name -}}
+        <span class="brand-last-name">{{- site.last_name -}}</span>
         {%- endif -%}
         {%- else -%}
         {{- site.title -}}
@@ -98,13 +98,6 @@
           {%- endif -%}
           {%- endif -%}
           {% endfor -%}
-
-          <!-- Bonus Easter Egg Link -->
-          <li class="nav-item">
-            <a class="nav-link bonus-nav-link" href="{{ '/bonus' | relative_url }}" title="Unlock the bonus level!">
-              ⚡ BONUS ⚡
-            </a>
-          </li>
 
           {%- if site.enable_darkmode %}
 

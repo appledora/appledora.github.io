@@ -3,25 +3,28 @@ layout: default
 ---
 
 <!-- about.html - Terminal Theme -->
-<div class="terminal-theme post homepage-post">
+<div class="post homepage-post">
   <header class="post-header">
     <h1 class="post-title">
       {% if site.title == "blank" -%}<span class="font-weight-bold">{{ site.first_name }}</span> {{ site.middle_name }}
       {{ site.last_name }}{%- else -%}{{ site.title }}{%- endif %}
     </h1>
-    <p class="desc" style="border-bottom: 1px solid #00ff00; padding-bottom: 1rem; margin-bottom: 1.5rem;">{{ page.subtitle }}</p>
+    <p class="desc" style="border-bottom: 1px solid var(--terminal-border); padding-bottom: 1rem; margin-bottom: 1.5rem;">{{ page.subtitle }}</p>
   </header>
 
   <article>
     <!-- Terminal Profile Section -->
     {% if page.profile -%}
-    <div class="terminal-status">
-      <div class="status-header">About</div>
+    <div class="terminal-status about-terminal">
+      <div class="status-header">about.sh</div>
       <div class="status-content">
         <div class="row">
           <div class="col-md-8">
             <!-- Bio content -->
-            {{ content | split: '<div class="quote-simple">' | first }}
+            <div class="terminal-bio">
+              <span class="mono-label">$ cat bio.txt</span>
+              {{ content | split: '<div class="quote-simple">' | first }}
+            </div>
           </div>
           <div class="col-md-4">
             <!-- Profile Image -->
@@ -39,28 +42,24 @@ layout: default
             %}
             {% endif -%}
             {%- if page.profile.more_info %}
-            <div class="more-info" style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #00ff00; font-size: 0.9rem;">
-              $ whoami
-              <div style="margin-top: 0.5rem;">{{ page.profile.more_info }}</div>
+            <div class="terminal-panel">
+              <span class="mono-label">$ whoami</span>
+              <div class="terminal-panel-body">{{ page.profile.more_info }}</div>
             </div>
             {%- endif %}
+            <div class="terminal-panel">
+              <span class="mono-label">$ status --currently</span>
+              <div class="terminal-panel-body">Exploring mechanistic interpretability from a weight space perspective. If you're interested in this topic, let's connect!<span class="blinking-cursor"></span></div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-
-    <!-- Current Status Terminal Box -->
-    <div class="terminal-status" style="margin-top: 2rem;">
-      <div class="status-header">Currently</div>
-      <div class="status-content">
-        <p>Exploring mechanistic interpretability from a weight space perspective. If you're interested in this topic, let's connect!</p>
       </div>
     </div>
     {%- endif %}
 
     <!-- Quote Box if present -->
     {% if content contains '<div class="quote-simple">' %}
-    <div class="terminal-output" style="margin: 2rem 0; background-color: rgba(0, 255, 0, 0.05);">
+    <div class="terminal-output" style="margin: 2rem 0;">
       {{ content | split: '<div class="quote-simple">' | last | split: '</div>' | first }}
     </div>
     {% endif %}
@@ -68,7 +67,12 @@ layout: default
     <!-- News Section -->
     {% if page.news and site.announcements.enabled -%}
     <h2 style="margin-top: 3rem;">news</h2>
-    {%- include news.html limit=true %}
+    <div class="terminal-status news-terminal">
+      <div class="status-header">news.log</div>
+      <div class="status-content">
+        {%- include news.html limit=true %}
+      </div>
+    </div>
     {%- endif %}
 
     <!-- Latest posts -->
@@ -80,12 +84,17 @@ layout: default
     <!-- Selected papers -->
     {% if page.selected_papers -%}
     <h2 style="margin-top: 3rem;">selected publications</h2>
-    {%- include selected_papers.html %}
+    <div class="terminal-status publications-terminal">
+      <div class="status-header">publications.log</div>
+      <div class="status-content">
+        {%- include selected_papers.html %}
+      </div>
+    </div>
     {%- endif %}
 
     <!-- Social -->
     {%- if page.social %}
-    <div class="social" style="margin-top: 3rem; padding-top: 2rem; border-top: 2px solid #00ff00;">
+    <div class="social" style="margin-top: 3rem; padding-top: 2rem; border-top: 2px solid var(--terminal-border);">
       <h2>contact</h2>
       <div class="contact-icons">
         {% include social.html %}

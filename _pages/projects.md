@@ -7,52 +7,32 @@ nav_order: 3
 display_categories: [research, development]
 horizontal: false
 ---
-<div class="projects-container">
-  <div class="projects-grid">
-  {%- assign categorized_projects = site.projects %}
-    {%- assign sorted_projects = categorized_projects | sort: "importance" %}
+<div class="terminal-status artifacts-terminal">
+  <div class="status-header">artifacts.log</div>
+  <div class="status-content">
+    <ol class="artifacts-list">
+    {%- assign sorted_projects = site.projects | sort: "importance" %}
     {% for project in sorted_projects %}
-
-      <div class="project-card" onclick="toggleProjectCard(this)">
-        <div class="project-card-content">
-          <h3 class="project-title-clickable">{{ project.title }}</h3>
-          <div class="project-tags">
-            {% for tag in project.tags %}
-              <span class="project-tag">{{ tag }}</span>
-            {% endfor %}
-          </div>
-          <p class="project-description">{{ project.description }}</p>
-          {% if project.img %}
-            <img src="{{ project.img | relative_url }}" alt="{{ project.title }}" class="project-image">
-          {% endif %}
+      <li class="artifact-entry">
+        <div class="artifact-line">
+          <span class="artifact-prompt">$</span>
+          <span class="artifact-title">{{ project.title }}</span>
           {% if project.github %}
-            <p class="project-github"><a href="{{ project.github }}" target="_blank">
-            <i class="fa-brands fa-github fa-2x"></i>
-            </a></p>
+          <a href="{{ project.github }}" target="_blank" rel="noopener noreferrer" class="artifact-github" title="View on GitHub">
+            <i class="fa-brands fa-github"></i> repo
+          </a>
           {% endif %}
         </div>
-      </div>
+        <p class="artifact-description">{{ project.description }}</p>
+        {% if project.tags %}
+        <div class="artifact-tags">
+          {% for tag in project.tags %}
+          <span class="pill-tag">{{ tag }}</span>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </li>
     {% endfor %}
+    </ol>
   </div>
 </div>
-
-<script>
-function toggleProjectCard(card) {
-  const allCards = document.querySelectorAll('.project-card');
-  const isExpanded = card.classList.contains('expanded');
-  
-  // Close all cards first
-  allCards.forEach(function(c) {
-    c.classList.remove('expanded');
-  });
-  
-  // Open clicked card if it wasn't already open
-  if (!isExpanded) {
-    card.classList.add('expanded');
-    // Scroll smoothly to card with offset
-    const cardRect = card.getBoundingClientRect();
-    const scrollTop = window.pageYOffset + cardRect.top - 100;
-    window.scrollTo({ top: scrollTop, behavior: 'smooth' });
-  }
-}
-</script>
