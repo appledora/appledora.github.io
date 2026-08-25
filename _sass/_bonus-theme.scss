@@ -32,9 +32,19 @@
 }
 
 /*******************************************************************************
- * Quest Log body (/misc) — playful retro-game styling, no terminal/mac chrome
+ * Quest Log body (/misc) — playful retro-game styling, no terminal/mac chrome.
  * Two accent colors only (deep purple + gold, matching .bonus-headline),
  * big pixel-font headers doing the "game" work instead of a rainbow of fills.
+ *
+ * Cards render in cv.yml order: 1 Education, 2 Experience, 3 Research
+ * Interests, 4 Service & Leadership, 5 Accolades, 6 Non-academic Interests.
+ * _layouts/cv.html branches per entry.title: "Research Interests" and
+ * "Non-academic Interests" get dedicated markup (.research-tag / .interest-tag
+ * spans), everything else falls through to cv/nested_list.html (h5.font-italic
+ * + ul.subitems > li > span.subitem) or cv/time_table.html (Education/
+ * Experience). Every rule below is qualified with !important to beat
+ * _base.scss's legacy ".cv .card" / nth-of-type blocks, and each card is
+ * styled exactly once, against its actual rendered markup.
  ******************************************************************************/
 
 $quest-ink: #111111;
@@ -52,121 +62,6 @@ $quest-gold: #ffbe0b;
   padding: 1.1rem 1.5rem;
   margin: 1.5rem 0 2rem;
   box-shadow: 6px 6px 0px $quest-purple;
-}
-
-// Qualified as .cv .card.cv-category-card to out-specificity the legacy
-// "MISC Page - UNIFORM CARD DESIGN" block in _base.scss (.cv .card {...}),
-// which sets background/border/box-shadow with !important at equal or
-// higher specificity than a bare .cv-category-card selector.
-.cv .card.cv-category-card {
-  border: 3px solid $quest-ink !important;
-  border-left: 3px solid $quest-ink !important;
-  border-radius: 10px !important;
-  background: #ffffff !important;
-  box-shadow: 6px 6px 0px $quest-gold !important;
-  padding: 1.75rem !important;
-  margin-top: 2rem !important;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-
-  &:hover {
-    transform: translate(-3px, -3px) !important;
-    box-shadow: 9px 9px 0px $quest-gold !important;
-  }
-
-  // .card-title also matches .cv .card:nth-of-type(N) .card-title in
-  // _base.scss, which sets color/border-bottom/font-size/etc with
-  // !important — every property here needs !important too, or those
-  // legacy rules win and the banner renders as a broken hybrid.
-  .card-title {
-    display: block !important;
-    width: 100% !important;
-    box-sizing: border-box !important;
-    font-family: 'Press Start 2P', cursive !important;
-    font-size: 1.15rem !important;
-    line-height: 1.6 !important;
-    letter-spacing: 1px !important;
-    text-transform: uppercase !important;
-    color: #ffffff !important;
-    background: $quest-purple !important;
-    border: 3px solid $quest-ink !important;
-    border-bottom: 3px solid $quest-ink !important;
-    border-radius: 8px !important;
-    padding: 0.9rem 1.1rem !important;
-    margin: -0.25rem 0 1.5rem !important;
-    box-shadow: 4px 4px 0px $quest-gold !important;
-  }
-}
-
-// Timeline entries (Education / Experience) render via cv/time_table.html:
-// a fixed 75px year column (inline style="width: 75px", badge min-width:
-// 75px) sitting next to the title/institution column. Keep them side by
-// side, but shrink the badge so it fits its box, and grow the title/
-// institution text since that's the actual content people read.
-.cv .card.cv-category-card ul.card-text {
-  // The 75px-wide year column — give it a little more room so a small
-  // badge still fits without wrapping ("2023 - present" etc.)
-  li.list-group-item .row > div[style*="width: 75px"] {
-    width: 95px !important;
-  }
-
-  .title {
-    font-size: 1.2rem !important;
-    margin-bottom: 0.35rem !important;
-    margin-top: 0 !important;
-  }
-
-  .institution,
-  .institution td {
-    font-size: 1.05rem !important;
-  }
-
-  .department,
-  .department td {
-    font-size: 1rem !important;
-  }
-
-  .badge {
-    font-size: 0.6rem !important;
-    padding: 0.3rem 0.4rem !important;
-    min-width: unset !important;
-    white-space: normal !important;
-    line-height: 1.2 !important;
-    background: $quest-purple !important;
-    border: 2px solid $quest-ink !important;
-    border-radius: 6px !important;
-    box-shadow: 2px 2px 0px $quest-gold !important;
-    color: #ffffff !important;
-  }
-
-  .location,
-  .location td {
-    font-size: 0.85rem !important;
-  }
-}
-
-// Service/Leadership/Accolades entries (nested_list.html) — same
-// under-sized default text bumped up, and the section label recolored
-// from the legacy cyan to the purple/gold palette.
-.cv .card.cv-category-card {
-  h5.font-italic {
-    font-size: 1.3rem !important;
-    color: $quest-purple !important;
-    margin-top: 1.25rem;
-    margin-bottom: 0.6rem;
-  }
-
-  .subitem,
-  .item,
-  .item-title {
-    font-size: 1.15rem !important;
-    line-height: 1.6 !important;
-  }
-
-  ul.items li,
-  ul.subitems li {
-    font-size: 1.15rem !important;
-    margin-bottom: 0.45rem !important;
-  }
 }
 
 hr.pixel-divider.sword {
@@ -187,27 +82,559 @@ hr.pixel-divider.sword {
   }
 }
 
-.research-category-title,
-.skill-category-title {
+/* Card shell + banner title — shared by every card */
+.cv .card.cv-category-card {
+  border: 3px solid $quest-ink !important;
+  border-left: 3px solid $quest-ink !important;
+  border-radius: 10px !important;
+  background: #ffffff !important;
+  box-shadow: 6px 6px 0px $quest-gold !important;
+  padding: 1.75rem !important;
+  margin-top: 2rem !important;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+
+  &:hover {
+    transform: translate(-3px, -3px) !important;
+    box-shadow: 9px 9px 0px $quest-gold !important;
+  }
+
+  .card-title {
+    display: block !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    font-family: 'Press Start 2P', cursive !important;
+    font-size: 1.15rem !important;
+    line-height: 1.6 !important;
+    letter-spacing: 1px !important;
+    text-transform: uppercase !important;
+    color: #ffffff !important;
+    background: $quest-purple !important;
+    border: 3px solid $quest-ink !important;
+    border-bottom: 3px solid $quest-ink !important;
+    border-radius: 8px !important;
+    padding: 0.9rem 1.1rem !important;
+    margin: -0.25rem 0 1.5rem !important;
+    box-shadow: 4px 4px 0px $quest-gold !important;
+  }
+}
+
+/* Education / Experience (cards 1-2) — cv/time_table.html markup:
+   li.list-group-item > div.row > [year column with inline width:75px,
+   badge min-width:75px] + div.col-xs-10.col-md-10.mt-2.mt-md-0 [title +
+   institution + maindescription].
+   Bootstrap's real .col-md-2/.col-md-10 percentage classes plus the
+   inline 75px width plus a forced nowrap kept fighting each other at
+   different viewport widths (percentage vs fixed-px never add up, and
+   nowrap has no fallback on a screen too narrow to fit both). Simplest
+   robust fix: stop trying to keep the badge and content side-by-side via
+   Bootstrap's grid math entirely — strip every width/flex-basis Bootstrap
+   sets on these two columns and let a plain flex row with wrapping size
+   the badge to its own (small) content and give the rest to text, on any
+   screen size. */
+.cv .card.cv-category-card ul.card-text {
+  li.list-group-item .row {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: flex-start !important;
+    gap: 0.5rem 0.75rem !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  li.list-group-item .row > div[style*="width: 75px"] {
+    width: auto !important;
+    max-width: 100% !important;
+    flex: 0 0 auto !important;
+
+    td {
+      vertical-align: top !important;
+    }
+  }
+
+  li.list-group-item .row > .col-xs-10,
+  li.list-group-item .row > .cl-sm-10,
+  li.list-group-item .row > .col-md-10 {
+    flex: 1 1 220px !important;
+    width: auto !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .title {
+    font-size: 1.2rem !important;
+    margin-bottom: 0.35rem !important;
+    margin-top: 0 !important;
+    max-width: 100% !important;
+    white-space: normal !important;
+    overflow-wrap: break-word !important;
+  }
+
+  // Institution/department render as a <table class="table-cv"> with an
+  // icon <td> + text <td> per row. A two-column table with no per-cell
+  // width guessed the split (icon cell way too wide, or table-layout:
+  // fixed dividing 50/50), which is what pushed "Boston University..."
+  // far right of the title instead of sitting directly under it.
+  // Tables aren't the right tool for an icon+text row — render it as a
+  // simple flex row that hugs the icon and text together on the left.
+  table.table-cv.institution {
+    display: block !important;
+    width: 100% !important;
+  }
+
+  table.table-cv.institution tbody,
+  table.table-cv.institution tr {
+    display: flex !important;
+    align-items: baseline !important;
+    gap: 0.4rem !important;
+  }
+
+  table.table-cv.institution td {
+    display: inline !important;
+    padding: 0 !important;
+    text-align: left !important;
+  }
+
+  table.table-cv.institution td:first-child {
+    flex: 0 0 auto !important;
+  }
+
+  table.table-cv.institution td:last-child {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+  }
+
+  .institution,
+  .institution td {
+    font-size: 1.05rem !important;
+    white-space: normal !important;
+    overflow-wrap: break-word !important;
+    word-break: break-word !important;
+  }
+
+  .department,
+  .department td {
+    font-size: 1rem !important;
+    white-space: normal !important;
+    overflow-wrap: break-word !important;
+    word-break: break-word !important;
+  }
+
+  .badge {
+    font-size: 0.6rem !important;
+    padding: 0.3rem 0.4rem !important;
+    min-width: unset !important;
+    white-space: normal !important;
+    line-height: 1.2 !important;
+    background: $quest-purple !important;
+    border: 2px solid $quest-ink !important;
+    border-radius: 6px !important;
+    box-shadow: 2px 2px 0px $quest-gold !important;
+    color: #ffffff !important;
+  }
+
+  .location,
+  .location td {
+    font-size: 0.85rem !important;
+  }
+
+  // cv/time_table.html renders content.maindescription into a plain
+  // <div class="ml-1 ml-md-4"> — there is no .maindescription class in the
+  // actual markup, so a selector targeting that class never matches
+  // anything here. Target the real wrapper instead.
+  div.ml-1.ml-md-4 {
+    font-size: 0.95rem !important;
+    line-height: 1.45 !important;
+    color: $quest-ink !important;
+    margin: 0.35rem 0 0 !important;
+    max-width: 100% !important;
+    white-space: normal !important;
+    overflow-wrap: break-word !important;
+    word-break: break-word !important;
+  }
+}
+
+/* Teaching & Mentoring (card 3) — cv/table.html markup: real <table>s
+   (Teaching, Mentoring), one line per row instead of one tall card-row
+   per entry. Solves the repetition/space problem outright rather than
+   trying to compress a list template that wasn't built for this many
+   similarly-shaped rows. */
+.cv-tables {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.cv-table-caption {
   font-family: 'Press Start 2P', cursive;
-  font-size: 0.9rem;
-  letter-spacing: 1px;
+  font-size: 0.7rem;
+  line-height: 1.6;
   color: $quest-purple;
-  margin: 1.25rem 0 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
 
   &::before {
     content: '▸ ';
   }
 }
 
-// Bigger, bolder tag pills — still just the two accent colors via border/shadow,
-// text stays dark-on-light for legibility.
-.research-tag,
-.skill-tag,
-.interest-tag {
-  font-size: 1.05rem !important;
-  padding: 0.5rem 1.1rem !important;
-  border-width: 2px !important;
-  border-color: $quest-ink !important;
-  box-shadow: 3px 3px 0px $quest-gold !important;
+.cv-table-scroll {
+  overflow-x: auto;
+}
+
+.cv-data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'VT323', 'Courier New', monospace;
+  font-size: 0.95rem;
+
+  th,
+  td {
+    text-align: left;
+    padding: 0.4rem 0.6rem;
+    white-space: nowrap;
+  }
+
+  td:last-child,
+  th:last-child {
+    white-space: normal;
+  }
+
+  thead th {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.55rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: #ffffff;
+    background: $quest-purple;
+    border: 2px solid $quest-ink;
+
+    &:first-child {
+      border-top-left-radius: 6px;
+      border-bottom-left-radius: 6px;
+    }
+
+    &:last-child {
+      border-top-right-radius: 6px;
+      border-bottom-right-radius: 6px;
+    }
+  }
+
+  tbody tr {
+    border-bottom: 1px dashed #dcdcdc;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &:nth-child(even) {
+      background: #faf7fe;
+    }
+  }
+
+  tbody td {
+    color: $quest-ink;
+
+    &:first-child {
+      font-weight: bold;
+      color: $quest-purple;
+    }
+  }
+}
+
+/* Research Interests (card 4) — .research-tag markup — grouped clusters
+   (Primary/Secondary) as tag pills. */
+.cv .card.cv-category-card:nth-of-type(4) {
+  .research-category {
+    margin-bottom: 1rem !important;
+  }
+
+  .research-category-title {
+    font-family: 'Press Start 2P', cursive !important;
+    font-size: 0.7rem !important;
+    line-height: 1.6 !important;
+    color: $quest-purple !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.6rem !important;
+
+    &::before {
+      content: '▸ ';
+    }
+  }
+
+  .research-tags {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 0.5rem !important;
+  }
+
+  .research-tag {
+    display: inline-block !important;
+    font-size: 0.95rem !important;
+    font-family: 'VT323', 'Courier New', monospace !important;
+    background: #ffffff !important;
+    border: 2px solid $quest-ink !important;
+    border-radius: 6px !important;
+    padding: 0.4rem 0.9rem !important;
+    box-shadow: 3px 3px 0px $quest-gold !important;
+    color: $quest-ink !important;
+    text-shadow: none !important;
+    transform: none !important;
+    transition: transform 0.15s ease, box-shadow 0.15s ease !important;
+
+    &:hover {
+      transform: translate(-2px, -2px) !important;
+      box-shadow: 5px 5px 0px $quest-gold !important;
+      border-color: $quest-ink !important;
+      background: #ffffff !important;
+    }
+  }
+}
+
+/* Service & Leadership (card 5) — cv/nested_list.html markup — compact
+   chip groups. These are short, one-line credentials (reviewer venues,
+   committee roles), not achievements with an outcome to sell — a dense
+   tag layout reads as "standard CV service list" instead of oversized
+   list rows trying to claim more importance than the content has. */
+.cv .card.cv-category-card:nth-of-type(5) {
+  h5.font-italic {
+    font-family: 'Press Start 2P', cursive !important;
+    font-size: 0.7rem !important;
+    line-height: 1.6 !important;
+    color: $quest-purple !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-style: normal !important;
+    margin-top: 1.25rem !important;
+    margin-bottom: 0.6rem !important;
+
+    &::before {
+      content: '▸ ';
+    }
+
+    &:first-child {
+      margin-top: 0 !important;
+    }
+  }
+
+  ul.subitems {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 0.5rem !important;
+    padding-left: 0 !important;
+    list-style: none !important;
+    margin: 0 0 0.5rem !important;
+  }
+
+  ul.subitems li {
+    margin: 0 !important;
+  }
+
+  .subitem {
+    display: inline-block !important;
+    font-size: 0.85rem !important;
+    font-family: 'VT323', 'Courier New', monospace !important;
+    line-height: 1.3 !important;
+    background: #f5f5f5 !important;
+    border: 1.5px solid $quest-ink !important;
+    border-radius: 20px !important;
+    padding: 0.3rem 0.75rem !important;
+    color: $quest-ink !important;
+    max-width: 100% !important;
+    white-space: normal !important;
+    overflow-wrap: break-word !important;
+    box-sizing: border-box !important;
+  }
+}
+
+/* Accolades (card 6) — cv/nested_list.html markup — achievement badges:
+   icon + title in a grid, instead of a bulleted tag list. */
+.cv .card.cv-category-card:nth-of-type(6) {
+  h5.font-italic {
+    display: none;
+  }
+
+  ul.subitems {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)) !important;
+    gap: 0.75rem !important;
+    padding-left: 0 !important;
+    list-style: none !important;
+    margin: 0 !important;
+  }
+
+  ul.subitems li {
+    margin: 0 !important;
+    min-width: 0 !important;
+  }
+
+  .subitem {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.6rem !important;
+    font-size: 0.95rem !important;
+    font-family: 'VT323', 'Courier New', monospace !important;
+    background: #ffffff !important;
+    border: 2px solid $quest-ink !important;
+    border-radius: 8px !important;
+    padding: 0.65rem 0.85rem !important;
+    box-shadow: 3px 3px 0px $quest-purple !important;
+    color: $quest-ink !important;
+    line-height: 1.3 !important;
+    max-width: 100% !important;
+    white-space: normal !important;
+    overflow-wrap: break-word !important;
+    box-sizing: border-box !important;
+  }
+}
+
+/* Non-academic Interests (card 7) — .interest-tag markup — dashed inventory
+   mini-cards, most playful section since it's the lowest-stakes content. */
+.cv .card.cv-category-card:nth-of-type(7) {
+  .interest-tags-container {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)) !important;
+    gap: 0.6rem !important;
+  }
+
+  .interest-tag {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center;
+    text-align: center;
+    font-size: 0.95rem !important;
+    font-family: 'VT323', 'Courier New', monospace !important;
+    background: #ffffff !important;
+    border: 2px dashed $quest-ink !important;
+    border-radius: 10px !important;
+    padding: 0.6rem 0.5rem !important;
+    color: $quest-ink !important;
+    text-shadow: none !important;
+    box-shadow: none !important;
+    transform: none !important;
+    max-width: 100% !important;
+    white-space: normal !important;
+    overflow-wrap: break-word !important;
+    box-sizing: border-box !important;
+    transition: transform 0.15s ease, box-shadow 0.15s ease !important;
+
+    &:hover {
+      transform: translate(-2px, -2px) !important;
+      box-shadow: 3px 3px 0px $quest-gold !important;
+      border-color: $quest-ink !important;
+      background: #ffffff !important;
+    }
+  }
+}
+
+// Closing quote at the end of /misc — no card chrome, just centered text.
+.quote-simple-wrapper {
+  width: 100% !important;
+  margin: 3rem 0 1.5rem !important;
+  clear: both !important;
+}
+
+.quote-simple {
+  display: block !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  text-align: center !important;
+
+  &::before {
+    content: none !important;
+  }
+
+  .quote-text {
+    display: block !important;
+    font-family: 'VT323', 'Courier New', monospace !important;
+    font-size: 1.15rem !important;
+    line-height: 1.5 !important;
+    color: $quest-ink !important;
+    font-style: italic !important;
+    margin-bottom: 0 !important;
+  }
+
+  .blinking-cursor {
+    background: $quest-purple !important;
+    box-shadow: none !important;
+  }
+}
+
+/*******************************************************************************
+ * Mobile — every card above assumes desktop width (fixed-px columns,
+ * flex-wrap: nowrap, minmax() grid tracks, generous padding/box-shadow
+ * offsets). None of that shrinks on its own, so narrow viewports clip
+ * content at the card edge. Loosen the fixed assumptions below ~576px.
+ ******************************************************************************/
+@media (max-width: 576px) {
+  .bonus-headline {
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 0px $quest-gold, 4px 4px 0px #111111;
+  }
+
+  .quest-log-intro {
+    font-size: 1.15rem;
+    padding: 0.85rem 1rem;
+    box-shadow: 4px 4px 0px $quest-purple;
+  }
+
+  // Teaching & Mentoring tables: shrink slightly and let overflow-x
+  // (already set) handle any column that still doesn't fit.
+  .cv-data-table {
+    font-size: 0.8rem;
+
+    th,
+    td {
+      padding: 0.3rem 0.4rem;
+    }
+  }
+
+  .cv .card.cv-category-card {
+    padding: 1rem !important;
+    box-shadow: 4px 4px 0px $quest-gold !important;
+
+    &:hover {
+      transform: translate(-2px, -2px) !important;
+      box-shadow: 6px 6px 0px $quest-gold !important;
+    }
+
+    .card-title {
+      font-size: 0.85rem !important;
+      letter-spacing: 0.5px !important;
+      padding: 0.7rem 0.8rem !important;
+      box-shadow: 3px 3px 0px $quest-gold !important;
+    }
+  }
+
+  // Education/Experience row already wraps and auto-sizes at every width
+  // (see the base rule above) — just trim the title size a touch on very
+  // narrow screens.
+  .cv .card.cv-category-card ul.card-text .title {
+    font-size: 1.05rem !important;
+  }
+
+  // Research Interests / Accolades / Non-academic Interests grids: fixed
+  // minmax() tracks (220px / 160px) don't fit a narrow phone screen once
+  // card padding is subtracted — drop to a single column.
+  .cv .card.cv-category-card:nth-of-type(6) ul.subitems,
+  .cv .card.cv-category-card:nth-of-type(7) .interest-tags-container {
+    grid-template-columns: 1fr !important;
+  }
+
+  .cv .card.cv-category-card:nth-of-type(4) .research-tags {
+    gap: 0.4rem !important;
+  }
+
+  .cv .card.cv-category-card:nth-of-type(4) .research-tag,
+  .cv .card.cv-category-card:nth-of-type(7) .interest-tag {
+    font-size: 0.85rem !important;
+    padding: 0.35rem 0.7rem !important;
+  }
 }

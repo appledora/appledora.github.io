@@ -9,10 +9,28 @@ layout: default
       {% if site.title == "blank" -%}<span class="font-weight-bold">{{ site.first_name }}</span> {{ site.middle_name }}
       {{ site.last_name }}{%- else -%}{{ site.title }}{%- endif %}
     </h1>
-    <p class="desc" style="border-bottom: 1px solid var(--terminal-border); padding-bottom: 1rem; margin-bottom: 1.5rem;">{{ page.subtitle }}</p>
+    {% if page.native_name %}
+    <p class="native-name">{{ page.native_name }}</p>
+    {% endif %}
+    <p class="desc"
+      style="border-bottom: 1px solid var(--terminal-border); padding-bottom: 1rem; margin-bottom: 1.5rem;">{{
+      page.subtitle }}</p>
   </header>
 
   <article>
+    <!-- Status: live, multi-entry -->
+    {% if page.status %}
+    <div class="status-feed">
+      <span class="status-feed-label">Currently</span>
+      {% for s in page.status %}
+      <div class="status-feed-entry">
+        <span class="status-feed-text">{{ s.text }}</span>
+      </div>
+      {% endfor %}
+      <!-- <span class="blinking-cursor"></span> -->
+    </div>
+    {% endif %}
+
     <!-- Terminal Profile Section -->
     {% if page.profile -%}
     <div class="terminal-status about-terminal">
@@ -24,88 +42,132 @@ layout: default
             <div class="terminal-bio">
               <span class="mono-label">$ cat bio.txt</span>
               {{ content | split: '<div class="quote-simple">' | first }}
+              </div>
+
+              <!-- Stat card -->
+              {% if page.stats %}
+              <div class="stat-card">
+                {% if page.research_group %}
+                <div class="stat-row">
+                  <span class="stat-label">Group</span>
+                  <span class="stat-value">{{ page.research_group }}</span>
+                </div>
+                {% endif %}
+                {% if page.advisors %}
+                <div class="stat-row">
+                  <span class="stat-label">Advisors</span>
+                  <span class="stat-value advisor-list">
+                    {% for advisor in page.advisors %}<a href="{{ advisor.url }}" target="_blank"
+                      rel="noopener noreferrer">{{ advisor.name }}</a>{% unless forloop.last %}, {% endunless %}{%
+                    endfor %}
+                  </span>
+                </div>
+                {% endif %}
+                <div class="stat-row">
+                  <span class="stat-label">Research</span>
+                  <span class="stat-value">{{ page.stats.research }}</span>
+                </div>
+                <div class="stat-row">
+                  <span class="stat-label">Methods + Focus</span>
+                  <span class="stat-value">{{ page.stats.methods }} · {{ page.stats.focus }}</span>
+                </div>
+                {% if page.venues %}
+                <div class="stat-row stat-row--venues">
+                  <span class="stat-label">Published in</span>
+                  <span class="stat-value">{{ page.venues }}</span>
+                </div>
+                {% endif %}
+              </div>
+              {% if page.cv_pdf %}
+              <a class="cv-download-link" href="{{ page.cv_pdf | prepend: 'assets/pdf/' | relative_url }}"
+                target="_blank" rel="noopener noreferrer">
+                <i class="fa-solid fa-file-pdf"></i> Download CV
+              </a>
+              {% endif %}
+              {% endif %}
             </div>
-          </div>
-          <div class="col-md-4">
-            <!-- Profile Image -->
-            {%- if page.profile.image %}
-            {%- assign profile_image_path = page.profile.image | prepend: 'assets/img/' -%}
-            {%- assign profile_image_class = "img-fluid" -%}
-            {% capture sizes %}(min-width: {{site.max_width}}) {{ site.max_width | minus: 30 | times: 0.35}}px,
-            (min-width: 576px) 35vw, 95vw"{% endcapture %}
-            {% include figure.html
-            path = profile_image_path
-            class = profile_image_class
-            sizes = sizes
-            alt = page.profile.image
-            cache_bust = true
-            %}
-            {% endif -%}
-            {%- if page.profile.more_info %}
-            <div class="terminal-panel">
-              <span class="mono-label">$ whoami</span>
-              <div class="terminal-panel-body">{{ page.profile.more_info }}</div>
-            </div>
-            {%- endif %}
-            <div class="terminal-panel">
-              <span class="mono-label">$ status --currently</span>
-              <div class="terminal-panel-body">Exploring mechanistic interpretability from a weight space perspective. If you're interested in this topic, let's connect!<span class="blinking-cursor"></span></div>
+            <div class="col-md-4">
+              <!-- Profile Image -->
+              {%- if page.profile.image %}
+              {%- assign profile_image_path = page.profile.image | prepend: 'assets/img/' -%}
+              {%- assign profile_image_class = "img-fluid" -%}
+              {% capture sizes %}(min-width: {{site.max_width}}) {{ site.max_width | minus: 30 | times: 0.35}}px,
+              (min-width: 576px) 35vw, 95vw"{% endcapture %}
+              {% include figure.html
+              path = profile_image_path
+              class = profile_image_class
+              sizes = sizes
+              alt = page.profile.image
+              cache_bust = true
+              %}
+              {% endif -%}
+              {%- if page.profile.more_info or page.profile.email or page.profile.location %}
+              <div class="terminal-panel">
+                <span class="mono-label">$ whoami</span>
+                <div class="terminal-panel-body">
+                  {%- if page.profile.more_info %}<div class="whoami-info">{{ page.profile.more_info }}</div>{%- endif
+                  %}
+                  {%- if page.profile.email %}<div class="whoami-email">{{ page.profile.email }}</div>{%- endif %}
+                  {%- if page.profile.location %}<div class="whoami-location"><i class="fa-solid fa-location-dot"></i>
+                    {{ page.profile.location }}</div>{%- endif %}
+                </div>
+              </div>
+              {%- endif %}
             </div>
           </div>
         </div>
       </div>
-    </div>
-    {%- endif %}
-
-    <!-- Quote Box if present -->
-    {% if content contains '<div class="quote-simple">' %}
-    <div class="terminal-output" style="margin: 2rem 0;">
-      {{ content | split: '<div class="quote-simple">' | last | split: '</div>' | first }}
-    </div>
-    {% endif %}
-
-    <!-- News Section -->
-    {% if page.news and site.announcements.enabled -%}
-    <h2 style="margin-top: 3rem;">news</h2>
-    <div class="terminal-status news-terminal">
-      <div class="status-header">news.log</div>
-      <div class="status-content">
-        {%- include news.html limit=true %}
-      </div>
-    </div>
-    {%- endif %}
-
-    <!-- Latest posts -->
-    {% if page.latest_posts -%}
-    <h2 style="margin-top: 3rem;">latest posts</h2>
-    {%- include latest_posts.html %}
-    {%- endif %}
-
-    <!-- Selected papers -->
-    {% if page.selected_papers -%}
-    <h2 style="margin-top: 3rem;">selected publications</h2>
-    <div class="terminal-status publications-terminal">
-      <div class="status-header">publications.log</div>
-      <div class="status-content">
-        {%- include selected_papers.html %}
-      </div>
-    </div>
-    {%- endif %}
-
-    <!-- Social -->
-    {%- if page.social %}
-    <div class="social" style="margin-top: 3rem; padding-top: 2rem; border-top: 2px solid var(--terminal-border);">
-      <h2>contact</h2>
-      <div class="contact-icons">
-        {% include social.html %}
-      </div>
-      {%- if site.contact_note %}
-      <div class="contact-note" style="margin-top: 1rem;">
-        {{ site.contact_note }}
-      </div>
       {%- endif %}
-    </div>
-    {%- endif %}
+
+      <!-- Quote Box if present -->
+      {% if content contains '<div class="quote-simple">' %}
+        <div class="terminal-output" style="margin: 2rem 0;">
+          {{ content | split: '<div class="quote-simple">' | last | split: '</div>' | first }}
+        </div>
+        {% endif %}
+
+        <!-- News Section -->
+        {% if page.news and site.announcements.enabled -%}
+        <h2 style="margin-top: 3rem;">news</h2>
+        <div class="terminal-status news-terminal">
+          <div class="status-header">news.log</div>
+          <div class="status-content">
+            {%- include news.html limit=true %}
+          </div>
+        </div>
+        {%- endif %}
+
+        <!-- Latest posts -->
+        {% if page.latest_posts -%}
+        <h2 style="margin-top: 3rem;">latest posts</h2>
+        {%- include latest_posts.html %}
+        {%- endif %}
+
+        <!-- Selected papers -->
+        {% if page.selected_papers -%}
+        <h2 style="margin-top: 3rem;">selected publications</h2>
+        <div class="terminal-status publications-terminal">
+          <div class="status-header">publications.log</div>
+          <div class="status-content">
+            {%- include selected_papers.html %}
+          </div>
+        </div>
+        {%- endif %}
+
+        <!-- Social -->
+        {%- if page.social %}
+        <div class="social" style="margin-top: 3rem; padding-top: 2rem; border-top: 2px solid var(--terminal-border);">
+          <h2>contact</h2>
+          <div class="contact-icons">
+            {% include social.html %}
+          </div>
+          {%- if site.contact_note %}
+          <div class="contact-note" style="margin-top: 1rem;">
+            {{ site.contact_note }}
+          </div>
+          {%- endif %}
+        </div>
+        {%- endif %}
   </article>
 
 </div>

@@ -13,16 +13,23 @@
 - title: 💼 Experience
   type: time_table
   contents:
-    - title: Graduate Teaching Fellow
-      institution: Boston University, Boston, MA, USA
-      year: Spr.'25,'26
+    - title: Machine Learning Engineer Intern
+      institution: Adobe, San Jose, CA, USA
+      year: Summer 2026
+      maindescription: Worked on Adobe's internal insight diversification pipeline for their AI-powered content generation platform.
+
+    # - title: Graduate Teaching Fellow
+    #   institution: Boston University, Boston, MA, USA
+    #   year: Spr.'25,'26
     - title: Research Developer
       institution: Wikimedia Foundation, San Francisco, CA, USA
       year: 2022 - 2023
+      maindescription: Advised by Dr. Isaac Johnson and Dr. Martin Gerlach — built resources and pipelines for NLP research across the Wikimedia projects.
 
     - title: Machine Learning Engineer
       institution: GigaTech Ltd., Dhaka, Bangladesh
       year: 2021 - 2022
+      maindescription: Developed the National Syntactic TreeBank for Bangla.
 
     - title: Research Assistant
       institution: BRAC University, Dhaka, Bangladesh
@@ -31,6 +38,25 @@
     - title: Research Affiliate
       institution: Bengali.AI, Dhaka, Bangladesh
       year: 2021 - 2023
+      maindescription: Built resources for low-resource language research.
+
+- title: 📖 Teaching & Mentoring
+  type: table
+  tables:
+    - caption: Teaching
+      columns: [Term, Course, Level, Size]
+      rows:
+        - [Fall '26, CS440 — Intro to AI, Undergrad, ~100]
+        - [Spr '26, CS598 — AI CyberSecurity & Entrepreneurship, Grad, ~50]
+        - [Fall '25, CS505 — Intro to NLP, Grad, ~100]
+    - caption: Mentoring
+      columns: [Year, Institution, Cohort, Outcome]
+      rows:
+        - [2026, BUET, 2 undergrads, "Ongoing (multimodal efficient learning)"]
+        - [2026, BRAC University, 3 undergrads, "1 paper (ACL-IJCNLP)"]
+        - [2025, Boston University, "2 undergrads (NSF-REU)", —]
+        - [2025, BRAC University, 5 undergrads, "1 paper (EMNLP Findings)"]
+        - [2021 - 2023, Bengali.AI, mixed groups, "3 papers (Interspeech, ACL-IJCNLP, 1 under review)"]
 
 # - title: Honors and Awards
 #   type: time_table

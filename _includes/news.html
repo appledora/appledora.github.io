@@ -48,6 +48,7 @@ Determine the limit:
         {{ item.date | date: date_format }}
       </td>
       <td class="news-content">
+        {% if item.icon %}<span class="news-icon">{{ item.icon }}</span>{% endif %}
         {% if item.inline %}
         {{ item.content }}
         {% else %}

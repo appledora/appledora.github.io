@@ -37,6 +37,13 @@ body.terminal-theme {
   line-height: 1.65;
 }
 
+.terminal-theme .native-name {
+  font-size: 1.1rem;
+  color: var(--terminal-text-light);
+  margin: -0.5rem 0 1rem;
+  font-weight: 400;
+}
+
 /* Small-caps monospace only for labels/eyebrows, never body copy */
 .terminal-theme .mono-label {
   font-family: 'VT323', 'Courier New', monospace;
@@ -218,6 +225,19 @@ body.terminal-theme {
   .terminal-panel-body {
     color: #111111;
     line-height: 1.6;
+
+    > div + div {
+      margin-top: 0.5rem;
+    }
+  }
+
+  .whoami-location {
+    color: #6e6e6e;
+    font-size: 0.95rem;
+
+    i {
+      margin-right: 0.3rem;
+    }
   }
 
   .blinking-cursor::after {
@@ -226,6 +246,114 @@ body.terminal-theme {
     margin-left: 0.3rem;
     color: #111111;
     animation: terminal-blink 1s steps(1) infinite;
+  }
+}
+
+/* Status feed — live, multi-entry "what I'm doing/open to right now",
+   presented as a single callout/note rather than a bulleted list. */
+.status-feed {
+  margin-bottom: 1.75rem;
+  border: 1px solid #111111;
+  border-left: 4px solid #111111;
+  background: #fafafa;
+  padding: 1rem 1.25rem;
+
+  .status-feed-label {
+    display: block;
+    font-family: 'VT323', 'Courier New', monospace;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #6e6e6e;
+    margin-bottom: 0.5rem;
+  }
+
+  .status-feed-entry {
+    font-family: 'VT323', 'Courier New', monospace;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    color: #111111;
+
+    &::before {
+      content: '▸ ';
+      color: #6e6e6e;
+    }
+
+    & + .status-feed-entry {
+      margin-top: 0.35rem;
+    }
+  }
+}
+
+/* Stat card — RPG character-select shape, plain research-first wording */
+.stat-card {
+  margin-top: 1.5rem;
+  border: 2px solid #111111;
+
+  .stat-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.4rem 0.9rem;
+    padding: 0.65rem 1rem;
+
+    & + .stat-row {
+      border-top: 1px solid #dcdcdc;
+    }
+  }
+
+  .stat-label {
+    flex: 0 0 auto;
+    min-width: 6.5rem;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.6rem;
+    letter-spacing: 0.03em;
+    color: #111111;
+  }
+
+  .stat-value {
+    flex: 1 1 auto;
+    font-family: 'VT323', 'Courier New', monospace;
+    font-size: 1.15rem;
+    line-height: 1.4;
+    color: #111111;
+  }
+
+  .stat-row--venues {
+    .stat-value {
+      font-size: 1rem;
+      color: #6e6e6e;
+    }
+  }
+
+  .advisor-list a {
+    color: #111111;
+    text-decoration-color: #b0b0b0;
+
+    &:hover {
+      background-color: #111111;
+      color: #ffffff;
+      text-decoration: none;
+    }
+  }
+}
+
+.cv-download-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding: 0.6rem 1.1rem;
+  border: 2px solid #111111;
+  font-family: 'VT323', 'Courier New', monospace;
+  font-size: 1.1rem;
+  color: #111111;
+  text-decoration: none;
+
+  &:hover {
+    background-color: #111111;
+    color: #ffffff;
   }
 }
 
@@ -304,6 +432,10 @@ body.terminal-theme {
 
 .terminal-theme .news-terminal .news td.news-content {
   color: var(--terminal-text);
+
+  .news-icon {
+    margin-right: 0.4rem;
+  }
 
   a.news-link {
     margin-left: 0.4rem;
@@ -515,6 +647,12 @@ body.terminal-theme {
   &:hover {
     transform: none !important;
     box-shadow: none !important;
+  }
+
+  // Email is reachable from the About page's contact section — no need
+  // to duplicate it as a navbar icon.
+  a[title="email"] {
+    display: none !important;
   }
 
   a {

@@ -1,0 +1,172 @@
+# Datasets (category: dataset) render in the "datasets.log" panel;
+# everything else renders in "projects.log". Both panels render entries in
+# the order they appear in this file. See _pages/projects.md.
+- title: DORI-Benchmark
+  description: Benchmark dataset, hosted on Hugging Face.
+  category: dataset
+  github: https://huggingface.co/datasets/appledora/DORI-Benchmark
+  tags: [benchmark, dataset, huggingface]
+- title: DANGA
+  description: Dataset for Bangla NLP research, hosted on Hugging Face.
+  category: dataset
+  github: https://huggingface.co/datasets/appledora/DANGA
+  tags: [bangla, nlp, dataset, huggingface]
+- title: DANGA-Adapted
+  description: Adapted version of the DANGA dataset, hosted on Hugging Face.
+  category: dataset
+  github: https://huggingface.co/datasets/appledora/DANGA-Adapted
+  tags: [bangla, nlp, dataset, huggingface]
+- title: BLanCK
+  description: Dataset, hosted on GitHub.
+  category: dataset
+  github: https://github.com/Moinulhaque86/BLanCK
+  tags: [dataset, github]
+
+- title: RegSpeech12
+  description: Speech dataset, hosted on Kaggle.
+  category: dataset
+  github: https://www.kaggle.com/datasets/mdrezuwanhassan/regspeech12
+  tags: [speech, dataset, kaggle]
+
+- title: OOD-Speech
+  description: Speech dataset, hosted on Kaggle.
+  category: dataset
+  github: https://bengaliai.github.io/asr
+  tags: [speech, dataset, kaggle]
+- title: Ben-10
+  description: Speech dataset, hosted on Kaggle.
+  category: dataset
+  github: https://github.com/BengaliAI/reg-speech-aacl
+  tags: [speech, dataset, kaggle]
+- title: mwTokenizer
+  description: Python library for multilingual tokenization done for the Wikimedia Foundation.
+  img: assets/img/mwtokenizer.png
+  category: research
+  github: https://gitlab.wikimedia.org/repos/research/wiki-nlp-tools
+  tags: [python, pyspark, nlp, tokenization, wikipedia, multilingual]
+
+- title: VISTA for Automated Retail Check-out
+  description: Official implementation of the VISTA algorithm for automated retail check-out.
+  img: assets/img/vista.png
+  category: research
+  github: https://github.com/istiakshihab/automated-retail-checkout-aicity22
+  tags:
+    [
+      python,
+      segmentation,
+      computer-vision,
+      object-detection,
+      real-time,
+      cross-domain,
+    ]
+
+- title: mwparserfromhtml
+  description: A python library for parsing and mining metadata from the Enterprise HTML Dumps.
+  img: assets/img/Mwparserfromhtml_functionality.gif
+  category: development
+  github: https://pypi.org/project/mwparserfromhtml/
+  tags: [python, html, metadata, parsing, mining]
+
+- title: Shaako
+  description: An android application to facilitate community health programs in rural areas.
+  img: assets/img/shaako.png
+  category: development
+  github: https://github.com/WeDoinaThing
+  tags:
+    [android, azure, sql, machine-learning, community, microsoft-imagine-cup]
+
+- title: SUSTCast
+  description: Automate campus radio.
+  img: assets/img/sustcast.gif
+  category: development
+  github: https://github.com/sustcast/sustcast-android-app-v1
+  tags: [Android, Django, Firebase, Icecast]
+
+- title: Pneumonia Detection from Chest X-Rays
+  description: An end to end benchmarking of different computer vision architectures
+  img: assets/img/chest.png
+  category: research
+  github: https://github.com/appledora/mlpr-pneumonia-detect
+  tags:
+    [python, computer-vision, machine-learning, chest-xray, transfer-learning]
+
+- title: P2P Chat
+  description: Fully functioning peer-to-peer chat application
+  img: assets/img/p2p.png
+  category: development
+  github: https://github.com/appledora/P2P-chat-socket-implementation-on-android
+  tags: [Android, Java, Socket Programming]
+
+- title: Product Recommendation System Benchmarking
+  description: An end to end benchmarking of different recommendation techniques
+  img: assets/img/reco.png
+  category: research
+  github: https://github.com/appledora/mlpr-amazon_product_recommendation
+  tags:
+    [
+      python,
+      recommendation-system,
+      collaborative-filtering,
+      content-based-filtering,
+      clustering,
+      matrix-factorization,
+    ]
+
+- title: Image Captioning Web App
+  description: A web app that generates captions for images.
+  category: development
+  github: https://github.com/appledora/mlpr-image_caption
+  tags: [Python, Deep Learning, Flask, Django, CNN, RNN]
+
+- title: Predict Energy Consumption of buildings from their attributes and weather data
+  description: An end to end benchmarking of different prediction techniques
+  img: assets/img/energy.png
+  category: research
+  github: https://github.com/appledora/mlpr-weather_energy
+  tags: [python, machine-learning, regression, energy-prediction, weather-data]
+
+- title: Comparative Analysis of DL methods for Multi-domain Medical Image Segmentation
+  description: How do statistical methods, Transformers, zero-shot learning strategies, few-shot finetuning, and low-rank adaptation techniques compare in terms of accuracy and robustness across different medical imaging datasets?
+  img: assets/img/multidomain.png
+  category: research
+  github: https://github.com/appledora/Multi-domain-Medical-Image-Classification
+  tags:
+    [
+      python,
+      computer-vision,
+      machine-learning,
+      medical-imaging,
+      transfer-learning,
+      deep-learning,
+    ]
+
+- title: Rule-based hand gesture recognition
+  description: Implementation of a image processing pipeline that takes input image stream from the webcam, performs a series of classical image processing operations to identify the object of interest, and then displays the processed image with the object of interest highlighted on a GUI.
+  img: assets/img/gesture.png
+  category: research
+  github: https://github.com/appledora/Rule-based-gesture-detection
+  tags: [Python, Computer Vision, Image Processing, OpenCV]
+
+- title: Git Commit Generation from large GitDiff
+  description: Replication and evaluation of standard architectures used for text summarization and generation across varying architectural complexities - e.g, RNN, LSTM, GRU, Transformer, BERT, GPT-2, Zero-shot learning, etc.
+  img: assets/img/Git-diff.png
+  category: research
+  github: https://github.com/appledora/Evaluate-Git-commit-generation-from-gitDiff
+  tags:
+    [
+      NLP,
+      Text Generation,
+      Text Summarization,
+      Git Commit Generation,
+      LSTM,
+      Transformer,
+      BERT,
+      GPT-2,
+      Zero-shot learning,
+    ]
+
+- title: Vanishing point detection
+  description: Different experiments on vanishing point detection
+  category: research
+  github: https://github.com/appledora/mlpr-vanishing-point
+  tags: [Python, Computer Vision, Hough Transform, Image Processing]

@@ -102,6 +102,8 @@ layout: default
           {% include cv/time_table.html %}
           {% elsif entry.type == "list_groups" %}
           {% include cv/list_groups.html %}
+          {% elsif entry.type == "table" %}
+          {% include cv/table.html %}
           {% else %}
           {{ entry.contents }}
           {% endif %}

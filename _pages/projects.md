@@ -7,11 +7,41 @@ nav_order: 3
 display_categories: [research, development]
 horizontal: false
 ---
-<div class="terminal-status artifacts-terminal">
-  <div class="status-header">artifacts.log</div>
+<div class="terminal-status artifacts-terminal datasets-terminal">
+  <div class="status-header">datasets.log</div>
   <div class="status-content">
     <ol class="artifacts-list">
-    {%- assign sorted_projects = site.projects | sort: "importance" %}
+    {%- assign sorted_datasets = site.data.projects | where_exp: "p", "p.category == 'dataset'" %}
+    {% for dataset in sorted_datasets %}
+      <li class="artifact-entry">
+        <div class="artifact-line">
+          <span class="artifact-prompt">$</span>
+          <span class="artifact-title">{{ dataset.title }}</span>
+          {% if dataset.github %}
+          <a href="{{ dataset.github }}" target="_blank" rel="noopener noreferrer" class="artifact-github" title="View dataset">
+            <i class="fa-solid fa-database"></i> view
+          </a>
+          {% endif %}
+        </div>
+        <p class="artifact-description">{{ dataset.description }}</p>
+        {% if dataset.tags %}
+        <div class="artifact-tags">
+          {% for tag in dataset.tags %}
+          <span class="pill-tag">{{ tag }}</span>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </li>
+    {% endfor %}
+    </ol>
+  </div>
+</div>
+
+<div class="terminal-status artifacts-terminal">
+  <div class="status-header">projects.log</div>
+  <div class="status-content">
+    <ol class="artifacts-list">
+    {%- assign sorted_projects = site.data.projects | where_exp: "p", "p.category != 'dataset'" %}
     {% for project in sorted_projects %}
       <li class="artifact-entry">
         <div class="artifact-line">

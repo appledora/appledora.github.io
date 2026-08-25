@@ -1,0 +1,34 @@
+<!-- One or more compact tables per entry (entry.tables), each with its
+     own caption/columns/rows. Far more space-efficient than one
+     time_table card per row for short, similarly-shaped, repetitive
+     entries (e.g. Teaching & Mentoring) — one line per row, columns
+     aligned, no repeated boilerplate per entry. -->
+<div class="cv-tables">
+  {% for tbl in entry.tables %}
+  <div class="cv-table-block">
+    {% if tbl.caption %}<div class="cv-table-caption">{{ tbl.caption }}</div>{% endif %}
+    <div class="cv-table-scroll">
+      <table class="cv-data-table">
+        {% if tbl.columns %}
+        <thead>
+          <tr>
+            {% for col in tbl.columns %}
+            <th>{{ col }}</th>
+            {% endfor %}
+          </tr>
+        </thead>
+        {% endif %}
+        <tbody>
+          {% for row in tbl.rows %}
+          <tr>
+            {% for cell in row %}
+            <td>{{ cell }}</td>
+            {% endfor %}
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  {% endfor %}
+</div>
