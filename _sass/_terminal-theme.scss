@@ -427,11 +427,22 @@ body.terminal-theme {
   padding-bottom: 0.4rem;
   min-height: unset;
 
+  // _base.scss's ".navbar .navbar-brand" wraps this in a "game title" box
+  // (gradient background, 2px border, drop shadow) — strip it here too,
+  // same fix as the .navbar-brand.social variant below.
   .navbar-brand {
     color: var(--terminal-text) !important;
     font-weight: 700;
     font-size: 1rem;
-    padding: 0;
+    padding: 0 !important;
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+
+    &:hover {
+      transform: none !important;
+      box-shadow: none !important;
+    }
 
     .brand-first-name,
     .brand-middle-name,
@@ -458,6 +469,68 @@ body.terminal-theme {
     &.active {
       background-color: var(--terminal-tag-bg);
       font-weight: 600;
+    }
+  }
+}
+
+/* Contact/social icons — no border/box, sized to actually read as icons */
+.terminal-theme .social .contact-icons {
+  font-size: 2.5rem !important;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.25rem;
+
+  a {
+    display: inline-flex;
+    border: none !important;
+    background: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    text-decoration: none !important;
+
+    i::before {
+      color: var(--terminal-text);
+    }
+
+    &:hover i::before {
+      color: var(--terminal-text-light);
+    }
+  }
+}
+
+/* Navbar social icons (homepage brand slot) — the generic .navbar .navbar-brand
+   rule in _base.scss puts a bordered/shadowed "game title" box around
+   whatever's inside .navbar-brand, including this icon row. Strip it here. */
+#navbar.navbar .navbar-brand.social {
+  font-size: 2.1rem !important;
+  display: flex !important;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 !important;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+
+  &:hover {
+    transform: none !important;
+    box-shadow: none !important;
+  }
+
+  a {
+    display: inline-flex;
+    border: none !important;
+    background: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    text-decoration: none !important;
+
+    i::before {
+      color: var(--terminal-text) !important;
+    }
+
+    &:hover i::before {
+      color: var(--terminal-text-light) !important;
     }
   }
 }
@@ -587,6 +660,8 @@ body.terminal-theme {
 }
 
 .terminal-theme .publications {
+  margin-top: 0 !important;
+
   h1 {
     color: var(--terminal-text);
     text-shadow: none;
