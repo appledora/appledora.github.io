@@ -97,40 +97,50 @@ $quest-gold: #ffbe0b;
   }
 }
 
-// Timeline entries (Education / Experience) render via cv/time_table.html,
-// whose actual wrapper is <ul class="card-text ...">  — NOT ".time-table"
-// (that class doesn't exist in the template). Scoped to card-text so this
-// doesn't leak into other pages that also use .cv .card.
+// Timeline entries (Education / Experience) render via cv/time_table.html:
+// a fixed 75px year column (inline style="width: 75px", badge min-width:
+// 75px) sitting next to the title/institution column. Keep them side by
+// side, but shrink the badge so it fits its box, and grow the title/
+// institution text since that's the actual content people read.
 .cv .card.cv-category-card ul.card-text {
+  // The 75px-wide year column — give it a little more room so a small
+  // badge still fits without wrapping ("2023 - present" etc.)
+  li.list-group-item .row > div[style*="width: 75px"] {
+    width: 95px !important;
+  }
+
   .title {
-    font-size: 1.15rem !important;
-    margin-bottom: 0.4rem !important;
-    margin-top: 0.4rem !important;
+    font-size: 1.2rem !important;
+    margin-bottom: 0.35rem !important;
+    margin-top: 0 !important;
   }
 
   .institution,
   .institution td {
-    font-size: 1rem !important;
+    font-size: 1.05rem !important;
   }
 
   .department,
   .department td {
-    font-size: 0.95rem !important;
+    font-size: 1rem !important;
   }
 
   .badge {
-    font-size: 0.9rem !important;
-    padding: 0.5rem 0.9rem !important;
+    font-size: 0.6rem !important;
+    padding: 0.3rem 0.4rem !important;
+    min-width: unset !important;
+    white-space: normal !important;
+    line-height: 1.2 !important;
     background: $quest-purple !important;
     border: 2px solid $quest-ink !important;
     border-radius: 6px !important;
-    box-shadow: 3px 3px 0px $quest-gold !important;
+    box-shadow: 2px 2px 0px $quest-gold !important;
     color: #ffffff !important;
   }
 
   .location,
   .location td {
-    font-size: 0.9rem !important;
+    font-size: 0.85rem !important;
   }
 }
 
@@ -139,23 +149,23 @@ $quest-gold: #ffbe0b;
 // from the legacy cyan to the purple/gold palette.
 .cv .card.cv-category-card {
   h5.font-italic {
-    font-size: 1.05rem !important;
+    font-size: 1.3rem !important;
     color: $quest-purple !important;
-    margin-top: 1rem;
-    margin-bottom: 0.5rem;
+    margin-top: 1.25rem;
+    margin-bottom: 0.6rem;
   }
 
   .subitem,
   .item,
   .item-title {
-    font-size: 1rem !important;
-    line-height: 1.5 !important;
+    font-size: 1.15rem !important;
+    line-height: 1.6 !important;
   }
 
   ul.items li,
   ul.subitems li {
-    font-size: 1rem !important;
-    margin-bottom: 0.35rem !important;
+    font-size: 1.15rem !important;
+    margin-bottom: 0.45rem !important;
   }
 }
 
