@@ -1,0 +1,633 @@
+/*******************************************************************************
+ * Bonus Theme - Bubbly 8-bit Gamified Aesthetic
+ * Applied to bonus page only - full retro gaming vibes
+ ******************************************************************************/
+
+// Bonus theme color palette
+.bonus-theme {
+  --bonus-bg: #f0f0f0;
+  --bonus-primary: #00b4d8;
+  --bonus-secondary: #ff006e;
+  --bonus-accent: #8338ec;
+  --bonus-success: #06ffa5;
+  --bonus-warning: #ffbe0b;
+  --bonus-danger: #fb5607;
+  --bonus-text: #212529;
+  --bonus-light: #ffffff;
+  --bonus-dark: #1a1a2e;
+
+  /* CRT colors */
+  --bonus-crt-primary: #00d9ff;
+  --bonus-crt-glow: rgba(0, 217, 255, 0.3);
+}
+
+html[data-theme='dark'] .bonus-theme {
+  --bonus-bg: #1a1a2e;
+  --bonus-primary: #00d9ff;
+  --bonus-text: #eaeaea;
+}
+
+/* Bonus page container */
+.bonus-theme {
+  background: linear-gradient(135deg, var(--bonus-bg) 0%, #f8f8f8 100%);
+  color: var(--bonus-text);
+}
+
+html[data-theme='dark'] .bonus-theme {
+  background: linear-gradient(135deg, var(--bonus-bg) 0%, #16213e 100%);
+}
+
+/* Bonus theme typography */
+.bonus-theme .bonus-title {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--bonus-primary);
+  text-shadow: 4px 4px 0px var(--bonus-secondary), 8px 8px 0px var(--bonus-accent);
+  margin-bottom: 1rem;
+  animation: bonus-title-bounce 2s ease-in-out infinite;
+}
+
+.bonus-theme .bonus-subtitle {
+  font-family: 'VT323', monospace;
+  font-size: 1.2rem;
+  color: var(--bonus-accent);
+  text-shadow: 2px 2px 0px var(--bonus-secondary);
+  letter-spacing: 1px;
+}
+
+.bonus-theme .bonus-section-title {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--bonus-secondary);
+  text-shadow: 3px 3px 0px var(--bonus-accent), 6px 6px 0px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* Bounce animation */
+@keyframes bonus-title-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* CRT Screen for Profile */
+.bonus-theme .bonus-intro-panel {
+  margin-bottom: 3rem;
+}
+
+.bonus-theme .bonus-crt-frame {
+  background: linear-gradient(135deg, #8338ec 0%, #ff006e 100%);
+  padding: 3px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), inset 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.bonus-theme .bonus-crt-screen {
+  background: #16213e;
+  border-radius: 18px;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.bonus-theme .bonus-crt-content {
+  position: relative;
+  z-index: 2;
+  color: #00d9ff;
+  font-family: 'VT323', monospace;
+  font-size: 1rem;
+  line-height: 1.8;
+
+  p {
+    color: #00d9ff;
+    margin-bottom: 1rem;
+  }
+
+  a {
+    color: #06ffa5;
+    text-decoration: underline;
+    text-shadow: 0 0 5px #06ffa5;
+
+    &:hover {
+      color: #ffbe0b;
+      text-shadow: 0 0 10px #ffbe0b;
+    }
+  }
+}
+
+.bonus-theme .bonus-crt-scanline {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(0deg,
+      rgba(0, 0, 0, 0.1) 0px,
+      rgba(0, 0, 0, 0.1) 2px,
+      transparent 2px,
+      transparent 4px);
+  pointer-events: none;
+  z-index: 3;
+  border-radius: 18px;
+}
+
+.bonus-theme .bonus-crt-screen::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at center,
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(0, 0, 0, 0.3) 100%);
+  pointer-events: none;
+  border-radius: 18px;
+}
+
+.bonus-profile-section {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.bonus-theme .bonus-profile-img {
+  border: 4px solid #00d9ff;
+  border-radius: 20px;
+  max-width: 200px;
+  box-shadow: 0 0 20px #00d9ff, 0 10px 30px rgba(0, 0, 0, 0.3);
+  filter: drop-shadow(0 0 10px #00d9ff);
+}
+
+.bonus-more-info {
+  color: #06ffa5;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  text-shadow: 0 0 5px #06ffa5;
+}
+
+/* Stats Section */
+.bonus-stats-section {
+  background: linear-gradient(135deg, rgba(131, 56, 236, 0.1) 0%, rgba(255, 0, 110, 0.1) 100%);
+  border: 3px dashed var(--bonus-primary);
+  border-radius: 15px;
+  padding: 2rem;
+  margin: 2rem 0;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.bonus-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.bonus-stat-card {
+  background: rgba(255, 255, 255, 0.9);
+  border: 3px solid var(--bonus-primary);
+  border-radius: 15px;
+  padding: 1.5rem;
+  box-shadow: 4px 4px 0px var(--bonus-secondary), 8px 8px 15px rgba(0, 0, 0, 0.1);
+  transform: rotate(-1deg);
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: rotate(0deg) scale(1.05);
+    box-shadow: 6px 6px 0px var(--bonus-secondary), 10px 10px 20px rgba(0, 0, 0, 0.2);
+  }
+}
+
+html[data-theme='dark'] .bonus-stat-card {
+  background: rgba(22, 33, 62, 0.9);
+  color: #eaeaea;
+}
+
+.bonus-stat-label {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--bonus-secondary);
+  margin-bottom: 0.5rem;
+  text-shadow: 2px 2px 0px var(--bonus-accent);
+}
+
+.bonus-stat-bar {
+  background: #e0e0e0;
+  border: 2px solid var(--bonus-primary);
+  border-radius: 10px;
+  height: 25px;
+  overflow: hidden;
+  margin: 0.75rem 0;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+html[data-theme='dark'] .bonus-stat-bar {
+  background: #2a2a2a;
+}
+
+.bonus-stat-fill {
+  background: linear-gradient(90deg, var(--bonus-primary) 0%, var(--bonus-success) 100%);
+  height: 100%;
+  border-radius: 8px;
+  box-shadow: 0 0 10px var(--bonus-primary), inset 0 0 5px rgba(255, 255, 255, 0.3);
+  animation: bonus-stat-pulse 2s ease-in-out infinite;
+}
+
+@keyframes bonus-stat-pulse {
+  0%, 100% {
+    box-shadow: 0 0 10px var(--bonus-primary), inset 0 0 5px rgba(255, 255, 255, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px var(--bonus-primary), inset 0 0 10px rgba(255, 255, 255, 0.5);
+  }
+}
+
+.bonus-stat-value {
+  font-family: 'VT323', monospace;
+  font-size: 0.9rem;
+  text-align: center;
+  color: var(--bonus-accent);
+  font-weight: bold;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.2);
+}
+
+/* Achievements Section */
+.bonus-achievements-section {
+  margin: 3rem 0;
+  padding: 2rem;
+  background: linear-gradient(135deg, rgba(255, 190, 11, 0.1) 0%, rgba(6, 255, 165, 0.1) 100%);
+  border: 3px solid var(--bonus-warning);
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.bonus-achievements-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 1.5rem;
+}
+
+.bonus-achievement-badge {
+  background: rgba(255, 255, 255, 0.95);
+  border: 3px solid var(--bonus-warning);
+  border-radius: 15px;
+  padding: 1rem;
+  text-align: center;
+  transform: rotate(-2deg);
+  transition: all 0.3s ease;
+  box-shadow: 4px 4px 0px var(--bonus-accent), 8px 8px 15px rgba(0, 0, 0, 0.1);
+
+  &:hover {
+    transform: rotate(2deg) scale(1.1);
+    box-shadow: 6px 6px 0px var(--bonus-accent), 10px 10px 20px rgba(0, 0, 0, 0.2);
+  }
+}
+
+html[data-theme='dark'] .bonus-achievement-badge {
+  background: rgba(22, 33, 62, 0.95);
+}
+
+.bonus-achievement-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.bonus-achievement-name {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  color: var(--bonus-secondary);
+  margin-bottom: 0.3rem;
+  letter-spacing: 1px;
+}
+
+.bonus-achievement-desc {
+  font-family: 'VT323', monospace;
+  font-size: 0.75rem;
+  color: var(--bonus-text);
+  line-height: 1.4;
+}
+
+html[data-theme='dark'] .bonus-achievement-desc {
+  color: #eaeaea;
+}
+
+/* Skills Section */
+.bonus-skills-section {
+  margin: 3rem 0;
+  padding: 2rem;
+  background: linear-gradient(135deg, rgba(6, 255, 165, 0.1) 0%, rgba(131, 56, 236, 0.1) 100%);
+  border: 3px solid var(--bonus-success);
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.bonus-skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 1.5rem;
+}
+
+.bonus-skill-card {
+  background: rgba(255, 255, 255, 0.95);
+  border: 3px solid var(--bonus-success);
+  border-radius: 20px;
+  padding: 1.5rem;
+  text-align: center;
+  transform: rotate(1deg);
+  transition: all 0.3s ease;
+  box-shadow: 4px 4px 0px var(--bonus-primary), 8px 8px 15px rgba(0, 0, 0, 0.1);
+
+  &:hover {
+    transform: rotate(-1deg) scale(1.1);
+    box-shadow: 6px 6px 0px var(--bonus-primary), 10px 10px 20px rgba(0, 0, 0, 0.2);
+  }
+}
+
+html[data-theme='dark'] .bonus-skill-card {
+  background: rgba(22, 33, 62, 0.95);
+}
+
+.bonus-skill-icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.bonus-skill-name {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  color: var(--bonus-accent);
+  margin-bottom: 0.5rem;
+  letter-spacing: 1px;
+}
+
+.bonus-skill-level {
+  font-family: 'VT323', monospace;
+  font-size: 0.9rem;
+  color: var(--bonus-primary);
+  font-weight: bold;
+  text-shadow: 1px 1px 0px var(--bonus-secondary);
+}
+
+/* Interests Section */
+.bonus-interests-section {
+  margin: 3rem 0;
+  padding: 2rem;
+  background: linear-gradient(135deg, rgba(255, 0, 110, 0.1) 0%, rgba(255, 190, 11, 0.1) 100%);
+  border: 3px dotted var(--bonus-secondary);
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.bonus-interests-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem;
+}
+
+.bonus-interest-bubble {
+  background: rgba(255, 255, 255, 0.95);
+  border: 4px solid var(--bonus-secondary);
+  border-radius: 25px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  transform: rotate(-2deg);
+  transition: all 0.3s ease;
+  box-shadow: 5px 5px 0px var(--bonus-warning), 10px 10px 20px rgba(0, 0, 0, 0.1);
+
+  &:hover {
+    transform: rotate(2deg) scale(1.08);
+    box-shadow: 8px 8px 0px var(--bonus-warning), 12px 12px 25px rgba(0, 0, 0, 0.2);
+  }
+}
+
+html[data-theme='dark'] .bonus-interest-bubble {
+  background: rgba(22, 33, 62, 0.95);
+}
+
+.bonus-bubble-emoji {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.bonus-bubble-title {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: var(--bonus-secondary);
+  margin-bottom: 0.5rem;
+  letter-spacing: 1px;
+}
+
+.bonus-bubble-desc {
+  font-family: 'VT323', monospace;
+  font-size: 0.85rem;
+  color: var(--bonus-text);
+  line-height: 1.5;
+}
+
+html[data-theme='dark'] .bonus-bubble-desc {
+  color: #eaeaea;
+}
+
+/* Fun Facts Section */
+.bonus-fun-facts {
+  margin: 3rem 0;
+  padding: 2rem;
+  background: linear-gradient(135deg, rgba(131, 56, 236, 0.1) 0%, rgba(6, 255, 165, 0.1) 100%);
+  border: 3px solid var(--bonus-accent);
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.bonus-fact-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.bonus-fact-card {
+  background: rgba(255, 255, 255, 0.95);
+  border: 3px solid var(--bonus-accent);
+  border-radius: 15px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transform: rotate(1deg);
+  transition: all 0.3s ease;
+  box-shadow: 4px 4px 0px var(--bonus-primary), 8px 8px 15px rgba(0, 0, 0, 0.1);
+
+  &:hover {
+    transform: rotate(-1deg) scale(1.05);
+    box-shadow: 6px 6px 0px var(--bonus-primary), 10px 10px 20px rgba(0, 0, 0, 0.2);
+  }
+}
+
+html[data-theme='dark'] .bonus-fact-card {
+  background: rgba(22, 33, 62, 0.95);
+}
+
+.bonus-fact-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.bonus-fact-text {
+  font-family: 'VT323', monospace;
+  font-size: 0.9rem;
+  color: var(--bonus-text);
+  line-height: 1.6;
+}
+
+html[data-theme='dark'] .bonus-fact-text {
+  color: #eaeaea;
+}
+
+/* Quote Box */
+.bonus-quote-box {
+  background: linear-gradient(135deg, rgba(255, 190, 11, 0.2) 0%, rgba(255, 0, 110, 0.2) 100%);
+  border: 4px dashed var(--bonus-warning);
+  border-radius: 20px;
+  padding: 2rem;
+  margin: 3rem 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.bonus-quote-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+/* Easter Egg Section */
+.bonus-easter-egg {
+  margin-top: 3rem;
+  padding: 1.5rem;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.5);
+  border: 2px solid #cccccc;
+  border-radius: 10px;
+}
+
+.bonus-secret-message {
+  font-family: 'VT323', monospace;
+  font-size: 0.9rem;
+  color: #666666;
+  text-shadow: 1px 1px 0px #ffffff;
+}
+
+html[data-theme='dark'] .bonus-secret-message {
+  background: rgba(22, 33, 62, 0.5);
+  color: #aaaaaa;
+}
+
+/* Konami Code Activation */
+body.bonus-konami-activated {
+  animation: bonus-rainbow-flash 0.5s ease-in-out;
+}
+
+@keyframes bonus-rainbow-flash {
+  0% {
+    background-color: #ff0000;
+  }
+  20% {
+    background-color: #ffff00;
+  }
+  40% {
+    background-color: #00ff00;
+  }
+  60% {
+    background-color: #0000ff;
+  }
+  80% {
+    background-color: #ff00ff;
+  }
+  100% {
+    background-color: var(--bonus-bg);
+  }
+}
+
+.bonus-konami-surprise {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(135deg, #ff0080 0%, #ff8c00 100%);
+  border: 4px solid #ffff00;
+  border-radius: 20px;
+  padding: 2rem;
+  z-index: 9999;
+  text-align: center;
+  animation: bonus-surprise-bounce 0.8s ease-out;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 0 30px #ff0080;
+
+  p {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.2rem;
+    color: #ffffff;
+    text-shadow: 3px 3px 0px #000000;
+    margin: 0.5rem 0;
+  }
+}
+
+@keyframes bonus-surprise-bounce {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .bonus-theme .bonus-title {
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 0px var(--bonus-secondary), 4px 4px 0px var(--bonus-accent);
+  }
+
+  .bonus-stats-grid,
+  .bonus-achievements-grid,
+  .bonus-skills-grid,
+  .bonus-interests-grid,
+  .bonus-fact-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .bonus-profile-section {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .bonus-stat-card,
+  .bonus-achievement-badge,
+  .bonus-skill-card,
+  .bonus-interest-bubble,
+  .bonus-fact-card {
+    transform: none;
+
+    &:hover {
+      transform: scale(1.02);
+    }
+  }
+}

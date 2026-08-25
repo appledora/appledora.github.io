@@ -1,0 +1,221 @@
+---
+layout: default
+---
+
+<!-- bonus.html - Bubbly 8-bit Gamified Aesthetic -->
+<div class="bonus-theme post bonus-post">
+  <header class="post-header">
+    <h1 class="post-title bonus-title">
+      ⚡ BONUS LEVEL ⚡
+    </h1>
+    <p class="desc bonus-subtitle">{{ page.subtitle }}</p>
+  </header>
+
+  <article class="bonus-article">
+    <!-- Retro CRT Screen - Profile Section -->
+    <div class="bonus-intro-panel">
+      <div class="bonus-crt-frame">
+        <div class="bonus-crt-screen">
+          <div class="bonus-crt-content">
+            {% if page.profile -%}
+            <div class="bonus-profile-section">
+              {%- if page.profile.image %}
+              {%- assign profile_image_path = page.profile.image | prepend: 'assets/img/' -%}
+              {%- assign profile_image_class = "img-fluid bonus-profile-img" -%}
+              {% capture sizes %}(min-width: {{site.max_width}}) {{ site.max_width | minus: 30 | times: 0.35}}px,
+              (min-width: 576px) 35vw, 95vw"{% endcapture %}
+              {% include figure.html
+              path = profile_image_path
+              class = profile_image_class
+              sizes = sizes
+              alt = page.profile.image
+              cache_bust = true
+              %}
+              {% endif -%}
+
+              {%- if page.profile.more_info %}
+              <div class="bonus-more-info">
+                {{ page.profile.more_info }}
+              </div>
+              {%- endif %}
+            </div>
+            {%- endif %}
+
+            <!-- Main content -->
+            <div class="bonus-content">
+              {{ content | split: '<div class="quote-simple">' | first }}
+            </div>
+
+            <div class="bonus-crt-scanline"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gamified Stats Section -->
+    <div class="bonus-stats-section">
+      <h2 class="bonus-section-title">⚔️ CHARACTER STATS ⚔️</h2>
+
+      <div class="bonus-stats-grid">
+        <div class="bonus-stat-card">
+          <div class="bonus-stat-label">RESEARCH POWER</div>
+          <div class="bonus-stat-bar">
+            <div class="bonus-stat-fill" style="width: 95%;"></div>
+          </div>
+          <div class="bonus-stat-value">95/100</div>
+        </div>
+
+        <div class="bonus-stat-card">
+          <div class="bonus-stat-label">OPEN SOURCE LVL</div>
+          <div class="bonus-stat-bar">
+            <div class="bonus-stat-fill" style="width: 80%;"></div>
+          </div>
+          <div class="bonus-stat-value">80/100</div>
+        </div>
+
+        <div class="bonus-stat-card">
+          <div class="bonus-stat-label">TEACHING SKILL</div>
+          <div class="bonus-stat-bar">
+            <div class="bonus-stat-fill" style="width: 75%;"></div>
+          </div>
+          <div class="bonus-stat-value">75/100</div>
+        </div>
+
+        <div class="bonus-stat-card">
+          <div class="bonus-stat-label">COMMUNITY CARE</div>
+          <div class="bonus-stat-bar">
+            <div class="bonus-stat-fill" style="width: 90%;"></div>
+          </div>
+          <div class="bonus-stat-value">90/100</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Achievements Section -->
+    {% if page.achievements -%}
+    <div class="bonus-achievements-section">
+      <h2 class="bonus-section-title">🏆 ACHIEVEMENTS 🏆</h2>
+
+      <div class="bonus-achievements-grid">
+        {% for achievement in page.achievements %}
+        <div class="bonus-achievement-badge">
+          <div class="bonus-achievement-icon">{{ achievement.icon }}</div>
+          <div class="bonus-achievement-name">{{ achievement.name }}</div>
+          <div class="bonus-achievement-desc">{{ achievement.description }}</div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {%- endif %}
+
+    <!-- Skills/Powers Section -->
+    {% if page.skills -%}
+    <div class="bonus-skills-section">
+      <h2 class="bonus-section-title">✨ SPECIAL ABILITIES ✨</h2>
+
+      <div class="bonus-skills-grid">
+        {% for skill in page.skills %}
+        <div class="bonus-skill-card">
+          <div class="bonus-skill-icon">{{ skill.icon }}</div>
+          <div class="bonus-skill-name">{{ skill.name }}</div>
+          <div class="bonus-skill-level">LVL {{ skill.level }}</div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {%- endif %}
+
+    <!-- Interests/Hobbies Section -->
+    {% if page.interests -%}
+    <div class="bonus-interests-section">
+      <h2 class="bonus-section-title">🎮 INTERESTS & HOBBIES 🎮</h2>
+
+      <div class="bonus-interests-grid">
+        {% for interest in page.interests %}
+        <div class="bonus-interest-bubble">
+          <div class="bonus-bubble-emoji">{{ interest.emoji }}</div>
+          <div class="bonus-bubble-title">{{ interest.title }}</div>
+          <div class="bonus-bubble-desc">{{ interest.description }}</div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {%- endif %}
+
+    <!-- Fun Facts / Easter Eggs -->
+    <div class="bonus-fun-facts">
+      <h2 class="bonus-section-title">🎲 FUN FACTS 🎲</h2>
+
+      <div class="bonus-fact-cards">
+        <div class="bonus-fact-card">
+          <div class="bonus-fact-icon">🪴</div>
+          <div class="bonus-fact-text">I have a plant obsession (currently 47 plants & counting)</div>
+        </div>
+
+        <div class="bonus-fact-card">
+          <div class="bonus-fact-icon">⚱️</div>
+          <div class="bonus-fact-text">Pottery is my zen mode - analog creativity FTW</div>
+        </div>
+
+        <div class="bonus-fact-card">
+          <div class="bonus-fact-icon">🖖</div>
+          <div class="bonus-fact-text">Pop culture enthusiast (anime, sci-fi, everything)</div>
+        </div>
+
+        <div class="bonus-fact-card">
+          <div class="bonus-fact-icon">🎬</div>
+          <div class="bonus-fact-text">Recently cosplayed Pochita at Newbury Comics!</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quote Box if present -->
+    {% if content contains '<div class="quote-simple">' %}
+    <div class="bonus-quote-box">
+      <div class="bonus-quote-icon">💭</div>
+      {{ content | split: '<div class="quote-simple">' | last | split: '</div>' | first }}
+    </div>
+    {% endif %}
+
+    <!-- Easter Egg Section -->
+    <div class="bonus-easter-egg">
+      <div class="bonus-secret-message">
+        <span class="bonus-secret-text">🔓 SECRET UNLOCKED: Press Konami Code (↑ ↑ ↓ ↓ ← → ← → B A) for something special...</span>
+      </div>
+    </div>
+
+  </article>
+
+</div>
+
+<script>
+// Konami Code Easter Egg
+(function() {
+  const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+  let konamiIndex = 0;
+
+  document.addEventListener('keydown', function(e) {
+    const key = e.key;
+    const expectedKey = konamiCode[konamiIndex];
+
+    if (key.toLowerCase() === expectedKey.toLowerCase() || key === expectedKey) {
+      konamiIndex++;
+
+      if (konamiIndex === konamiCode.length) {
+        document.body.classList.add('bonus-konami-activated');
+        konamiIndex = 0;
+
+        // Show surprise message
+        const surprise = document.createElement('div');
+        surprise.className = 'bonus-konami-surprise';
+        surprise.innerHTML = '<p>🎮 YOU FOUND THE EASTER EGG! 🎮</p><p>You have unlocked: ULTIMATE BONUS CONTENT</p>';
+        document.body.appendChild(surprise);
+
+        setTimeout(() => surprise.remove(), 3000);
+      }
+    } else {
+      konamiIndex = 0;
+    }
+  });
+})();
+</script>

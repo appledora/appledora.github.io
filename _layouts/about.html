@@ -2,116 +2,101 @@
 layout: default
 ---
 
-<!-- about.html -->
-<div class="post homepage-post">
+<!-- about.html - Terminal Theme -->
+<div class="terminal-theme post homepage-post">
   <header class="post-header">
     <h1 class="post-title">
       {% if site.title == "blank" -%}<span class="font-weight-bold">{{ site.first_name }}</span> {{ site.middle_name }}
       {{ site.last_name }}{%- else -%}{{ site.title }}{%- endif %}
     </h1>
-    <p class="desc">{{ page.subtitle }}</p>
+    <p class="desc" style="border-bottom: 1px solid #00ff00; padding-bottom: 1rem; margin-bottom: 1.5rem;">{{ page.subtitle }}</p>
   </header>
 
   <article>
-    <!-- CRT Intro Panel with floated profile inside -->
-    <div class="intro-crt-panel intro-with-profile">
-      <div class="crt-frame-cyan">
-        <div class="crt-screen-cyan">
-          <div class="crt-content-cyan">
-            {% if page.profile -%}
-            <div
-              class="profile-floated-homepage profile float-{%- if page.profile.align == 'left' -%}left{%- else -%}right{%- endif -%}">
-              {%- if page.profile.image %}
-              {%- assign profile_image_path = page.profile.image | prepend: 'assets/img/' -%}
-
-              {% if page.profile.image_circular %}
-              {%- assign profile_image_class = "img-fluid z-depth-1 rounded-circle" -%}
-              {% else %}
-              {%- assign profile_image_class = "img-fluid z-depth-1 rounded" -%}
-              {% endif %}
-
-              {% capture sizes %}(min-width: {{site.max_width}}) {{ site.max_width | minus: 30 | times: 0.35}}px,
-              (min-width:
-              576px) 35vw, 95vw"{% endcapture %}
-
-              {% include figure.html
-              path = profile_image_path
-              class = profile_image_class
-              sizes = sizes
-              alt = page.profile.image
-              cache_bust = true
-              %}
-              {% endif -%}
-              {%- if page.profile.more_info %}
-              <div class="more-info">
-                {{ page.profile.more_info }}
-              </div>
-              {%- endif %}
-
-              <!-- Current Status Box -->
-              <div class="status-box-profile">
-                <div class="status-header">
-                  <!-- <span class="status-icon">📢</span> -->
-                  <span class="status-title">📢 CURRENTLY</span>
-                </div>
-                <div class="status-content">
-                  <p class="status-item">Exploring mechanistic interpretability from a weight space perspective. If
-                    you're interested in this topic, let's connect!
-                  </p>
-                </div>
-                <div class="status-blink">
-                  <span>🌕</span>
-                </div>
-              </div>
+    <!-- Terminal Profile Section -->
+    {% if page.profile -%}
+    <div class="terminal-status">
+      <div class="status-header">About</div>
+      <div class="status-content">
+        <div class="row">
+          <div class="col-md-8">
+            <!-- Bio content -->
+            {{ content | split: '<div class="quote-simple">' | first }}
+          </div>
+          <div class="col-md-4">
+            <!-- Profile Image -->
+            {%- if page.profile.image %}
+            {%- assign profile_image_path = page.profile.image | prepend: 'assets/img/' -%}
+            {%- assign profile_image_class = "img-fluid" -%}
+            {% capture sizes %}(min-width: {{site.max_width}}) {{ site.max_width | minus: 30 | times: 0.35}}px,
+            (min-width: 576px) 35vw, 95vw"{% endcapture %}
+            {% include figure.html
+            path = profile_image_path
+            class = profile_image_class
+            sizes = sizes
+            alt = page.profile.image
+            cache_bust = true
+            %}
+            {% endif -%}
+            {%- if page.profile.more_info %}
+            <div class="more-info" style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #00ff00; font-size: 0.9rem;">
+              $ whoami
+              <div style="margin-top: 0.5rem;">{{ page.profile.more_info }}</div>
             </div>
             {%- endif %}
-
-            {{ content | split: '<div class="quote-simple">' | first }}
-            </div>
-            <div class="crt-scanline-cyan"></div>
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- Quote Box - OUTSIDE CRT panel -->
-      {% if content contains '<div class="quote-simple">' %}
-        <div class="quote-simple-wrapper">
-          {{ content | split: '<div class="quote-simple">' | last | split: '</div>' | first | prepend: '<div
-            class="quote-simple">' | append: '</div>' }}
-        </div>
-        {% endif %}
+    <!-- Current Status Terminal Box -->
+    <div class="terminal-status" style="margin-top: 2rem;">
+      <div class="status-header">Currently</div>
+      <div class="status-content">
+        <p>Exploring mechanistic interpretability from a weight space perspective. If you're interested in this topic, let's connect!</p>
+      </div>
+    </div>
+    {%- endif %}
 
-        <!-- News -->
-        {% if page.news and site.announcements.enabled -%}
-        <h2><a href="{{ '/news/' | relative_url }}" style="color: inherit;">news</a></h2>
-        {%- include news.html limit=true %}
-        {%- endif %}
+    <!-- Quote Box if present -->
+    {% if content contains '<div class="quote-simple">' %}
+    <div class="terminal-output" style="margin: 2rem 0; background-color: rgba(0, 255, 0, 0.05);">
+      {{ content | split: '<div class="quote-simple">' | last | split: '</div>' | first }}
+    </div>
+    {% endif %}
 
-        <!-- Latest posts -->
-        {% if page.latest_posts -%}
-        <h2><a href="{{ '/blog/' | relative_url }}" style="color: inherit;">latest posts</a></h2>
-        {%- include latest_posts.html %}
-        {%- endif %}
+    <!-- News Section -->
+    {% if page.news and site.announcements.enabled -%}
+    <h2 style="margin-top: 3rem;">news</h2>
+    {%- include news.html limit=true %}
+    {%- endif %}
 
-        <!-- Selected papers -->
-        {% if page.selected_papers -%}
-        <h2><a href="{{ '/publications/' | relative_url }}" style="color: inherit;">selected publications</a></h2>
-        {%- include selected_papers.html %}
-        {%- endif %}
+    <!-- Latest posts -->
+    {% if page.latest_posts -%}
+    <h2 style="margin-top: 3rem;">latest posts</h2>
+    {%- include latest_posts.html %}
+    {%- endif %}
 
-        <!-- Social -->
-        {%- if page.social %}
-        <div class="social">
-          <div class="contact-icons">
-            {% include social.html %}
-          </div>
+    <!-- Selected papers -->
+    {% if page.selected_papers -%}
+    <h2 style="margin-top: 3rem;">selected publications</h2>
+    {%- include selected_papers.html %}
+    {%- endif %}
 
-          <div class="contact-note">
-            {{ site.contact_note }}
-          </div>
-
-        </div>
-        {%- endif %}
+    <!-- Social -->
+    {%- if page.social %}
+    <div class="social" style="margin-top: 3rem; padding-top: 2rem; border-top: 2px solid #00ff00;">
+      <h2>contact</h2>
+      <div class="contact-icons">
+        {% include social.html %}
+      </div>
+      {%- if site.contact_note %}
+      <div class="contact-note" style="margin-top: 1rem;">
+        {{ site.contact_note }}
+      </div>
+      {%- endif %}
+    </div>
+    {%- endif %}
   </article>
 
 </div>

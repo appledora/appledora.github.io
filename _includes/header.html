@@ -98,6 +98,14 @@
           {%- endif -%}
           {%- endif -%}
           {% endfor -%}
+
+          <!-- Bonus Easter Egg Link -->
+          <li class="nav-item">
+            <a class="nav-link bonus-nav-link" href="{{ '/bonus' | relative_url }}" title="Unlock the bonus level!">
+              ⚡ BONUS ⚡
+            </a>
+          </li>
+
           {%- if site.enable_darkmode %}
 
           <!-- Toogle theme mode -->
