@@ -94,14 +94,19 @@ layout: default
               {%- assign profile_image_class = "img-fluid" -%}
               {% capture sizes %}(min-width: {{site.max_width}}) {{ site.max_width | minus: 30 | times: 0.35}}px,
               (min-width: 576px) 35vw, 95vw"{% endcapture %}
-              <div class="comic-callout-trigger profile-photo-wrap">
-                {% include figure.html
-                path = profile_image_path
-                class = profile_image_class
-                sizes = sizes
-                alt = page.profile.image
-                cache_bust = true
-                %}
+              <div class="comic-callout-trigger profile-photo-wrap dither-photo-wrap">
+                <div class="dither-photo-frame">
+                  {% include figure.html
+                  path = profile_image_path
+                  class = profile_image_class
+                  sizes = sizes
+                  alt = page.profile.image
+                  cache_bust = true
+                  %}
+                  {%- assign dither_image_basename = page.profile.image | remove: '.jpg' | remove: '.jpeg' | remove: '.png' -%}
+                  {%- assign dither_image_path = dither_image_basename | append: '_dither.png' | prepend: 'assets/img/' -%}
+                  <img class="dither-photo-overlay" src="{{ dither_image_path | relative_url }}" alt="" aria-hidden="true">
+                </div>
                 {%- if page.profile.photo_callout %}
                 <span class="comic-callout">{{ page.profile.photo_callout }}</span>
                 {%- endif %}
