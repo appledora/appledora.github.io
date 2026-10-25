@@ -1,0 +1,62 @@
+{%- assign venue = entry.venue | default: entry.booktitle | default: entry.journal | default: entry.publisher -%}
+{%- assign total_authors = entry.author_array.size -%}
+<div class="sp-row">
+  {%- if entry.preview -%}
+  {%- assign preview_file = entry.preview | downcase -%}
+  {%- assign preview_src = entry.preview | prepend: '/assets/img/publication_preview/' | relative_url -%}
+  {%- if preview_file contains '.mp4' or preview_file contains '.webm' %}
+  <div class="sp-thumb sp-thumb--clip">
+    <video src="{{ preview_src }}" autoplay muted loop playsinline preload="metadata"
+      aria-label="{{ entry.title | escape }}"></video>
+  </div>
+  {%- elsif preview_file contains '.gif' or preview_file contains '.webp' %}
+  <div class="sp-thumb sp-thumb--clip">
+    <img src="{{ preview_src }}" alt="{{ entry.title | escape }}" loading="lazy">
+  </div>
+  {%- else %}
+  <div class="sp-thumb">
+    <img src="{{ preview_src }}" alt="{{ entry.title | escape }}" loading="lazy">
+  </div>
+  {%- endif %}
+  {%- endif %}
+
+  <div class="sp-body">
+    <div class="sp-meta">
+      {%- if venue %}<span class="sp-venue">{{ venue }} {{ entry.year }}</span>{% endif %}
+      {%- if entry.abbr %}
+      {%- assign tags = entry.abbr | split: ',' %}
+      {%- for tag in tags %}<span class="sp-tag">{{ tag | strip }}</span>{% endfor %}
+      {%- endif %}
+      <div class="sp-links">
+        {%- if entry.pdf and entry.pdf != empty %}<a href="{{ entry.pdf | relative_url }}" class="sp-link" target="_blank" rel="noopener noreferrer">paper ↗</a>{% endif %}
+        {%- if entry.code %}<a href="{{ entry.code }}" class="sp-link" target="_blank" rel="noopener noreferrer">code ↗</a>{% endif %}
+        {%- if entry.website %}<a href="{{ entry.website }}" class="sp-link" target="_blank" rel="noopener noreferrer">website ↗</a>{% endif %}
+        {%- if entry.slides %}<a href="{{ entry.slides | prepend: '/assets/pdf/' | relative_url }}" class="sp-link" target="_blank" rel="noopener noreferrer">slides ↗</a>{% endif %}
+        {%- if entry.abstract %}<button type="button" class="sp-link sp-toggle" aria-expanded="false">abstract +</button>{% endif %}
+      </div>
+    </div>
+
+    <div class="sp-title">{{ entry.title }}</div>
+
+    <div class="sp-authors">
+      {%- assign skipping = false -%}
+      {%- for author in entry.author_array -%}
+      {%- assign is_me = false -%}
+      {%- if site.scholar.last_name contains author.last and site.scholar.first_name contains author.first -%}
+      {%- assign is_me = true -%}
+      {%- endif -%}
+      {%- if total_authors <= 5 or forloop.index <= 3 or is_me or forloop.last -%}
+      {%- if skipping -%}<span class="sp-gap">…, </span>{%- assign skipping = false -%}{%- endif -%}
+      <span class="sp-author{% if is_me %} is-me{% endif %}">{{ author.first }} {{ author.last }}</span>{% unless forloop.last %}, {% endunless %}
+      {%- else -%}
+      {%- assign skipping = true -%}
+      {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+  </div>
+
+  {%- if entry.abstract %}
+  <div class="sp-abstract">{{ entry.abstract }}</div>
+  {%- endif %}
+</div>

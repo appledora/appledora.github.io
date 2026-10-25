@@ -1,9 +1,23 @@
+- date: 2026-10-23
+  inline: true
+  icon: 🎓
+  content: "Officially a PhD candidate at Boston University!"
+  related_posts: false
+  related_post: ""
+  link: ""
 - date: 2026-09-02
   inline: true
   icon: 🖍️
   content: "Helping teach CS 440: Intro to AI at Boston University as a Teaching Fellow"
   related_posts: true
   related_post: "Review-2026"
+  link: ""
+- date: 2026-08-26
+  inline: true
+  icon: 🎪
+  content: "Started internship at Adobe, San Jose, CA"
+  related_posts: false
+  related_post:
   link: ""
 - date: 2026-08-21
   inline: true

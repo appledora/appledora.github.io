@@ -16,7 +16,14 @@ horizontal: false
       <li class="artifact-entry">
         <div class="artifact-line">
           <span class="artifact-prompt">$</span>
-          <span class="artifact-title">{{ dataset.title }}</span>
+          <span class="artifact-head">
+            <span class="artifact-title">{{ dataset.title }}</span>
+            {%- if dataset.tags %}
+            <span class="artifact-tags">
+              {%- for tag in dataset.tags %}<span class="pill-tag">{{ tag }}</span>{% endfor %}
+            </span>
+            {%- endif %}
+          </span>
           {% if dataset.github %}
           <a href="{{ dataset.github }}" target="_blank" rel="noopener noreferrer" class="artifact-github" title="View dataset">
             <i class="fa-solid fa-database"></i> view
@@ -24,13 +31,6 @@ horizontal: false
           {% endif %}
         </div>
         <p class="artifact-description">{{ dataset.description }}</p>
-        {% if dataset.tags %}
-        <div class="artifact-tags">
-          {% for tag in dataset.tags %}
-          <span class="pill-tag">{{ tag }}</span>
-          {% endfor %}
-        </div>
-        {% endif %}
       </li>
     {% endfor %}
     </ol>
@@ -46,7 +46,14 @@ horizontal: false
       <li class="artifact-entry">
         <div class="artifact-line">
           <span class="artifact-prompt">$</span>
-          <span class="artifact-title">{{ project.title }}</span>
+          <span class="artifact-head">
+            <span class="artifact-title">{{ project.title }}</span>
+            {%- if project.tags %}
+            <span class="artifact-tags">
+              {%- for tag in project.tags %}<span class="pill-tag">{{ tag }}</span>{% endfor %}
+            </span>
+            {%- endif %}
+          </span>
           {% if project.github %}
           <a href="{{ project.github }}" target="_blank" rel="noopener noreferrer" class="artifact-github" title="View on GitHub">
             <i class="fa-brands fa-github"></i> repo
@@ -54,13 +61,6 @@ horizontal: false
           {% endif %}
         </div>
         <p class="artifact-description">{{ project.description }}</p>
-        {% if project.tags %}
-        <div class="artifact-tags">
-          {% for tag in project.tags %}
-          <span class="pill-tag">{{ tag }}</span>
-          {% endfor %}
-        </div>
-        {% endif %}
       </li>
     {% endfor %}
     </ol>

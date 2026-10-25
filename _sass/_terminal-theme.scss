@@ -281,38 +281,43 @@ body.terminal-theme {
 /* Status feed — live, multi-entry "what I'm doing/open to right now",
    presented as a single callout/note rather than a bulleted list. */
 .status-feed {
-  margin-bottom: 1.75rem;
+  margin-bottom: 1.25rem;
   border: 1px solid #111111;
-  border-left: 4px solid #111111;
+  border-left: 4px solid #d97706;
   background: #fafafa;
-  padding: 1rem 1.25rem;
+  padding: 0.55rem 0.9rem;
 
   .status-feed-label {
     display: block;
     font-family: 'VT323', 'Courier New', monospace;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    color: #6e6e6e;
-    margin-bottom: 0.5rem;
+    color: #111111;
+    margin-bottom: 0.15rem;
   }
 
   .status-feed-entry {
     font-family: 'VT323', 'Courier New', monospace;
-    font-size: 1.25rem;
-    line-height: 1.5;
+    font-size: 1.05rem;
+    line-height: 1.3;
     color: #111111;
 
     &::before {
       content: '▸ ';
-      color: #6e6e6e;
+      color: currentColor;
     }
 
     & + .status-feed-entry {
-      margin-top: 0.35rem;
+      margin-top: 0.1rem;
     }
+
+    .status-feed-text { color: inherit; }
   }
+
+  .status-feed-entry--focus { color: #b45309; }
+  .status-feed-entry--open { color: #15803d; }
 }
 
 /* Stat card — RPG character-select shape, plain research-first wording */
@@ -321,11 +326,15 @@ body.terminal-theme {
   border: 2px solid #111111;
 
   .stat-row {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 7.6rem minmax(0, 1fr);
     align-items: baseline;
-    gap: 0.4rem 0.9rem;
-    padding: 0.65rem 1rem;
+    gap: 0.2rem 0.9rem;
+    padding: 0.5rem 1rem;
+
+    @media (max-width: 575px) {
+      grid-template-columns: minmax(0, 1fr);
+    }
 
     & + .stat-row {
       border-top: 1px solid #dcdcdc;
@@ -333,8 +342,6 @@ body.terminal-theme {
   }
 
   .stat-label {
-    flex: 0 0 auto;
-    min-width: 6.5rem;
     font-family: 'Press Start 2P', cursive;
     font-size: 0.6rem;
     letter-spacing: 0.03em;
@@ -342,7 +349,6 @@ body.terminal-theme {
   }
 
   .stat-value {
-    flex: 1 1 auto;
     font-family: 'VT323', 'Courier New', monospace;
     font-size: 1.15rem;
     line-height: 1.4;
@@ -353,6 +359,22 @@ body.terminal-theme {
     .stat-value {
       font-size: 1rem;
       color: #6e6e6e;
+    }
+  }
+
+  .stat-when {
+    color: #6e6e6e;
+  }
+
+  .venue-list a {
+    color: #111111;
+    text-decoration-color: #b0b0b0;
+    white-space: nowrap;
+
+    &:hover {
+      background-color: #111111;
+      color: #ffffff;
+      text-decoration: none;
     }
   }
 
@@ -1204,190 +1226,6 @@ body.terminal-theme {
   }
 }
 
-/* -----------------------------------------------------------------------
- * Publications page (/publications) — .publications-compact override
- * Overrides the pre-existing colorful "retro" pixel styling to match
- * the clean black & white theme, with the same tag/badge/PDF treatment
- * used on the About page's Selected Publications section.
- * ----------------------------------------------------------------------- */
-.terminal-theme .publications-compact {
-  h1 {
-    font-family: inherit;
-    color: var(--terminal-text);
-  }
-
-  .year-badge {
-    background: #111111;
-    color: #ffffff;
-    font-family: 'VT323', 'Courier New', monospace;
-    font-size: 0.9rem;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    padding: 6px 12px;
-    border-radius: 999px;
-    box-shadow: none;
-  }
-
-  ol.bibliography li {
-    border: none;
-    border-top: 1px solid var(--terminal-border);
-    border-left: 3px solid #111111;
-    border-radius: 0;
-    background: #ffffff;
-    box-shadow: none;
-    cursor: pointer;
-    position: relative;
-    padding: 1rem 1.1rem 1rem 1.35rem;
-    margin-bottom: 0 !important;
-
-    &:first-child {
-      border-top: none;
-    }
-
-    &::before {
-      content: '⤢ click to view abstract';
-      display: block;
-      font-family: 'VT323', 'Courier New', monospace;
-      font-size: 0.75rem;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: var(--terminal-text-light);
-      opacity: 0;
-      transform: translateY(-4px);
-      transition: opacity 0.15s ease, transform 0.15s ease;
-      margin-bottom: 0.5rem;
-    }
-
-    &:hover::before {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    &.expanded::before {
-      content: '⤢ click to close';
-    }
-  }
-
-  .publication-header {
-    display: flex !important;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.75rem;
-    flex-wrap: wrap;
-    margin-bottom: 0.5rem;
-  }
-
-  .abbr abbr {
-    background-color: var(--terminal-tag-bg) !important;
-    color: var(--terminal-tag-text) !important;
-    border-radius: 999px !important;
-    padding: 7px 16px !important;
-    font-family: 'VT323', monospace !important;
-    font-size: 1.05rem !important;
-    display: inline-block;
-    margin-bottom: 0;
-  }
-
-  .preview {
-    margin: 0.5rem auto !important;
-  }
-
-  .title {
-    font-family: inherit !important;
-    color: var(--terminal-text) !important;
-    font-weight: 700;
-    font-size: 1.15rem !important;
-    display: block !important;
-    margin: 0.4rem 0 !important;
-
-    &:hover {
-      color: var(--terminal-text-light) !important;
-    }
-  }
-
-  .title-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0;
-    margin: 0.4rem 0 !important;
-  }
-
-  .btn-pdf {
-    order: 2;
-    margin-top: 0.5rem;
-    font-family: 'VT323', 'Courier New', monospace !important;
-    font-size: 1rem !important;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: #ffffff !important;
-    background-color: #111111 !important;
-    border: none !important;
-    box-shadow: none !important;
-    border-radius: 999px !important;
-    padding: 6px 18px !important;
-
-    &:hover {
-      background-color: var(--terminal-text-light) !important;
-      color: #ffffff !important;
-      box-shadow: none !important;
-    }
-  }
-
-  .author {
-    color: var(--terminal-text);
-    font-family: inherit;
-    margin: 0.2rem 0 !important;
-  }
-
-  .venue-badge {
-    display: inline-block !important;
-    color: #ffffff !important;
-    background-color: #111111 !important;
-    font-weight: 700 !important;
-    font-family: 'VT323', 'Courier New', monospace !important;
-    font-size: 1.1rem !important;
-    letter-spacing: 0.03em;
-    text-transform: uppercase;
-    border-left: none !important;
-    border-radius: 0 !important;
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 10px 100%, 0 50%);
-    padding: 7px 18px 7px 22px !important;
-    margin-top: 0 !important;
-    flex-shrink: 0;
-  }
-
-  .links a.btn {
-    font-family: 'VT323', 'Courier New', monospace;
-    color: var(--terminal-text);
-    background: transparent;
-    border: 1px solid var(--terminal-border-strong);
-    border-radius: 999px;
-
-    &:hover {
-      background: var(--terminal-text);
-      color: #ffffff;
-    }
-  }
-
-  .abstract-content {
-    background: #fafafa;
-    border: 1px solid var(--terminal-border);
-    color: var(--terminal-text);
-  }
-
-  // Same stray empty <p> issue as the About page's publications block.
-  .flip-card-back {
-    display: none;
-  }
-
-  ol.bibliography li.expanded .flip-card-back {
-    display: block;
-    margin-top: 0.75rem;
-  }
-}
-
 /* Quest Log (/misc) — highlight institution/conference names in Education & Experience */
 .terminal-theme .quest-log-terminal {
   .institution {
@@ -1417,5 +1255,339 @@ body.terminal-theme {
   .terminal-theme .profile-floated-homepage {
     float: none !important;
     margin-bottom: 1.5rem;
+  }
+}
+
+/* -----------------------------------------------------------------------
+ * About page — Selected Publications (compact rows with animated thumbnails)
+ * Rendered by _layouts/bib_selected.html via _includes/selected_papers.html.
+ * ----------------------------------------------------------------------- */
+@keyframes sp-pan {
+  from { object-position: 0% 0%; }
+  to   { object-position: 100% 70%; }
+}
+
+.terminal-theme .selected-papers {
+  // Year headings on /publications (group_by year); About page uses none.
+  h2.bibliography {
+    font-family: 'VT323', 'Courier New', monospace;
+    font-size: 1.6rem;
+    letter-spacing: 0.06em;
+    color: #111111;
+    text-transform: none;
+    margin: 2.25rem 0 0.9rem;
+    padding-bottom: 0.2rem;
+    border-bottom: 2px solid #111111;
+
+    &:first-of-type { margin-top: 0; }
+  }
+
+  ol.bibliography {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  ol.bibliography > li {
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--terminal-border);
+
+    &:first-child {
+      border-top: none;
+
+      .sp-row { padding-top: 0; }
+    }
+
+    &:last-child .sp-row { padding-bottom: 0; }
+  }
+
+  .sp-row {
+    display: grid;
+    grid-template-columns: 148px minmax(0, 1fr);
+    column-gap: 1rem;
+    align-items: start;
+    padding: 0.8rem 0;
+  }
+
+  .sp-thumb {
+    position: relative;
+    aspect-ratio: 7 / 5;
+    overflow: hidden;
+    background: #ffffff;
+    border: 2px solid #111111;
+    box-shadow: 3px 3px 0 #111111;
+    cursor: pointer;
+
+    img,
+    video {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    // Static figures: slow pan across the figure in 1-bit-ish grayscale,
+    // colour comes back on hover. Real GIF/video clips skip all of this.
+    &:not(.sp-thumb--clip) {
+      img {
+        filter: grayscale(1) contrast(1.3);
+        transition: filter 0.3s ease;
+        animation: sp-pan 14s ease-in-out infinite alternate;
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background-image: radial-gradient(#111111 0.8px, transparent 1px);
+        background-size: 3px 3px;
+        mix-blend-mode: multiply;
+        opacity: 0.28;
+        transition: opacity 0.3s ease;
+      }
+
+      &:hover img { filter: none; }
+      &:hover::after { opacity: 0; }
+    }
+  }
+
+  ol.bibliography > li:nth-child(3n + 2) .sp-thumb img { animation-delay: -5s; }
+  ol.bibliography > li:nth-child(3n) .sp-thumb img { animation-delay: -10s; }
+
+  .sp-body { min-width: 0; }
+
+  .sp-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.35rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .sp-venue,
+  .sp-tag {
+    font-family: 'VT323', 'Courier New', monospace;
+    font-size: 0.9rem;
+    line-height: 1.3;
+    letter-spacing: 0.02em;
+    padding: 0 0.55rem;
+  }
+
+  .sp-venue {
+    background: #111111;
+    color: #ffffff;
+    text-transform: uppercase;
+  }
+
+  .sp-tag {
+    border: 1px solid var(--terminal-border-strong);
+    border-radius: 999px;
+    color: var(--terminal-text-light);
+  }
+
+  .sp-title {
+    font-weight: 600;
+    line-height: 1.3;
+    cursor: pointer;
+  }
+
+  .sp-authors {
+    margin-top: 0.25rem;
+    font-size: 0.85rem;
+    line-height: 1.45;
+    color: var(--terminal-text-light);
+
+    .is-me {
+      color: #111111;
+      font-weight: 700;
+    }
+  }
+
+  .sp-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-left: auto;
+  }
+
+  .sp-link {
+    font-family: 'VT323', 'Courier New', monospace;
+    font-size: 0.9rem;
+    line-height: 1.3;
+    letter-spacing: 0.02em;
+    color: var(--terminal-text) !important;
+    background: transparent;
+    border: 1px solid #111111;
+    border-radius: 999px;
+    padding: 0.05rem 0.7rem;
+    text-decoration: none;
+    cursor: pointer;
+
+    &:hover {
+      color: #ffffff !important;
+      background: #111111;
+    }
+  }
+
+  .sp-abstract {
+    display: none;
+    grid-column: 1 / -1;
+    margin-top: 0.75rem;
+    padding: 0.85rem;
+    font-size: 0.9rem;
+    background: #fafafa;
+    border: 1px solid var(--terminal-border);
+    border-left: 3px solid var(--terminal-border-strong);
+    border-radius: 8px;
+  }
+
+  .sp-row.is-open .sp-abstract { display: block; }
+}
+
+@media (max-width: 575px) {
+  .terminal-theme .selected-papers {
+    .sp-row {
+      grid-template-columns: 76px minmax(0, 1fr);
+      column-gap: 0.7rem;
+    }
+
+    .sp-tag { display: none; }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .terminal-theme .selected-papers .sp-thumb img { animation: none !important; }
+}
+
+/* -----------------------------------------------------------------------
+ * Questlog (/news) — one line per entry, grouped by year
+ * ----------------------------------------------------------------------- */
+.terminal-theme .questlog-terminal {
+  .status-content {
+    padding: 0.5rem 1.5rem;
+  }
+
+  .ql-year {
+    display: grid;
+    grid-template-columns: 4.25rem minmax(0, 1fr);
+    column-gap: 0.75rem;
+    padding: 0.6rem 0;
+    border-top: 1px solid var(--terminal-border);
+
+    &:first-child { border-top: none; }
+  }
+
+  .ql-year-label {
+    margin: 0;
+    padding-top: 0.05rem;
+    font-family: 'VT323', 'Courier New', monospace;
+    font-size: 1.5rem;
+    line-height: 1.2;
+    letter-spacing: 0.04em;
+    color: #111111;
+    text-transform: none;
+  }
+
+  .ql-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .ql-item {
+    display: grid;
+    grid-template-columns: 3.1rem minmax(0, 1fr);
+    column-gap: 0.6rem;
+    align-items: baseline;
+    margin: 0;
+    padding: 0.2rem 0.4rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    line-height: 1.45;
+
+    &:hover { background: #fafafa; }
+  }
+
+  .ql-date {
+    font-family: 'VT323', 'Courier New', monospace;
+    font-size: 1rem;
+    letter-spacing: 0.02em;
+    color: var(--terminal-text-light);
+    white-space: nowrap;
+  }
+
+  .ql-icon { margin-right: 0.35rem; }
+}
+
+@media (max-width: 575px) {
+  .terminal-theme .questlog-terminal {
+    .status-content { padding: 0.5rem 1rem; }
+
+    .ql-year { grid-template-columns: minmax(0, 1fr); }
+
+    .ql-year-label { margin-bottom: 0.15rem; }
+  }
+}
+
+/* -----------------------------------------------------------------------
+ * Artifacts (/projects) — compact entries:
+ *   $ title #tag #tag ............ [repo]
+ *     description
+ * Tags sit inline after the title and wrap under it when they don't fit.
+ * ----------------------------------------------------------------------- */
+.terminal-theme .artifacts-terminal {
+  .status-content {
+    padding: 0.5rem 1.5rem;
+  }
+
+  .artifact-entry {
+    padding: 0.6rem 0;
+
+    &:first-child { padding-top: 0.15rem; }
+    &:last-child { padding-bottom: 0.15rem; }
+  }
+
+  .artifact-line {
+    display: grid;
+    grid-template-columns: 0.9rem minmax(0, 1fr) auto;
+    column-gap: 0.55rem;
+    align-items: baseline;
+  }
+
+  .artifact-prompt { font-size: 1rem; }
+
+  .artifact-head {
+    min-width: 0;
+    line-height: 1.5;
+  }
+
+  .artifact-title {
+    margin-right: 0.35rem;
+    line-height: 1.35;
+  }
+
+  .artifact-tags {
+    display: inline;
+
+    .pill-tag {
+      font-size: 0.78rem;
+      line-height: 1.25;
+      padding: 0 0.5rem;
+      margin: 0 0.25rem 0.1rem 0;
+    }
+  }
+
+  .artifact-github {
+    font-size: 0.85rem;
+    line-height: 1.3;
+    padding: 0.02rem 0.6rem;
+  }
+
+  .artifact-description {
+    margin: 0.1rem 0 0 calc(0.9rem + 0.55rem);
+    font-size: 0.9rem;
+    line-height: 1.4;
   }
 }

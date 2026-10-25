@@ -1,0 +1,12 @@
+<script>
+  document.querySelectorAll('.selected-papers .sp-row').forEach(function (row) {
+    var btn = row.querySelector('.sp-toggle');
+    if (!btn) return;
+    row.addEventListener('click', function (e) {
+      if (e.target.closest('a') || !e.target.closest('.sp-toggle, .sp-title, .sp-thumb')) return;
+      var open = row.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', open);
+      btn.textContent = open ? 'abstract −' : 'abstract +';
+    });
+  });
+</script>

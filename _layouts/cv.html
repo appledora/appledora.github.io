@@ -12,6 +12,10 @@ layout: default
     {% if page.description %}<p class="post-description">{{ page.description }}</p>{% endif %}
   </header>
 
+  {% if page.permalink == '/misc/' %}
+  <div class="bonus-banner" aria-hidden="true"></div>
+  {% endif %}
+
   <div class="research-motivation-crt">
     <div class="crt-frame">
       <div class="crt-screen-research">
@@ -20,14 +24,14 @@ layout: default
             <p class="motivation-statement">🎀 I am skeptical of AI progress that scales everything except
               accountability. 🎀
             </p>
-            <p>My research sits at the intersection of three questions: how do we adapt powerful models without
-              requiring unlimited resources? How do we evaluate them honestly, beyond what aggregate metrics are
-              designed to hide? And who are we building them for? These questions have taken me from parameter-efficient
-              fine-tuning to adversarial benchmarking to low-resource NLP — and increasingly toward mechanistic
-              interpretability, where the goal is understanding not just what models output, but what they actually
-              represent.</p>
-            <p>Efficiency, interpretability, and inclusion are not separate research agendas for me. They are the same
-              argument at different levels of abstraction.</p>
+            <p class="motivation-lead">I study multimodal learning, guided by four commitments, and each one shows up in my work:</p>
+            <ol class="motivation-questions">
+              <li><span class="mq-num">01</span><span class="mq-body"><span><strong>Understand, don't just score.</strong> Evaluate models honestly, beyond what aggregate metrics are designed to hide.</span><span class="mq-work"><span class="mq-arrow">&#8627;</span><a class="mt-step mt-link" href="https://arxiv.org/abs/2505.21649" target="_blank" rel="noopener noreferrer">arXiv:2505.21649 &#8599;</a><a class="mt-step mt-link" href="https://arxiv.org/abs/2402.00626" target="_blank" rel="noopener noreferrer">arXiv:2402.00626 &#8599;</a></span></span></li>
+              <li><span class="mq-num">02</span><span class="mq-body"><span><strong>Look inside.</strong> Examine the representations behind behavior, and the gap between observed behavior and underlying vulnerabilities or retained knowledge.</span><span class="mq-work"><span class="mq-arrow">&#8627;</span><a class="mt-step mt-link" href="https://arxiv.org/abs/2601.10566" target="_blank" rel="noopener noreferrer">arXiv:2601.10566 &#8599;</a></span></span></li>
+              <li><span class="mq-num">03</span><span class="mq-body"><span><strong>Stay efficient.</strong> Adapt powerful models without requiring unlimited resources.</span><span class="mq-work"><span class="mq-arrow">&#8627;</span><a class="mt-step mt-link" href="https://arxiv.org/abs/2411.16870" target="_blank" rel="noopener noreferrer">arXiv:2411.16870 &#8599;</a><a class="mt-step mt-link" href="https://arxiv.org/abs/2603.27383" target="_blank" rel="noopener noreferrer">arXiv:2603.27383 &#8599;</a></span></span></li>
+              <li><span class="mq-num">04</span><span class="mq-body"><span><strong>Ask who it's for.</strong> Keep asking who we are building them for.</span><span class="mq-work"><span class="mq-arrow">&#8627;</span><a class="mt-step mt-link" href="https://arxiv.org/abs/2510.20043" target="_blank" rel="noopener noreferrer">arXiv:2510.20043 &#8599;</a></span></span></li>
+            </ol>
+            <p class="motivation-thesis"><strong>Efficiency, interpretability, and inclusion</strong> are not separate research agendas for me. They are the same argument at different levels of abstraction.</p>
           </div>
         </div>
         <div class="crt-scanline-research"></div>
@@ -82,13 +86,31 @@ layout: default
             {% endfor %}
           </div>
           {% elsif entry.title contains 'Non-academic' %}
-          <div class="non-academic-tags">
+          {% assign inv_total = 0 %}
+          {% for interest_group in entry.contents %}
+          {% assign inv_total = inv_total | plus: interest_group.items.size %}
+          {% endfor %}
+          {% assign inv_slot = 0 %}
+          <div class="inv-header"><span>Inventory</span><span>{{ inv_total }} items</span></div>
+          <div class="inv-grid">
             {% for interest_group in entry.contents %}
-            <div class="interest-tags-container">
-              {% for interest in interest_group.items %}
-              <span class="interest-tag">{{ interest }}</span>
-              {% endfor %}
+            {% for interest in interest_group.items %}
+            {% assign inv_slot = inv_slot | plus: 1 %}
+            {% assign inv_words = interest | split: ' ' %}
+            {% if inv_words.size > 1 %}
+            {% assign inv_icon = inv_words | last %}
+            {% assign inv_label_len = inv_words.size | minus: 1 %}
+            {% assign inv_label = inv_words | slice: 0, inv_label_len | join: ' ' %}
+            {% else %}
+            {% assign inv_icon = '' %}
+            {% assign inv_label = interest %}
+            {% endif %}
+            <div class="inv-slot">
+              <span class="inv-num">{{ inv_slot | prepend: '00' | slice: -2, 2 }}</span>
+              <span class="inv-icon" aria-hidden="true">{{ inv_icon }}</span>
+              <span class="inv-label">{{ inv_label }}</span>
             </div>
+            {% endfor %}
             {% endfor %}
           </div>
           {% else %}

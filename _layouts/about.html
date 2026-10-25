@@ -23,7 +23,7 @@ layout: default
     <div class="status-feed">
       <span class="status-feed-label">Currently</span>
       {% for s in page.status %}
-      <div class="status-feed-entry">
+      <div class="status-feed-entry{% if s.kind %} status-feed-entry--{{ s.kind }}{% endif %}">
         <span class="status-feed-text">{{ s.text }}</span>
       </div>
       {% endfor %}
@@ -67,14 +67,24 @@ layout: default
                   <span class="stat-label">Research</span>
                   <span class="stat-value">{{ page.stats.research }}</span>
                 </div>
+                {% if page.stats.methods %}
                 <div class="stat-row">
-                  <span class="stat-label">Methods + Focus</span>
-                  <span class="stat-value">{{ page.stats.methods }} · {{ page.stats.focus }}</span>
+                  <span class="stat-label">Methods</span>
+                  <span class="stat-value">{{ page.stats.methods }}</span>
                 </div>
+                {% endif %}
+                {% if page.stats.graduating %}
+                <div class="stat-row">
+                  <span class="stat-label">Graduating</span>
+                  <span class="stat-value">{{ page.stats.graduating }}</span>
+                </div>
+                {% endif %}
                 {% if page.venues %}
                 <div class="stat-row stat-row--venues">
                   <span class="stat-label">Published in</span>
-                  <span class="stat-value">{{ page.venues }}</span>
+                  <span class="stat-value venue-list">
+                    {% for venue in page.venues %}<a href="{{ venue.url }}" target="_blank" rel="noopener noreferrer">{{ venue.name }}</a>{% unless forloop.last %} · {% endunless %}{% endfor %}
+                  </span>
                 </div>
                 {% endif %}
               </div>

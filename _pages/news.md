@@ -10,17 +10,20 @@ description: ""
 <div class="terminal-status questlog-terminal">
   <div class="status-header">questlog.log</div>
   <div class="status-content">
-    <ol class="artifacts-list">
-    {%- assign news_sorted = site.data.news | sort: 'date' | reverse %}
-    {% for new in news_sorted %}
-      <li class="artifact-entry">
-        <div class="artifact-line">
-          <span class="artifact-prompt">$</span>
-          <span class="mono-label">{{ new.date | date: "%b %d, %Y" }}</span>
-        </div>
-        <p class="artifact-description">{% if new.icon %}{{ new.icon }} {% endif %}{{ new.content }}</p>
-      </li>
-    {% endfor %}
-    </ol>
+    {%- assign news_sorted = site.data.news | sort: 'date' | reverse -%}
+    {%- assign news_by_year = news_sorted | group_by_exp: "n", "n.date | date: '%Y'" -%}
+    {%- for year in news_by_year %}
+    <section class="ql-year">
+      <h2 class="ql-year-label">{{ year.name }}</h2>
+      <ol class="ql-list">
+        {%- for new in year.items %}
+        <li class="ql-item">
+          <span class="ql-date">{{ new.date | date: "%b %d" }}</span>
+          <span class="ql-text">{% if new.icon %}<span class="ql-icon">{{ new.icon }}</span>{% endif %}{{ new.content }}</span>
+        </li>
+        {%- endfor %}
+      </ol>
+    </section>
+    {%- endfor %}
   </div>
 </div>
