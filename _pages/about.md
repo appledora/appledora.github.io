@@ -26,9 +26,9 @@ advisors:
 status:
   - text: Looking for Spring/Summer 2027 Internships and Full-time roles
     kind: focus
-  - text: exploring mechanistic interpretability from a weight-space perspective
+  - text: Currently exploring latent representations in multimodal models
     kind: focus
-  - text: open to research collaborations
+  - text: Open to research collaborations and mentoring. Shoot an email~
     kind: open
 
 stats:
