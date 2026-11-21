@@ -1,0 +1,55 @@
+name: refresh atlas data
+
+on:
+  schedule:
+    # 06:00 UTC on the 1st of every other month (Jan, Mar, May, Jul, Sep, Nov)
+    - cron: '0 6 1 */2 *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Fetch from OpenAlex
+        env:
+          OPENALEX_EMAIL: ${{ secrets.OPENALEX_EMAIL }}
+        run: python3 bin/fetch_atlas_data.py --report "$RUNNER_TEMP/report.txt"
+
+      - name: Rebuild the page data
+        run: python3 bin/build_atlas_data.py
+
+      - name: Open a pull request if anything changed
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ -z "$(git status --porcelain -- assets/bibliography)" ]; then
+            echo "No changes."
+            exit 0
+          fi
+          branch="atlas-data-$(date -u +%Y-%m-%d)"
+          {
+            echo "Automated refresh of the atlas data from OpenAlex."
+            echo
+            echo '```'
+            cat "$RUNNER_TEMP/report.txt"
+            echo '```'
+          } > "$RUNNER_TEMP/body.md"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -c "$branch"
+          git add assets/bibliography
+          git commit -m "update: atlas data (OpenAlex refresh)"
+          git push -u origin "$branch"
+          gh pr create --base master --head "$branch" \
+            --title "update: atlas data ($(date -u +%Y-%m-%d))" \
+            --body-file "$RUNNER_TEMP/body.md"

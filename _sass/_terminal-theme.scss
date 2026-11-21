@@ -1591,3 +1591,224 @@ body.terminal-theme {
     line-height: 1.4;
   }
 }
+
+/* -----------------------------------------------------------------------
+ * Atlas (/atlas) — topic map. Markup: _pages/atlas.md, logic: assets/js/atlas.js
+ * Colours: refs grey, my papers black with a gold edge, citing papers purple.
+ * ----------------------------------------------------------------------- */
+.terminal-theme .atlas-terminal {
+  .atlas-hint {
+    margin: 0 0 0.6rem;
+    font-family: 'VT323', 'Courier New', monospace;
+    font-size: 1.1rem;
+    color: var(--terminal-text-light);
+  }
+
+  .atlas-themes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 0.9rem;
+  }
+
+  .atlas-theme-chip {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.45rem;
+    font-family: 'VT323', 'Courier New', monospace;
+    font-size: 1rem;
+    line-height: 1.3;
+    color: #111111;
+    background: transparent;
+    border: 1px solid #111111;
+    border-radius: 999px;
+    padding: 0.05rem 0.75rem 0.05rem 0.55rem;
+    cursor: pointer;
+
+    &:hover,
+    &[aria-pressed='true'] {
+      color: #ffffff;
+      background: #111111;
+    }
+  }
+
+  .atlas-theme-num {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.5rem;
+    color: #6c1fd4;
+
+    .atlas-theme-chip:hover &,
+    .atlas-theme-chip[aria-pressed='true'] & { color: #ffbe0b; }
+  }
+
+  .atlas-viz-scroll { overflow-x: auto; }
+
+  .atlas-viz-wrap {
+    position: relative;
+    min-width: 640px;
+    border: 2px solid #111111;
+    background: #ffffff;
+
+    svg { display: block; width: 100%; height: auto; }
+  }
+
+  .atlas-band { fill: #fafafa; }
+  .atlas-col {
+    fill: transparent;
+    transition: fill 0.15s ease;
+
+    &.is-active { fill: #f3ecff; }
+  }
+  .atlas-lane-label {
+    font-family: 'VT323', 'Courier New', monospace;
+    font-size: 15px;
+    letter-spacing: 0.08em;
+    fill: #6e6e6e;
+  }
+  .atlas-tick {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 9px;
+    fill: #6c1fd4;
+  }
+
+  .atlas-node {
+    cursor: pointer;
+    transition: opacity 0.15s ease;
+
+    &--refs { fill: #b8b8b8; }
+    &--citers { fill: #6c1fd4; }
+    &--mine { fill: #111111; stroke: #ffbe0b; stroke-width: 2; }
+    &--both { stroke: #111111; stroke-width: 1.5; }
+    &:hover { stroke: #111111; stroke-width: 2; }
+    &.is-selected,
+    &:focus-visible { stroke: #d97706; stroke-width: 3; outline: none; }
+  }
+
+  .atlas-edge {
+    fill: none;
+    stroke-width: 1;
+    stroke-opacity: 0.55;
+    pointer-events: none;
+
+    &.is-faint { stroke-opacity: 0.28; }
+    &--refs { stroke: #555555; }
+    &--citers { stroke: #6c1fd4; }
+    &--mine { stroke: #111111; }
+  }
+
+  .atlas-tip {
+    position: absolute;
+    z-index: 5;
+    max-width: 240px;
+    padding: 0.3rem 0.55rem;
+    font-family: 'VT323', 'Courier New', monospace;
+    font-size: 1rem;
+    line-height: 1.25;
+    background: #ffffff;
+    border: 2px solid #111111;
+    box-shadow: 3px 3px 0 #111111;
+    pointer-events: none;
+
+    &[hidden] { display: none; }
+  }
+
+  .atlas-detail {
+    margin-top: 0.9rem;
+    padding: 0.75rem 1rem;
+    background: #fafafa;
+    border: 1px solid var(--terminal-border);
+    border-left: 4px solid #111111;
+  }
+
+  .atlas-empty { margin: 0; font-family: 'VT323', 'Courier New', monospace; color: var(--terminal-text-light); }
+
+  .atlas-detail-role {
+    display: inline-block;
+    padding: 0 0.55rem;
+    margin-bottom: 0.3rem;
+    font-family: 'VT323', 'Courier New', monospace;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: #ffffff;
+    background: #6e6e6e;
+
+    &--mine { background: #111111; }
+    &--citers { background: #6c1fd4; }
+  }
+
+  .atlas-detail-title { margin: 0 0 0.2rem; font-size: 1.05rem; line-height: 1.35; }
+  .atlas-detail-meta,
+  .atlas-conn { margin: 0 0 0.35rem; font-family: 'VT323', 'Courier New', monospace; font-size: 1.05rem; }
+  .atlas-detail-meta { color: var(--terminal-text-light); }
+  .atlas-detail-authors { margin: 0 0 0.4rem; font-size: 0.85rem; line-height: 1.45; color: var(--terminal-text-light); }
+  .atlas-detail-authors b { color: #111111; }
+
+  .atlas-paper-list {
+    margin: 0.4rem 0 0.5rem;
+    padding-left: 1.1rem;
+    font-size: 0.92rem;
+    line-height: 1.45;
+
+    li { margin-bottom: 0.25rem; }
+  }
+
+  .atlas-paper-btn {
+    padding: 0;
+    font: inherit;
+    text-align: left;
+    color: #111111;
+    background: none;
+    border: 0;
+    text-decoration: underline;
+    text-decoration-color: var(--terminal-border-strong);
+    text-underline-offset: 2px;
+    cursor: pointer;
+
+    &:hover { text-decoration-color: #111111; }
+  }
+
+  .atlas-link-btn {
+    font-family: 'VT323', 'Courier New', monospace;
+    font-size: 0.95rem;
+    line-height: 1.3;
+    color: #111111;
+    background: transparent;
+    border: 1px solid #111111;
+    border-radius: 999px;
+    padding: 0.05rem 0.7rem;
+    cursor: pointer;
+
+    &:hover { color: #ffffff; background: #111111; }
+  }
+
+  .atlas-muted { color: var(--terminal-text-light); }
+
+  .atlas-chips-label {
+    margin: 0.5rem 0 0.2rem;
+    font-family: 'VT323', 'Courier New', monospace;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--terminal-text-light);
+  }
+
+  .atlas-chips { display: flex; flex-wrap: wrap; gap: 0.3rem; margin: 0 0 0.4rem; }
+  .atlas-chip {
+    font-family: 'VT323', 'Courier New', monospace;
+    font-size: 0.9rem;
+    line-height: 1.25;
+    padding: 0 0.5rem;
+    color: var(--terminal-text-light);
+    border: 1px solid var(--terminal-border-strong);
+    border-radius: 999px;
+  }
+
+  .atlas-abstract {
+    font-size: 0.9rem;
+    line-height: 1.5;
+
+    summary { cursor: pointer; font-family: 'VT323', 'Courier New', monospace; font-size: 1rem; }
+    p { margin: 0.4rem 0 0; }
+  }
+}
